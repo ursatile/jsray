@@ -1,0 +1,21 @@
+blockquote {
+  margin: 1em 0;
+  padding: 0 1em;
+  border-left: 2px solid #666;
+  background-color: #eee;
+}
+
+ul#index-nav {
+  list-style-type: none;
+  li::before {
+    content: none;
+  }
+  padding: 0;
+  margin: 0;
+  a {
+    font-weight: bold;
+  }
+  p {
+    padding-left: 20px;
+  }
+}

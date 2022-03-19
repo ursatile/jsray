@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<head>
+    <title>JSRay</title>
+</head>
+
+<body>
+    <canvas style="width: 400px; height: 300px; background-color: #000;" width="400" height="300" id="myCanvas">
+    </canvas>
+</body>
+<script type="module" src="tracer.js"></script>
+<script type="module">
+    import RayTracer from './tracer.js';
+    var canvas = document.getElementById('myCanvas');
+    var tracer = new RayTracer(canvas);
+    tracer.trace();
+</script>
+
+</html>
