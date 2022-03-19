@@ -1,0 +1,9 @@
+[submodule "jstracer-part01"]
+	path = jstracer-part01
+	url = git@github.com:dylanbeattie/jstracer.git
+[submodule "jstracer-part02"]
+	path = jstracer-part02
+	url = git@github.com:dylanbeattie/jstracer.git
+[submodule "jstracer-part03"]
+	path = jstracer-part03
+	url = git@github.com:dylanbeattie/jstracer.git
