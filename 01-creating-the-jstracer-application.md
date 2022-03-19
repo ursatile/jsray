@@ -1,5 +1,5 @@
 ---
-title: '1: Creating the JSTracer application'
+title: '1.1: Creating the JSTracer application'
 layout: module
 nav_order: 1
 summary: >

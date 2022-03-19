@@ -1,5 +1,5 @@
 ---
-title: "2: Introducing the HTML Canvas API"
+title: "1.2: Introducing the HTML Canvas API"
 layout: module
 nav_order: 2
 summary: >

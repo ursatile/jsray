@@ -1,5 +1,5 @@
 ---
-title: "4: Colors"
+title: "1.4: Colors"
 layout: module
 nav_order: 4
 summary: >
@@ -23,7 +23,7 @@ Create a new file in your project called `modules/material.js`, with the followi
 ```javascript
 // modules/material.js
 
-{% include_relative module03/jstracer/modules/material.js %}
+{% include_relative jstracer-part01/jstracer/modules/material.js %}
 ```
 
 Material defines a single method called `getColorAt` - we give it a point somewhere in our scene, and it'll tell us what colour the material at that point is.

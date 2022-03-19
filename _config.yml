@@ -63,7 +63,9 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - node_modules/
-  - examples/jstris/node_modules/
-  - examples/unit-testing/counter-with-tests/node_modules/
-  - examples/advanced-stylesheets/counter/node_modules/
-  - examples/snowpack/counter/node_modules/
+  - jstracer-part01/jstracer/node_modules/
+  - jstracer-part01/README.md
+  - jstracer-part02/jstracer/node_modules/
+  - jstracer-part02/README.md
+  - jstracer-part03/jstracer/node_modules/
+  - jstracer-part03/README.md

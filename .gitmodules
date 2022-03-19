@@ -7,3 +7,6 @@
 [submodule "jstracer-part03"]
 	path = jstracer-part03
 	url = git@github.com:dylanbeattie/jstracer.git
+[submodule "jstracer-part04"]
+	path = jstracer-part04
+	url = git@github.com:dylanbeattie/jstracer.git

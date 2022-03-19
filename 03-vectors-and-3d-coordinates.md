@@ -1,5 +1,5 @@
 ---
-title: "3: Vectors and the 3D coordinate system"
+title: "1.3: Vectors and the 3D Coordinate System"
 layout: module
 nav_order: 3
 summary: >
@@ -33,7 +33,7 @@ We're going to create a JavaScript **module** called `vector.js`, which exports 
 ```javascript
 // modules/vector.js
 
-{% include_relative module03/jstracer/modules/vector.js %}
+{% include_relative jstracer-part01/jstracer/modules/vector.js %}
 ```
 
 Things to note here:
@@ -63,8 +63,7 @@ Things to note here:
 * `v1.invert()` returns a new vector which is the inverse vector of `v1`. 
 * The inverse of `<x,y,z>` is `<-x,-y,-z>`
 * `v1.add(v2)` returns the **sum** of vectors `v1` and `v2`
-
-  * The sum of a vector and its inverse is always `<0,0,0>`
+* The sum of a vector and its inverse is always `<0,0,0>`
 * `v1.scale(factor)` scales the vector by the specified factor.
 
 ## Review & Recap

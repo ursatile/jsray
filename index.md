@@ -9,7 +9,15 @@ nav_order: 00
 
 **Hello!** This is the online handbook for Dylan Beattie's JavaScript ray-tracer workshop.
 
-The handbook includes instructions and code samples for each part of the workshop, for attendees who want to follow along with the live coding exercises and build their own JavaScript ray tracer. 
+The handbook includes instructions and code samples for each part of the workshop, for attendees who want to follow along with the live coding exercises and build their own JavaScript ray tracer.
+
+If you just want to run the live examples from each part of the workshop, here are the links:
+
+- [Part 1](jstracer-part01/jstracer/index.html)
+- [Part 2](jstracer-part02/jstracer/index.html)
+- [Part 3](jstracer-part03/jstracer/index.html)
+
+## Contents
 
 <ul id="index-nav">
     {% assign contents = site.pages | where_exp:"item", "item.summary != nil" %}
@@ -22,4 +30,3 @@ The handbook includes instructions and code samples for each part of the worksho
 </ul>
 
 THE 3D VIEWER IS https://3dviewer.net/
-
