@@ -1,7 +1,7 @@
 ---
-title: "1.2: Introducing the HTML Canvas API"
+title: "2: Introducing the HTML Canvas API"
 layout: module
-nav_order: 2
+nav_order: 200
 summary: >
     Introducing the HTML canvas element and the browser APIs we can use to work with it.
 typora-root-url: ./
@@ -33,7 +33,7 @@ canvas {
 
 You should now see a blank page with an empty black canvas on it:
 
-![image-20220318172105969](/assets/images/image-20220318172105969.png)
+![image-20220318172105969](assets/images/image-20220318172105969.png)
 
 ### Drawing graphics onto a canvas
 
@@ -105,7 +105,7 @@ for(let x = 0; x < myCanvas.width; x++) {
 
 You should get an image something like this:
 
-![image-20220318175251133](/assets/images/image-20220318175251133.png)
+![image-20220318175251133](assets/images/image-20220318175251133.png)
 
 Take some time to play around with the `getColorAtPixel(x,y)` function here.
 
@@ -127,7 +127,7 @@ function getColorAtPixel(x,y) {
 }
 ```
 
-![image-20220318180643036](/assets/images/image-20220318180643036.png)
+![image-20220318180643036](assets/images/image-20220318180643036.png)
 
 ```javascript
 function getColorAtPixel(x,y) {
@@ -138,7 +138,7 @@ function getColorAtPixel(x,y) {
 }
 ```
 
-![image-20220318181305507](/assets/images/image-20220318181305507.png)
+![image-20220318181305507](assets/images/image-20220318181305507.png)
 
 ## Review & Recap
 

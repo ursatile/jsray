@@ -63,9 +63,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - node_modules/
-  - jstracer-part01/jstracer/node_modules/
-  - jstracer-part01/README.md
-  - jstracer-part02/jstracer/node_modules/
-  - jstracer-part02/README.md
-  - jstracer-part03/jstracer/node_modules/
-  - jstracer-part03/README.md
+  - examples/01-hello-world/node_modules/
+  - examples/02-canvas/node_modules/
+  - examples/03-tracer/node_modules/
+  - examples/04-shapes/node_modules/

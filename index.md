@@ -13,9 +13,9 @@ The handbook includes instructions and code samples for each part of the worksho
 
 If you just want to run the live examples from each part of the workshop, here are the links:
 
-- [Part 1](jstracer-part01/jstracer/index.html)
-- [Part 2](jstracer-part02/jstracer/index.html)
-- [Part 3](jstracer-part03/jstracer/index.html)
+1. [Hello, World with JS Modules](examples/01-hello-world/index.html)
+2. [Introducing the HTML Canvas](examples/02-canvas/index.html)
+3. [Rendering an Empty Scene](examples/03-tracer/index.html)
 
 ## Contents
 
