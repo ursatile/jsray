@@ -10,21 +10,25 @@ layout: null
             margin: 0;
             padding: 0;
             text-align: center;
+            background-color: #000;
+            text: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        a { 
+            color: #99f;
         }
 
         div {
-            margin: 0;
-            border: 0;
-            padding: 0;
-            box-sizing: border-box;
-            width: 50%;
-            height: 400px;
-            display: inline-block;
+            margin: 20px auto;
         }
 
         div iframe {
-            width: 100%;
-            height: 350px;
+            border: 0;
+            width: 60%;
+            height: 400px;
+            background-color: #fff;
+            margin: 8px auto;
         }
     </style>
 
@@ -35,6 +39,7 @@ layout: null
     {% for example in examples %}
     <div>
         <iframe src="examples/{{ example }}/index.html"></iframe>
+        <br />
         <a href="examples/{{ example }}/index.html">{{ example }}</a>
     </div>
     {% endfor %}

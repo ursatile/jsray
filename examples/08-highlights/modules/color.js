@@ -1,3 +1,5 @@
+import { Finish } from './finish.js';
+
 // The maximum total intensity of an HTML color is 255+255+255 = 765
 const MAX_INTENSITY = 765;
 
@@ -10,6 +12,9 @@ export class Color {
         }
     }
 
+    // although it's not really correct, we expose a material and
+    // finish property on Color so we can use colors as simple
+    // textures without having to wrap them in a Texture instance.
     get material() { return this; }
     get finish() { return Finish.Default };
 

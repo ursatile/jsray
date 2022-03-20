@@ -1,9 +1,6 @@
 import { Ray } from '../../06-more-shapes/modules/ray.js';
 import { THRESHOLD } from './settings.js';
 
-// How much color do we see from areas that aren't illuminated by any light source?
-const AMBIENT = 0.1;
-
 export class Shape {
 
     constructor(material) {
@@ -43,7 +40,8 @@ export class Shape {
 
                     let specular = reflex.dot(lightDirection.normalize());
                     if (specular > 0) {
-                        specular = Math.pow(specular, 16 * this.material.finish.specular * this.material.finish.specular);
+                        let exponent = 16 * this.material.finish.specular * this.material.finish.specular;
+                        specular = Math.pow(specular, exponent);
                         colorToReturn = colorToReturn.add(light.color.scale(this.material.finish.specular * specular));
                     }
                 }
