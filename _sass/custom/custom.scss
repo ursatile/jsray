@@ -4,7 +4,12 @@ blockquote {
   border-left: 2px solid #666;
   background-color: #eee;
 }
-
+p {
+  img {
+    margin: 4px auto;
+    display: block;
+  }
+}
 ul#index-nav {
   list-style-type: none;
   li::before {

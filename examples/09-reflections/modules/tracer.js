@@ -8,14 +8,13 @@ class Tracer {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
     }
-    trace(scene, callback) {
-        const STEP = 1;
-        for (let yPixel = 0; yPixel < this.canvasHeight; yPixel += STEP) {
-            for (let xPixel = 0; xPixel < this.canvasWidth; xPixel += STEP) {
+    trace(scene, callback, step = 1) {
+        for (let yPixel = 0; yPixel < this.canvasHeight; yPixel += step) {
+            for (let xPixel = 0; xPixel < this.canvasWidth; xPixel += step) {
                 let x = (xPixel / this.canvasWidth) - 0.5;
                 let y = (yPixel / this.canvasHeight) - 0.5;
                 let pixelColor = scene.trace(x, y);
-                callback(xPixel, yPixel, pixelColor, STEP);
+                callback(xPixel, yPixel, pixelColor, step);
             }
         }
     }
