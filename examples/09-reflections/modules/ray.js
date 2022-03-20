@@ -1,3 +1,5 @@
+import { MAX_DEPTH } from './settings.js';
+
 export class Ray {
     /** Construct a new ray starting from the specified start 
      * point, and pointing in the specified direction */
@@ -6,7 +8,8 @@ export class Ray {
         this.direction = direction.normalize();
     }
     /** Trace this ray through the specified scene, and return the resulting color. */
-    trace = (scene) => {
+    trace = (scene, depth = 0) => {
+        if (depth > MAX_DEPTH) return scene.background;
         let distanceToNearestShape = Infinity;
         let nearestIntersectingShape = null;
         scene.shapes.forEach(shape => {
@@ -18,6 +21,8 @@ export class Ray {
         });
         if (distanceToNearestShape == Infinity) return scene.background;
         let point = this.start.add(this.direction.scale(distanceToNearestShape));
-        return nearestIntersectingShape.getColorAt(point, this, scene);
+        return nearestIntersectingShape.getColorAt(point, this, scene, depth + 1);
     }
+
+    toString = () => `${this.start.toString()} => ${this.direction.toString()}`;
 }

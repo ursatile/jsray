@@ -1,4 +1,4 @@
-import { Ray } from '../../06-more-shapes/modules/ray.js';
+import { Ray } from './ray.js';
 import { THRESHOLD } from './settings.js';
 
 export class Shape {

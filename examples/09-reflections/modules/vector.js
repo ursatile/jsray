@@ -51,5 +51,9 @@ export class Vector {
 
     /** scale this vector by the specified factor */
     scale = (factor) => new Vector(this.x * factor, this.y * factor, this.z * factor);
+
+    toString = () => `<${this.trunc(this.#x)},${this.trunc(this.#y)},${this.trunc(this.#z)}>`;
+
+    trunc = value => (((value + "")[0] == '-' ? "" : "+") + value).substring(0, 6);
 }
 
