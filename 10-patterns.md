@@ -62,21 +62,30 @@ var plane = new Plane(
 
 ![image-20220320141809004](assets/images/image-20220320141809004.png)
 
-### Layers
+### Tiles
 
-Layers are flat horizontal layers of colour, like you'd find in a layer cake. 
+Tiles render as a repeating pattern of rectangular blocks surrounded by a uniform gap. To create tiles, we specify the width, depth and height of a single brick, the thickness of the mortar between the tiles, and the colors of the tiles and the "mortar" that fills the gaps:
 
-The `Layers` pattern is a repeating 1-unit pattern that repeats vertically along the Y-axis. Instead of specifying two colors like we did with stripes and chessboards, we're going to specify a **color map** which maps values between `0` and `1` onto a range of colors.
+```javascript
+// modules/patterns/tiles.js
 
-The color map takes a JavaScript hash of keys and color values, and provides a single method `getColorAtValue`, which returns the color for a specific value. Any value outside the range `0 <= value <= 1` will be converted to a valid value before looking up the color.
+{% include_relative examples/10-patterns/modules/patterns/tiles.js %}
+```
+
+Here's a tiles pattern used as a floor in our reflection example:
+
+```javascript
+let tiles = new Texture(
+	new Tiles(new Vector(1, 1, 1), 0.05, Color.Black, new Color("#fff")),
+	new Finish({ ambient: 0, diffuse: 0.7, reflection: 0.2 })
+)
+```
+
+![image-20220320192513090](/assets/images/image-20220320192513090.png)
 
 
 
+Try it live: 
 
 
-### Rings
-
-We'll add one more pattern while we're here. `Rings` are concentric rings of colour around the Y-axis - imagine a tree growing straight up the origin; cut across the tree, and you'll see the growth rings? That. Rings are useful for creating textures that look like wood.
-
-To create rings, we need to specific a `
 
