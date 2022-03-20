@@ -28,7 +28,6 @@ export class Shape {
             if (brightness > 0) {
                 // Trace a ray from this point to the light source. 
                 // If that ray hits a shape before it hits the light, then we're in shadow
-                // let shadow = false;
                 let shadowRay = new Ray(point, lightDirection);
                 let distanceToLight = lightDirection.length;
                 let shadow = otherShapes.some(shape => shape.closestDistanceAlongRay(shadowRay) <= distanceToLight);

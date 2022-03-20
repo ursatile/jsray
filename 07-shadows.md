@@ -8,6 +8,10 @@ typora-root-url: ./
 typora-copy-images-to: assets\images
 ---
 
+Run the live demo: [examples/07-shadows/index.html](examples/07-shadows/index.html)
+
+Download the code: [examples/07-shadows.zip](examples/07-shadows.zip)
+
 At the end of the last section, our scene looked like this:
 
 ![image-20220320011118565](assets/images/image-20220320011118565.png)

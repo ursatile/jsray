@@ -7,7 +7,9 @@ export class Camera {
         this.location = location ?? Vector.Z.invert();
         this.look_at = look_at ?? Vector.O;
         // Putting the camera directly above the focal point causes divide-by-zero errors, so we fudge it.
-        if (this.location.x == this.look_at.x && this.location.z == this.look_at.z) this.location.z -= THRESHOLD;
+        if (this.location.x == this.look_at.x && this.location.z == this.look_at.z) {
+            this.location = this.location.add(new Vector(0, 0, -THRESHOLD));
+        }
         // Work out which way the camera's actually pointing...
         this.direction = this.look_at.add(this.location.invert()).normalize();
         // and then work out which way is "right" and "up" relative to the camera

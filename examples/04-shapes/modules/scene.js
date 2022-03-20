@@ -1,4 +1,4 @@
-import { Color } from './material.js';
+import { Color } from './color.js';
 
 export class Scene {
     constructor(camera, shapes, background) {

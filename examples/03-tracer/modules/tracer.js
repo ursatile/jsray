@@ -1,4 +1,4 @@
-import { Color } from './material.js';
+import { Color } from './color.js';
 import { Vector } from './vector.js';
 import { Camera } from './camera.js';
 import { Scene } from './scene.js';

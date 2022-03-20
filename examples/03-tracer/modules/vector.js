@@ -39,7 +39,8 @@ export class Vector {
         this.x * that.y - this.y * that.x
     );
 
-    /** return a vector of equal length pointing in the opposite direction */
+    /** return the negation of this vector - a vector of equal
+     length pointing in exactly the opposite direction */
     invert = () => new Vector(-this.x, -this.y, -this.z);
 
     /** return a vector in the same direction as this vector but with a length of 1 */
@@ -51,3 +52,4 @@ export class Vector {
     /** scale this vector by the specified factor */
     scale = (factor) => new Vector(this.x * factor, this.y * factor, this.z * factor);
 }
+

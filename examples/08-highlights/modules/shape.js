@@ -24,7 +24,7 @@ export class Shape {
 
     getColorAt = (point, ray, scene) => {
         let materialColor = this.material.getColorAt(point);
-        let colorToReturn = materialColor.scale(AMBIENT);
+        let colorToReturn = materialColor.scale(this.material.finish.ambient);
         let normal = this.getNormalAt(point);
         let reflex = this.reflect(ray.direction, normal);
         let otherShapes = scene.shapes.filter(s => s != this);
@@ -34,18 +34,17 @@ export class Shape {
             if (brightness > 0) {
                 // Trace a ray from this point to the light source. 
                 // If that ray hits a shape before it hits the light, then we're in shadow
-                // let shadow = false;
                 let shadowRay = new Ray(point, lightDirection);
                 let distanceToLight = lightDirection.length;
                 let shadow = otherShapes.some(shape => shape.closestDistanceAlongRay(shadowRay) <= distanceToLight);
                 if (!shadow) {
-                    let illumination = materialColor.multiply(light.color).scale(brightness);
+                    let illumination = materialColor.multiply(light.color).scale(brightness * this.material.finish.diffuse);
                     colorToReturn = colorToReturn.add(illumination);
 
                     let specular = reflex.dot(lightDirection.normalize());
                     if (specular > 0) {
-                        specular = Math.pow(specular, 10);
-                        colorToReturn = colorToReturn.add(light.color.scale(specular * 0.6));
+                        specular = Math.pow(specular, 16 * this.material.finish.specular * this.material.finish.specular);
+                        colorToReturn = colorToReturn.add(light.color.scale(this.material.finish.specular * specular));
                     }
                 }
             }
