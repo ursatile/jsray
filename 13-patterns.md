@@ -19,7 +19,7 @@ First, we'll create a striped pattern. Stripes are exactly 1 unit wide, and run 
 ```javascript
 // modules/patterns/stripes.js
 
-{% include_relative examples/10-patterns/modules/patterns/stripes.js %}
+{% include_relative examples/13-patterns/modules/patterns/stripes.js %}
 ```
 
 To create a striped shape, we pass a `new Stripes` into the `Texture` constructor:
@@ -44,7 +44,7 @@ The chessboard pattern uses the same principle as stripes, but we need to look a
 ```javascript
 // modules/patterns/chessboard.js
 
-{% include_relative examples/10-patterns/modules/patterns/chessboard.js %}
+{% include_relative examples/13-patterns/modules/patterns/chessboard.js %}
 ```
 
 As with `Stripes`, we need to specify two colors when creating a `Chessboard` pattern:
@@ -69,7 +69,7 @@ Tiles render as a repeating pattern of rectangular blocks surrounded by a unifor
 ```javascript
 // modules/patterns/tiles.js
 
-{% include_relative examples/10-patterns/modules/patterns/tiles.js %}
+{% include_relative examples/13-patterns/modules/patterns/tiles.js %}
 ```
 
 Here's a tiles pattern used as a floor in our reflection example:

@@ -15,15 +15,9 @@
     <label for="step-input">Step Size: (1-20)</label>
     <input type="number" min="1" max="100" name="step" value="4" id="step-input" />
     <input type="button" id="render-button" name="renderButton" value="Render" />
-    <input type="button" id="cancel-button" name="cancelButton" value="Cancel" disabled="disabled" />
+    <input type="button" id="cancel-button" name="cancelButton" value="Cancel" />
   </form>
-  <script type="module">
-    import * as renderer from './main.js';
-    let renderButton = document.getElementById("render-button");
-    renderButton.addEventListener("click", renderer.render);
-    let cancelButton = document.getElementById("cancel-button");
-    cancelButton.addEventListener("click", renderer.cancel);
-    renderer.render.apply(renderButton);
+  <script type="module" src="./main.js">
   </script>
 </body>
 

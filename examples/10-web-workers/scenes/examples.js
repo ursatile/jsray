@@ -108,7 +108,7 @@ export function ReflectingShapes(reflection = 0.5) {
   let lights = [new Light(new Vector(-8, 12, -6), Color.White)];
   let shapes = [
     new Plane(Vector.Y, 0, new Texture(Color.Gray50, finish)),
-    new Box(new Vector(5, 0, 5), new Vector(1, 4, 3), new Texture(new Color("#09f"), finish)),
+    new Box(new Vector(5, 0, 5), new Vector(1, 4, 3), new Texture(new Color("#609"), finish)),
     new Sphere(new Vector(3, 1, 0), 1, new Texture(new Color("#0c3"), finish)),
     new Sphere(new Vector(3, 0.5, -2), 0.5, new Texture(new Color("#00f"), finish)),
     new Sphere(new Vector(-1, 1, 2), 1, new Texture(new Color("#f00"), finish)),
