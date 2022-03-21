@@ -84,11 +84,11 @@ Render completed in 0.734 seconds
 
 That message is coming from the `Tracer` itself... so what's going on?
 
-The answer is: we're using the web worker API in a really inefficient way. 
+The answer is: we're using the web worker API in a *really* inefficient way. 
 
 The tracer is taking 0.7 seconds to rip through the entire scene and render every pixel... and for every one of those pixels, it's posting a message to the foreground thread saying "hey, I just rendered pixel (3,4) - it's red!"
 
-Internally, the browser pushes all those message into a queue, and then processes them as fast as it can.  So after 0.7 seconds, our tracer has rendered the entire scene, and pushed a few hundred thousand messages onto the queue - one for every rendered pixel. The delay isn't the renderer itself; we're waiting for the browser to dequeue, unpack, and render several hundred thousand messages.
+Internally, the browser pushes all those message into a queue, and then processes them as fast as it can.  So after 0.7 seconds, our tracer has rendered the entire scene, and pushed a few hundred thousand messages onto the queue -- one for every rendered pixel. The delay isn't the renderer itself; we're waiting for the browser to dequeue, unpack, and render several hundred thousand messages.
 
 In the next module, we'll look at a much more efficient way to pass rendered data from the worker back to the main browser thread.
 
