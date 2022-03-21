@@ -1,7 +1,7 @@
 import { Color } from './color.js';
 
 export class Scene {
-    constructor(camera, shapes, lights, background) {
+    constructor(camera, background, shapes, lights) {
         this.camera = camera;
         this.shapes = shapes ?? [];
         this.lights = lights ?? [];

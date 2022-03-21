@@ -22,7 +22,7 @@ export function render(reflection, step = 1) {
     new Sphere(new Vector(-2, 2, 5), 2, new Texture(new Color("#fc0"), finish)),
   ];
 
-  let scene = new Scene(camera, shapes, lights, background);
+  let scene = new Scene(camera, background, shapes, lights);
   let canvas = document.getElementById('my-canvas');
   let ctx = canvas.getContext('2d');
   let tracer = new Tracer(canvas.width, canvas.height);
