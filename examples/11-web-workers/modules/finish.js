@@ -4,7 +4,7 @@ export class Finish {
 
     constructor(options = {}) {
         this.ambient = options.ambient ?? 0.1;
-        this.diffuse = options.diffuse ?? 0.8;
+        this.diffuse = options.diffuse ?? 0.5;
         this.specular = options.specular ?? 0;
         this.reflection = options.reflection ?? 0;
     }

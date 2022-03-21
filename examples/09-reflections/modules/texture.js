@@ -5,7 +5,7 @@ export class Texture {
 
     constructor(material, finish) {
         this.material = material ?? Color.Gray50;
-        this.finish = finish ?? finish.Default;
+        this.finish = finish ?? Finish.Default;
     }
 
     getColorAt = point => this.material.getColorAt(point);

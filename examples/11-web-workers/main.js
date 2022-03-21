@@ -1,34 +1,41 @@
-import { Camera, Scene, Tracer, Vector, Color } from './modules/tracer.js';
-import { Sphere } from './modules/shapes/sphere.js';
-import { Plane } from './modules/shapes/plane.js';
-import { Box } from './modules/shapes/box.js';
-import { Light } from './modules/light.js';
-import { Finish } from './modules/finish.js';
-import { Texture } from './modules/texture.js';
-import { Stripes } from './modules/patterns/stripes.js';
-import { Chessboard } from './modules/patterns/chessboard.js';
-import { Tiles } from './modules/patterns/tiles.js';
+import { Tracer } from './modules/tracer.js';
+import * as ExampleScenes from './scenes/examples.js';
 
-function callback(x, y, color, step) {
-  var rgb = `rgb(${color.r},${color.g},${color.b})`;
-  self.postMessage({ what: 'pixelRendered', x: x, y: y, step: step, rgb: rgb })
-}
+let canvas = document.getElementById('my-canvas');
+let ctx = canvas.getContext('2d');
 
-self.addEventListener('message', function (message) {
+function handleMessageFromWorker(message) {
   let data = message.data;
-  switch (data.command) {
-    case 'render':
-      console.log("Starting trace on background worker thread.")
-      render(data.width, data.height, data.reflection, data.step);
-      self.close();
-      self.postMessage({ what: 'sceneRendered' });
+  switch (data.what) {
+    case 'renderedPixel':
+      var rgb = `rgb(${data.r},${data.g},${data.b})`;
+      ctx.fillStyle = rgb;
+      ctx.fillRect(data.x, data.y, data.step, data.step);
       break;
+    case 'renderComplete':
+      document.forms[0].renderButton.disabled = false;
+      document.forms[0].cancelButton.disabled = true;
+      break;
+
   }
-});
-
-export function render(width, height, reflection, step = 1) {
-
-  let tracer = new Tracer(width, height);
-  tracer.trace(scene, callback, step);
 }
 
+export function render() {
+  let step = 100;// parseInt(this.form.step.value);
+  document.forms[0].renderButton.disabled = true;
+  document.forms[0].cancelButton.disabled = false;
+
+  ctx.fillStyle = '#999';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  window.worker = new Worker('worker.js', { type: 'module' });
+  window.worker.addEventListener('message', handleMessageFromWorker);
+  window.worker.postMessage({ command: 'start', width: canvas.width, height: canvas.height, step: step });
+};
+
+export function cancel() {
+  if (window.worker && window.worker.terminate) window.worker.terminate();
+  window.rendering = false;
+  delete window.worker;
+  document.forms[0].renderButton.disabled = false;
+  document.forms[0].cancelButton.disabled = true;
+}

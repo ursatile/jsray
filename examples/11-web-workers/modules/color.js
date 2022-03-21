@@ -7,8 +7,6 @@ export class Color {
     constructor(r, g, b) {
         if (g == undefined) {
             [this.r, this.g, this.b] = this.parseHtmlColor(r);
-            // } else if (r > 0 && r < 1 && g > 0 && g <= 1 && b > 0 && b <= 1) {
-            //     [this.r, this.g, this.b] = [r, g, b].map(c => Math.floor(c * 0xFF));
         } else {
             [this.r, this.g, this.b] = [r, g, b];
         }

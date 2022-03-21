@@ -11,10 +11,12 @@ function callback(x, y, color, step) {
   ctx.fillRect(x, y, step, step);
 }
 
-export function renderFinishDemo() {
+export function render() {
   let scene = ExampleScenes.AssortedFinishes();
   tracer.trace(scene, callback);
 };
+render();
+
 export function renderLightsDemo() {
   let scene = ExampleScenes.ColoredLights()
   tracer.trace(scene, callback);
@@ -22,4 +24,4 @@ export function renderLightsDemo() {
 
 document.getElementById('render-finish-demo').addEventListener("click", renderFinishDemo);
 document.getElementById('render-lights-demo').addEventListener("click", renderLightsDemo);
-renderFinishDemo();
+

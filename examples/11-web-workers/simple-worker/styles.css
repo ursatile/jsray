@@ -1,0 +1,25 @@
+html {
+  font-family: Arial, helvetica, sans-serif;
+  font-size: 0.875em;
+}
+
+body > div {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+div#example {
+  right: 50%;
+  left: 0;
+}
+
+div#output-div {
+  right: 0;
+  left: 50%;
+  background-color: #000;
+  color: #fff;
+}

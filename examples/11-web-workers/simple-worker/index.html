@@ -1,0 +1,36 @@
+---
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web Worker Module</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+    <div id="example">
+        <h4>Web Workers</h4>
+        <p>Every time you click 'Run Worker', this page creates a new web worker process.</p>
+        <p>Click 'Stop All Workers' to stop all running worker processes.</p>
+        <hr />
+        <label for="delay-input">Delay in seconds:</label>
+        <input type="number" style="width: 4em;" name=" delay" id="delay-input" value="5" />
+        <input type="button" id="run-worker-button" value="Run Worker" />
+        <input type="button" id="stop-worker-button" value="Stop All Workers" />
+        <hr />
+        <h4>main.js</h4>
+        <pre>{% include_relative main.js %}</pre>
+        <h4>worker.js</h4>
+        <pre>{% include_relative worker.js %}</pre>
+        <h4>sleep.js</h4>
+        <pre>{% include_relative sleep.js %}</pre>
+    </div>
+    <div id="output-div">
+        <h4>Output from workers:</h4>
+        <hr />
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
