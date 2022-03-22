@@ -28,7 +28,7 @@ Create a new file called `modules/tracer.js`, that looks like this:
 
 The main purpose of the `Tracer` class is to translate HTML canvas pixel coordinates into floating-point world coordinates, and then call `scene.trace` once for each pixel on our canvas.
 
->  The tracer includes a variable called `STEP`; this controls how many pixels we'll render in each loop. Setting STEP=1 will render every pixel in the canvas, but this can take a long time - and if we're trying to use `console.log` to debug our code, it'll slow things to a crawl. Setting STEP=10 or even STEP=100 will render solid 10x10 or 100x100 blocks of pixels, which speeds things up considerably.
+>  The tracer includes a variable called `step`; this controls how many pixels we'll render in each loop. The default value `step=1` will render every pixel in the canvas, but this can take a long time - and if we're trying to use `console.log` to debug our code, it'll slow things to a crawl. Setting `step` to 10 or even `100` will render solid 10x10 or 100x100 blocks of pixels, which speeds things up considerably.
 
 Notice that the tracer doesn't actually update the `canvas` directly; instead, for each pixel that's rendered, it'll call a `callback` function and pass the `x`, `y`, `color`  and `step` values.
 

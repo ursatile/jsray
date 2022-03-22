@@ -5,15 +5,15 @@ let canvas = document.getElementById('my-canvas');
 let ctx = canvas.getContext('2d');
 let tracer = new Tracer(canvas.width, canvas.height);
 
-function callback(x, y, color, step) {
+function paint(x, y, width, height, color) {
   var rgb = `rgb(${color.r},${color.g},${color.b})`;
   ctx.fillStyle = rgb;
-  ctx.fillRect(x, y, step, step);
+  ctx.fillRect(x, y, width, height);
 }
 
 export function render() {
   let scene = ExampleScenes.AssortedShapes();
-  tracer.trace(scene, callback);
+  tracer.trace(scene, paint);
 }
 
 render();

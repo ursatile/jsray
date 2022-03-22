@@ -4,34 +4,43 @@ let renderButton = document.getElementById('render-button');
 let cancelButton = document.getElementById('cancel-button');
 let stepInput = document.getElementById('step-input');
 
-renderButton.addEventListener("click", render);
-cancelButton.addEventListener("click", cancel);
+function paint(x, y, width, height, color) {
+  var rgb = `rgb(${color.r},${color.g},${color.b})`;
+  ctx.fillStyle = rgb;
+  ctx.fillRect(x, y, width, height);
+}
 
 function handleMessageFromWorker(message) {
   let data = message.data;
   switch (data.what) {
-    case 'renderedPixel':
-      ctx.fillStyle = `rgb(${data.r},${data.g},${data.b})`;
-      ctx.fillRect(data.x, data.y, data.step, data.step);
+    case 'fillRect':
+      let color = { r: data.r, g: data.g, b: data.b };
+      paint(data.x,data.y,data.width,data.height,color);
       break;
-    case 'renderComplete':
-      window.worker = null;
+    case 'finished':
+      updateStatus(false);
+      break;
   }
 }
 
 function render() {
-  if (window.worker) return; // don't start another one if we're already rendering!
   let step = parseInt(stepInput.value);
-  ctx.fillStyle = '#999';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  window.worker = new Worker('worker.js', { type: 'module' });
-  window.worker.addEventListener('message', handleMessageFromWorker);
-  window.worker.postMessage({ command: 'start', width: canvas.width, height: canvas.height, step: step });
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let worker = new Worker('worker.js', { type: 'module' });
+  worker.addEventListener('message', handleMessageFromWorker);
+  cancelButton.addEventListener("click", function () {
+    worker.terminate();
+    updateStatus(false);
+  });
+  worker.postMessage({ command: 'start', width: canvas.width, height: canvas.height, step: step });
+  updateStatus(true);
 };
 
-function cancel() {
-  if (window.worker && window.worker.terminate) window.worker.terminate();
-  window.worker = null;
+
+function updateStatus(running) {
+  renderButton.disabled = running;
+  cancelButton.disabled = !running;
 }
 
+renderButton.addEventListener("click", render);
 render();

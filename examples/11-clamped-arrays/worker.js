@@ -1,22 +1,15 @@
 import { Tracer } from './modules/tracer.js';
 import * as ExampleScenes from './scenes/examples.js';
 
-const ROW_SIZE = 20;
 function makeCallback(width, step) {
-    let rgbaData = new Uint8ClampedArray(width * 4 * step * ROW_SIZE);
+    let rgbaData = new Uint8ClampedArray(width * 4 * step);
     return function (x, y, pixelColor, step) {
         let rgba = new Array(step).fill(pixelColor.rgba).flat();
-        for (var row = 0; row < step; row++) {
-            let index = (((y % ROW_SIZE + row) * width) + x) * 4;
-            rgbaData.set(rgba, index);
-        }
-        if (x + step == width && (y + step) % ROW_SIZE == 0) {
-            self.postMessage({
-                what: 'renderedBlock',
-                x: 0,
-                y: (y + step) - ROW_SIZE - 1,
-                imageData: new ImageData(rgbaData, width, ROW_SIZE * step)
-            });
+        for (let row = 0; row < step; row++) rgbaData.set(rgba, ((row * width) + x) * 4);
+        if (x + step == width) {
+            let imageData = new ImageData(rgbaData, width, step);
+            let data = { what: 'putImageData', x: 0, y: y, imageData: imageData };
+            self.postMessage(data);
         }
     }
 }
@@ -30,8 +23,7 @@ self.addEventListener('message', function (message) {
             let callback = makeCallback(data.width, data.step);
             tracer.trace(scene, callback, data.step);
             self.close();
-            self.postMessage({ what: 'renderComplete' });
-            this.self.close();
+            self.postMessage({ what: 'finished' });
             break;
     }
 });
