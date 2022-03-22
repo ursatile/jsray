@@ -11,8 +11,12 @@ function makeCallback(width, step) {
             rgbaData.set(rgba, index);
         }
         if (x + step == width && (y + step) % ROW_SIZE == 0) {
-            let imageData = new ImageData(rgbaData, width, ROW_SIZE * step);
-            self.postMessage({ what: 'renderedBlock', x: 0, y: (y + step) - (ROW_SIZE + 1), imageData: imageData });
+            self.postMessage({
+                what: 'renderedBlock',
+                x: 0,
+                y: (y + step) - ROW_SIZE - 1,
+                imageData: new ImageData(rgbaData, width, ROW_SIZE * step)
+            });
         }
     }
 }
