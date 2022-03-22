@@ -20,7 +20,6 @@ class Tracer {
         }
         var duration = (new Date().valueOf() - started);
         console.log(`Render completed in ${duration / 1000} seconds`);
-
     }
 }
 
