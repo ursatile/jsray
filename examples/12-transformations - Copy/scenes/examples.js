@@ -119,25 +119,37 @@ export function ReflectingShapes(reflection = 0.5) {
 
 export function TransformedShapes() {
   let finish = new Finish({ reflection: 0.5, ambient: 0.18, diffuse: 0.7, specular: 0.7 });
-  let camera = new Camera(new Vector(0, 5, -10), new Vector(0, 0, 0), 2, 1.5);
+  let camera = new Camera(new Vector(0, 2, -10), new Vector(0, 0, 0), 2, 1.5);
   let lights = [new Light(new Vector(-1, 12, -6), Color.White)];
-  let shapes = [
-    new Box(new Vector(-1, 0, -1), new Vector(1, 4, 1), new Texture(new Color("#609"), finish),
-      [Matrix.rotate(0, 1, 0, 45)]
-    ),
-    new Plane(Vector.Y, 0, new Texture(Color.Gray50, finish)),
-    new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#f90"), finish), [
+  // let rotatedBox = new Box(
+  //   new Vector(-1, 0, -1),
+  //   new Vector(1, 4, 1),
+  //   new Texture(new Color("#609"), finish),
+  //   [
+  //     //new Rotate(0, 45, 0)
+  //   ]
+  // );
+  // let squashedBall = new Sphere(
+  //   new Vector(0, 0, 0, 0),
+  //   1,
+  //   new Texture(new Color("#f00"), finish),
+  //   [
+  //     Matrix.translate(0, 2, 0)
+  //   ]
+  // );
+  let stretchedBall = new Sphere(
+    new Vector(0, 0, 0, 0),
+    1,
+    new Texture(new Color("#09f"), finish),
+    [
       Matrix.scale(1, 2, 1),
-      Matrix.translate(-2, 0, 0)
-    ]),
-    new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#09f"), finish), [Matrix.identity]),
-    new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#0f6"), finish), [
-      Matrix.scale(1, 3, 1),
-      //  Matrix.rotate(0, 0, 1, 25),
-      Matrix.translate(3, 0, 0)]
-    ),
+      Matrix.translate(0, 2, 2)
+    ])
+  // let floor = new Plane(Vector.Y, 0, Color.Gray50, finish);
+  let shapes = [//floor,
+    //    rotatedBox, 
+    //squashedBall,
+    stretchedBall
   ];
-  // let floor = 
-
   return new Scene(camera, background, shapes, lights);
 }

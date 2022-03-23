@@ -14,30 +14,37 @@ export class Shape {
     findIntersections = ray => [];
 
     closestDistanceAlongRay = ray => {
-        let woo = this.worldToShape(ray);
-        var distances = this.findIntersections(woo).filter(distance => distance > THRESHOLD);
+        let roo = this.worldToShape(ray);
+        var distances = this.findIntersections(roo).filter(distance => distance > THRESHOLD);
         let distance = Math.min.apply(Math, distances);
-        return (this.shapeToWorld(woo).direction.scale(distance)).length;
+        return this.shapeToWorld(roo.direction.scale(distance)).length;
     }
 
-    // closestPointAlongRay = (ray) => {
-    //     let distance = this.closestDistanceAlongRay(ray);
-    //     return ray.direction.scale(distance);
-    // }
+    closestPointAlongRay = (ray) => {
+        let distance = this.closestDistanceAlongRay(ray);
+        return ray.direction.scale(distance);
+    }
 
     reflect = (incident, normal) => {
         let inverse = incident.invert();
         return inverse.add(normal.scale(normal.dot(inverse)).add(incident).scale(2));
     }
 
-    worldToShape = thing => this.mrofsnart.apply(thing);
+    worldToShape = thing => {
+        if (thing.start && thing.direction) return new Ray(this.transform.apply(thing.start), this.transform.apply(thing.direction))
+        return this.transform.apply(thing);
+    }
 
-    shapeToWorld = thing => this.transform.apply(thing);
+    shapeToWorld = thing => {
+        if (thing.start && thing.direction) return new Ray(this.mrofsnart.apply(thing.start), this.mrofsnart.apply(thing.direction))
+        return this.mrofsnart.apply(thing);
+    }
 
     getColorAt = (point, ray, scene, depth) => {
+        //point = this.worldToShape(point);
         let materialColor = this.texture.getColorAt(point);
         let colorToReturn = materialColor.scale(this.texture.finish.ambient);
-        let normal = this.getNormalAt(this.worldToShape(point));
+        let normal = this.getNormalAt(point);
         let reflex = this.reflect(ray.direction, normal);
 
         let reflectionAmount = this.texture.finish.reflection;
@@ -56,7 +63,7 @@ export class Shape {
                 // If that ray hits a shape before it hits the light, then we're in shadow
                 let shadowRay = new Ray(point, lightDirection);
                 let distanceToLight = lightDirection.length;
-                let shadow = otherShapes.some(shape => shape.closestDistanceAlongRay(shadowRay) <= distanceToLight);
+                let shadow = otherShapes.some(shape => shape.closestPointAlongRay(shadowRay).length <= distanceToLight);
                 if (!shadow) {
                     let illumination = materialColor.multiply(light.color).scale(brightness * this.texture.finish.diffuse);
                     colorToReturn = colorToReturn.add(illumination);

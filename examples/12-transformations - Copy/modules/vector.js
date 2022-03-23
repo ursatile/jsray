@@ -6,7 +6,7 @@ export class Vector {
     #w = 0;
     #length = 0;
 
-    constructor(x, y, z, w = 0) {
+    constructor(x, y, z, w) {
         this.#x = x;
         this.#y = y;
         this.#z = z;
@@ -51,10 +51,10 @@ export class Vector {
     normalize = () => new Vector(this.x / this.length, this.y / this.length, this.z / this.length);
 
     /** add this vector to that vector, and return their sum */
-    add = that => new Vector(this.x + that.x, this.y + that.y, this.z + that.z, this.w);
+    add = that => new Vector(this.x + that.x, this.y + that.y, this.z + that.z);
 
     /** scale this vector by the specified factor */
-    scale = (factor) => new Vector(this.x * factor, this.y * factor, this.z * factor, this.w);
+    scale = (factor) => new Vector(this.x * factor, this.y * factor, this.z * factor);
 
     /** multiply this vector by that vector  */
     multiply = that => new Vector(this.x * that.x, this.y * that.y, this.z * that.z);

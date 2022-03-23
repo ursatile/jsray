@@ -1,4 +1,3 @@
-import { Ray } from "../ray";
 import { Vector } from "../vector";
 
 export class Matrix {
@@ -76,19 +75,13 @@ export class Matrix {
         this.m[3], this.m[7], this.m[11], this.m[15]
     ]);
 
-    apply = v => {
-        if (v instanceof Ray) {
-            return new Ray(this.apply(v.start), this.apply(v.direction));
-        } else if (v instanceof Vector) {
-            return new Vector(
-                v.x * this.m[0] + v.y * this.m[4] + v.z * this.m[8] + v.w * this.m[12],
-                v.x * this.m[1] + v.y * this.m[5] + v.z * this.m[9] + v.w * this.m[13],
-                v.x * this.m[2] + v.y * this.m[6] + v.z * this.m[10] + v.w * this.m[14],
-                v.x * this.m[3] + v.y * this.m[7] + v.z * this.m[11] + v.w * this.m[15]
-            );
-        }
-    }
-    //ylppa = v => this.inverse().transpose().apply(v);
+    apply = v => new Vector(
+        v.x * this.m[0] + v.y * this.m[4] + v.z * this.m[8] + v.w * this.m[12],
+        v.x * this.m[1] + v.y * this.m[5] + v.z * this.m[9] + v.w * this.m[13],
+        v.x * this.m[2] + v.y * this.m[6] + v.z * this.m[10] + v.w * this.m[14],
+        v.x * this.m[3] + v.y * this.m[7] + v.z * this.m[11] + v.w * this.m[15]
+    );
+    ylppa = v => this.inverse().transpose().apply(v);
 
     multiply = that => {
         var a = this.m, b = that.m;
