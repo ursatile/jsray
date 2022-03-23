@@ -67,7 +67,7 @@ export class Vector {
         }
     };
 
-    toString = () => `<${this.trunc(this.#x)},${this.trunc(this.#y)},${this.trunc(this.#z)}>`;
+    toString = () => `<${this.trunc(this.#x)},${this.trunc(this.#y)},${this.trunc(this.#z)},${this.trunc(this.#w)}> `;
 
     trunc = value => (((value + "")[0] == '-' ? "" : "+") + value).substring(0, 6);
 }
