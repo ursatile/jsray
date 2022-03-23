@@ -1,5 +1,8 @@
-import { Ray } from "../ray";
-import { Vector } from "../vector";
+import { Ray } from "../ray.js";
+import { Vector } from "../vector.js";
+import { THRESHOLD } from '../settings.js';
+
+let zeroify = n => Math.abs(n) < THRESHOLD ? 0 : n;
 
 export class Matrix {
     constructor() {
@@ -137,15 +140,15 @@ export class Matrix {
     ]);
 
     static rotate = (x, y, z, degrees) => {
-        if (!degrees || (!x && !y && !z)) return this.identity();
-        var abs = Math.sqrt(x * x + y * y + z * z);
+        if (!degrees || (!x && !y && !z)) return Matrix.identity;
+        let abs = Math.sqrt(x * x + y * y + z * z);
         degrees *= Math.PI / 180; x /= abs; y /= abs; z /= abs;
-        var c = Math.cos(degrees), s = Math.sin(degrees), t = 1 - c;
+        let c = Math.cos(degrees), s = Math.sin(degrees), t = 1 - c;
         return new Matrix([
             x * x * t + c, x * y * t - z * s, x * z * t + y * s, 0,
             y * x * t + z * s, y * y * t + c, y * z * t - x * s, 0,
             z * x * t - y * s, z * y * t + x * s, z * z * t + c, 0,
             0, 0, 0, 1
-        ]);
+        ].map(zeroify));
     }
 }

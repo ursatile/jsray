@@ -119,23 +119,35 @@ export function ReflectingShapes(reflection = 0.5) {
 
 export function TransformedShapes() {
   let finish = new Finish({ reflection: 0.5, ambient: 0.18, diffuse: 0.7, specular: 0.7 });
-  let camera = new Camera(new Vector(0, 5, -10), new Vector(0, 0, 0), 2, 1.5);
+  let camera = new Camera(new Vector(-6, 5, -6), new Vector(0, 2, 0), 2, 1.5);
   let lights = [new Light(new Vector(-1, 12, -6), Color.White)];
   let shapes = [
-    new Box(new Vector(-1, 0, -1), new Vector(1, 4, 1), new Texture(new Color("#609"), finish),
-      [Matrix.rotate(0, 1, 0, 45)]
-    ),
+
     new Plane(Vector.Y, 0, new Texture(Color.Gray50, finish)),
-    new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#f90"), finish), [
-      Matrix.scale(1, 2, 1),
-      Matrix.translate(-2, 0, 0)
-    ]),
-    new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#09f"), finish), [Matrix.identity]),
-    new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#0f6"), finish), [
-      Matrix.scale(1, 3, 1),
-      //  Matrix.rotate(0, 0, 1, 25),
-      Matrix.translate(3, 0, 0)]
+    new Sphere(new Vector(-4, 1, 0), 1, new Texture(new Color("#ff9"), new Finish({ ambient: 0.7 }))),
+    new Sphere(new Vector(4, 1, 0), 1, new Texture(new Color("#9ff"), new Finish({ ambient: 0.7 }))),
+    new Sphere(new Vector(2.82, 1, -2.82), 1, new Texture(new Color("#f99"), new Finish({ ambient: 0.7 }))),
+    new Sphere(new Vector(-2.82, 1, -2.82), 1, new Texture(new Color("#9f9"), new Finish({ ambient: 0.7 }))),
+    new Sphere(new Vector(0, 1, -4), 1, new Texture(new Color("#99f"), new Finish({ ambient: 0.7 }))),
+
+    new Box(new Vector(-1, 0, -1), new Vector(1, 4, 1), new Texture(new Color("#609"), finish),
+      [
+        //Matrix.scale(1, 1, 0.5, 0),
+        // Matrix.translate(2, 2, 2)
+        //Matrix.rotate(0, 1, 0, 45)
+      ]
     ),
+
+    // new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#f90"), finish), [
+    //   Matrix.scale(1, 2, 1),
+    //   Matrix.translate(-2, 0, 0)
+    // ]),
+    // new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#09f"), finish), [Matrix.identity]),
+    // new Sphere(new Vector(0, 0, 0, 0), 1, new Texture(new Color("#0f6"), finish), [
+    //   Matrix.scale(1, 3, 1),
+    //   //  Matrix.rotate(0, 0, 1, 25),
+    //   Matrix.translate(3, 0, 0)]
+    // ),
   ];
   // let floor = 
 
