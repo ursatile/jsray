@@ -13,19 +13,23 @@ export class Ray {
         if (depth > MAX_DEPTH) return scene.background;
         let distanceToNearestShape = Infinity;
         let nearestIntersectingShape = null;
-        //let point = null;
+        let intersectionPoint = null;
         scene.shapes.forEach(shape => {
-            //let intersect = shape.closestPointAlongRay(this);
-            let distance = shape.closestDistanceAlongRay(this); // intersect.length;
-            if (distance < distanceToNearestShape) {
-                distanceToNearestShape = distance;
+            let shapePoint = shape.closestPointAlongRay(this);
+            if (shapePoint.length < distanceToNearestShape) {
+                distanceToNearestShape = shapePoint.length;
                 nearestIntersectingShape = shape;
-                //point = intersect;
+                intersectionPoint = this.start.add(shapePoint);
             }
+            // let distance = shape.closestDistanceAlongRay(this);
+            // if (distance < distanceToNearestShape) {
+            //     distanceToNearestShape = distance;
+            //     nearestIntersectingShape = shape;
+            // }
         });
         if (distanceToNearestShape == Infinity) return scene.background;
-        let point = this.start.add(this.direction.scale(distanceToNearestShape));
-        return nearestIntersectingShape.getColorAt(point, this, scene, depth + 1);
+        //intersectionPoint = this.start.add(this.direction.scale(distanceToNearestShape));
+        return nearestIntersectingShape.getColorAt(intersectionPoint, this, scene, depth + 1);
     }
 
     toString = () => `${this.start.toString()} => ${this.direction.toString()}`;

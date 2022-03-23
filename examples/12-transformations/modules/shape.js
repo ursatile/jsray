@@ -9,40 +9,49 @@ export class Shape {
         this.texture = texture;
         this.transform = transformations.reduce((previous, current) => previous.multiply(current), Matrix.identity)
         this.mrofsnart = this.transform.inverse().transpose();
+        // console.log(this.constructor.name);
+        // console.log(this.transform.toString());
+        // console.log(this.mrofsnart.toString());
+        // console.log(this.transform.multiply(this.mrofsnart).toString());
+        console.log('------------------------------------------------');
     }
 
     findIntersections = ray => [];
 
     closestDistanceAlongRay = ray => {
-        let woo = this.worldToShape(ray);
-        var distances = this.findIntersections(woo).filter(distance => distance > THRESHOLD);
+        let localRay = this.worldToLocal(ray);
+        var distances = this.findIntersections(localRay).filter(distance => distance > THRESHOLD);
         let distance = Math.min.apply(Math, distances);
-        return (this.shapeToWorld(woo).direction.scale(distance)).length;
+        if (distance == Infinity) return distance;
+        var result = (this.localToWorld(localRay.direction.scale(distance))).length;
+        return result;
     }
 
-    // closestPointAlongRay = (ray) => {
-    //     let distance = this.closestDistanceAlongRay(ray);
-    //     return ray.direction.scale(distance);
-    // }
+    closestPointAlongRay = (ray) => {
+        let distance = this.closestDistanceAlongRay(ray);
+        return ray.direction.scale(distance);
+    }
 
     reflect = (incident, normal) => {
         let inverse = incident.invert();
         return inverse.add(normal.scale(normal.dot(inverse)).add(incident).scale(2));
     }
 
-    worldToShape = thing => this.mrofsnart.apply(thing);
+    worldToLocal = thing => this.mrofsnart.apply(thing);
 
-    shapeToWorld = thing => this.transform.apply(thing);
+    localToWorld = thing => this.transform.apply(thing);
 
     getColorAt = (point, ray, scene, depth) => {
-        let materialColor = this.texture.getColorAt(point);
+        let localPoint = this.worldToLocal(point);
+        let localRay = this.worldToLocal(ray);
+        let materialColor = this.texture.getColorAt(localPoint);
         let colorToReturn = materialColor.scale(this.texture.finish.ambient);
-        let normal = this.getNormalAt(this.worldToShape(point));
+        let normal = this.localToWorld(this.getNormalAt(localPoint));
         let reflex = this.reflect(ray.direction, normal);
-
         let reflectionAmount = this.texture.finish.reflection;
         if (reflectionAmount) {
-            let reflectionRay = new Ray(point, reflex);
+            // if (this.constructor.name == "Box") console.log(point.toString());            
+            let reflectionRay = new Ray(point, reflex); // this.localToWorld(new Ray(localPoint, reflex));
             let reflectedColor = reflectionRay.trace(scene, depth);
             colorToReturn = colorToReturn.add(reflectedColor.scale(reflectionAmount));
         }
@@ -50,7 +59,7 @@ export class Shape {
         let otherShapes = scene.shapes.filter(s => s != this);
         scene.lights.forEach(light => {
             let lightDirection = light.position.add(point.invert());
-            let brightness = normal.dot(lightDirection.normalize());
+            let brightness = this.worldToLocal(normal).dot(lightDirection.normalize());
             if (brightness > 0) {
                 // Trace a ray from this point to the light source. 
                 // If that ray hits a shape before it hits the light, then we're in shadow
