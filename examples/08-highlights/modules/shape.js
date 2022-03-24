@@ -22,7 +22,7 @@ export class Shape {
 
     getColorAt = (point, ray, scene) => {
         let materialColor = this.texture.getColorAt(point);
-        let colorToReturn = materialColor.scale(this.material.finish.ambient);
+        let colorToReturn = materialColor.scale(this.texture.finish.ambient);
         let normal = this.getNormalAt(point);
         let reflex = this.reflect(ray.direction, normal);
         let otherShapes = scene.shapes.filter(s => s != this);
@@ -40,7 +40,7 @@ export class Shape {
                     colorToReturn = colorToReturn.add(illumination);
                     let specular = reflex.dot(lightDirection.normalize());
                     if (specular > 0) {
-                        let exponent = 16 * this.material.finish.specular * this.texture.finish.specular;
+                        let exponent = 16 * this.texture.finish.specular * this.texture.finish.specular;
                         specular = Math.pow(specular, exponent);
                         colorToReturn = colorToReturn.add(light.color.scale(this.texture.finish.specular * specular));
                     }

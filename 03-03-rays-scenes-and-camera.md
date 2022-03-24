@@ -4,7 +4,6 @@ layout: module
 nav_order: 10303
 summary: >
     Modelling light rays using vectors.
-
 typora-root-url: .\
 typora-copy-images-to: assets\images
 example: 03-tracer

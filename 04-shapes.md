@@ -41,7 +41,7 @@ All the sphere actually needs to do is override the `findIntersections` method f
 
 The intersections here are the roots of a quadratic equation - the thing you probably learned in high school and though you'd never use again. Just in case you've forgotten, here's the Quadratic Formula Kitten to remind you:
 
-![image-20220319164818563](assets/images/image-20220319164818563.png)
+<img src="assets/images/image-20220319164818563.png" alt="image-20220319164818563" style="zoom:67%;" />
 
 So we do some arithmetic sleight-of-hand to turn our sphere into those three values a, b, c, then we plug the whole thing into the quadratic formula and see how many solutions we get.
 

@@ -11,12 +11,6 @@ nav_order: 00
 
 The handbook includes instructions and code samples for each part of the workshop, for attendees who want to follow along with the live coding exercises and build their own JavaScript ray tracer.
 
-If you just want to run the live examples from each part of the workshop, here are the links:
-
-1. [Hello, World with JS Modules](examples/01-hello-world/index.html)
-2. [Introducing the HTML Canvas](examples/02-canvas/index.html)
-3. [Rendering an Empty Scene](examples/03-tracer/index.html)
-
 ## Contents
 
 <ul id="index-nav">

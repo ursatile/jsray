@@ -53,30 +53,34 @@ Things to note here:
 
 * A **unit vector** is a vector with a length of exactly 1 unit. The three most common unit vectors are defined as `static` properties on the `Vector` class:
 
-  `Vector.X`
-  `Vector.Y`
-  `Vector.Z`
+  * `Vector.X` = `<1,0,0>`
+  * `Vector.Y` = `<0,1,0>`
+  * `Vector.Z` = `<0,0,1>`
 
   There's also a static vector for `<0,0,0>` called `O` - that's a letter `O`, not the number `0`:
 
-  `Vector.O`
+  * `Vector.O` = `<0,0,0>`
 
-`Vector` provides methods for various mathematical operations we'll need. Again, don't worry too much about exactly what these do; we're here to draw pictures, not learn vector arithmetic. 😉
+`Vector` provides methods for various mathematical operations we'll need. (Again, don't worry too much about exactly what these do; we're here to draw pictures, not learn vector arithmetic.)
 
-* `v1.dot(v2)` returns the **dot product** of vectors `v1` and `v2`
-* `v1.cross(v2)` returns the **cross product** of vectors `v1` and `v2`
+* `v1.dot(v2)` returns the **[dot product](https://en.wikipedia.org/wiki/Dot_product)** of vectors `v1` and `v2`
+* `v1.cross(v2)` returns the **[cross product](https://en.wikipedia.org/wiki/Cross_product)** of vectors `v1` and `v2`
 * `v1.invert()` returns a new vector which is the inverse vector of `v1`. 
-* The inverse of `<x,y,z>` is `<-x,-y,-z>`
+  * The inverse of `<x,y,z>` is `<-x,-y,-z>`
+
 * `v1.add(v2)` returns the **sum** of vectors `v1` and `v2`
-* The sum of a vector and its inverse is always `<0,0,0>`
+  * The sum of a vector and its inverse is always `<0,0,0>`
+
 * `v1.scale(factor)` scales the vector by the specified factor.
+  * `v1.invert()` is equal to `v1.scale(-1)`
+
 
 ## Review & Recap
 
-* The `canvas` element and API give us a way to draw graphics using JavaScript
-* To draw graphics, we need to get a **graphics context** for our canvas element.
-* We control the color we're drawing by setting the context's`fillStyle` to an HTML color value.
-* We can draw individual pixels by using the `fillRect` method and specifying a width and height of ` pixel.
+* Vectors representing three coordinates `x,y,z` in 3D space.
+* A vector's `length` is the total distance from `<0,0,0>` to the point represented by that vector.
+* Vectors can be multiplied, added, inverted, and scaled.
+* Vectors are modelled as **immutable objects** - once we've created a vector, we can't change the `x`, `y`, or `z` coordinates. Vector transformation methods all return a new vector.
 
 ## References and Further Reading
 

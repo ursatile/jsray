@@ -25,8 +25,8 @@ layout: null
 
         div iframe {
             border: 0;
-            width: 60%;
-            height: 400px;
+            width: 80%;
+            height: 540px;
             background-color: #fff;
             margin: 8px auto;
         }
