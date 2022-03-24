@@ -22,5 +22,3 @@ The handbook includes instructions and code samples for each part of the worksho
     </li>
     {% endfor %}
 </ul>
-
-THE 3D VIEWER IS https://3dviewer.net/
