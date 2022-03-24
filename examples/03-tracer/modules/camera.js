@@ -7,8 +7,8 @@ export class Camera {
         this.location = location ?? Vector.Z.invert();
         this.look_at = look_at ?? Vector.O;
 
-        /* Putting the camera directly above look_at
-          causes divide-by-zero errors, so we fudge it. */
+        // Putting the camera directly above look_at causes divide-by-zero errors, 
+        // so we fudge it.
         if (this.location.x == this.look_at.x && this.location.z == this.look_at.z) {
             this.location = this.location.add(new Vector(0, 0, -THRESHOLD));
         }

@@ -6,18 +6,14 @@ const axes = ['x', 'y', 'z'];
 
 export class Box extends Shape {
 
-    constructor(corner1, corner2, color) {
-        super(color);
-        axes.forEach(a => {
-            if (corner1[a] > corner2[a])
-                [corner1[a], corner2[a]] = [corner2[a], corner1[a]];
-        });
-        this.v1 = corner1;
-        this.v2 = corner2;
-        this.vertices = [this.v1, this.v2];
+    constructor(corner1, corner2, texture) {
+        super(texture);
+        this.lowerCorner = new Vector(Math.min(corner1.x, corner2.x), Math.min(corner1.y, corner2.y), Math.min(corner1.z, corner2.z));
+        this.upperCorner = new Vector(Math.max(corner1.x, corner2.x), Math.max(corner1.y, corner2.y), Math.max(corner1.z, corner2.z));
+        this.vertices = [this.lowerCorner, this.upperCorner];
     }
 
-    contains = (point, axis) => this.v1[axis] < point[axis] && point[axis] < this.v2[axis];
+    contains = (point, axis) => this.lowerCorner[axis] < point[axis] && point[axis] < this.upperCorner[axis];
 
     findIntersectionsOnAxis = (axis, ray) => {
         let [o1, o2] = axes.filter(a => a != axis);
@@ -38,12 +34,13 @@ export class Box extends Shape {
     }
 
     getNormalAt = (pos) => {
-        if (Math.abs(this.v1.x - pos.x) < THRESHOLD) return Vector.X.invert();
-        if (Math.abs(this.v2.x - pos.x) < THRESHOLD) return Vector.X;
-        if (Math.abs(this.v1.y - pos.y) < THRESHOLD) return Vector.Y.invert();
-        if (Math.abs(this.v2.y - pos.y) < THRESHOLD) return Vector.Y;
-        if (Math.abs(this.v1.z - pos.z) < THRESHOLD) return Vector.Z.invert();
-        if (Math.abs(this.v2.z - pos.z) < THRESHOLD) return Vector.Z;
+        if (Math.abs(this.lowerCorner.x - pos.x) < THRESHOLD) return Vector.X.invert();
+        if (Math.abs(this.upperCorner.x - pos.x) < THRESHOLD) return Vector.X;
+        if (Math.abs(this.lowerCorner.y - pos.y) < THRESHOLD) return Vector.Y.invert();
+        if (Math.abs(this.upperCorner.y - pos.y) < THRESHOLD) return Vector.Y;
+        if (Math.abs(this.lowerCorner.z - pos.z) < THRESHOLD) return Vector.Z.invert();
+        if (Math.abs(this.upperCorner.z - pos.z) < THRESHOLD) return Vector.Z;
+        throw (new Error(`The point ${pos.toString()} is not on the surface of ${this.toString()}`));
     }
-    toString = () => `Box from ${this.v1.toString()} to ${this.v2.toString()}`;
+    toString = () => `box(${this.lowerCorner.toString()}, ${this.upperCorner.toString()})`;
 }

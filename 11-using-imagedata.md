@@ -1,11 +1,12 @@
 ---
 title: "11: Using ImageData"
 layout: module
-nav_order: 1100
+nav_order: 11100
 summary: >
     In this module, we look at how to use advanced data structures to optimise the performance of our web workers.
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 11-using-imagedata
 ---
 
 In the last section, we moved our rendering calculations into a web worker, but this didn't deliver the performance improvements we hoped for -- in fact, it made everything significantly slower.
@@ -53,7 +54,7 @@ Here's the modified code for our `worker.js`:
 ```javascript
 // worker.js
 
-{% include_relative examples/11-clamped-arrays/worker.js %}
+{% include_relative examples/11-imagedata/worker.js %}
 ```
 
 The `makeCallback` method here is a function that returns another function; when we call `makeCallback`, it allocates the array to stored the pixel data, and this array is then captured by the scope of the inner function and reused over and over again so we're not having to allocate more arrays.
@@ -65,13 +66,15 @@ Finally, in `main.js`, we need to add a new case to our message handler, so that
 ```javascript
 // main.js
 
-{% include_relative examples/11-clamped-arrays/main.js %}
+{% include_relative examples/11-imagedata/main.js %}
 ```
 
+We now have a renderer that runs in a background thread, transfers blocks of pixels far more efficiently than the previous version, and which we can start and stop as required.
 
+## References:
 
-https://developer.mozilla.org/en-US/docs/Glossary/Transferable_objects
+* Uint8ClampedArray documentation: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray)
 
-
-
-https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#transferring_data_to_and_from_workers_further_details
+* Transferable Object in JavaScript: [https://developer.mozilla.org/en-US/docs/Glossary/Transferable_objects](https://developer.mozilla.org/en-US/docs/Glossary/Transferable_objects)
+* Transferring data to and from web workers: [https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#transferring_data_to_and_from_workers_further_details](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#transferring_data_to_and_from_workers_further_details)
+* [Browser support for Uint8ClampedArray](https://caniuse.com/?search=Uint8ClampedArray) at [caniuse.com](https://caniuse.com)

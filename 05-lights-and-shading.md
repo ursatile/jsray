@@ -1,11 +1,12 @@
 ---
 title: "5: Lights and Shading"
 layout: module
-nav_order: 0500
+nav_order: 10500
 summary: >
     In this section, we'll add lights to our scene, and learn how to shade the surface of a sphere.
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 05-lights
 ---
 
 In the last section, we got as far as rendering spheres as flat discs:
@@ -100,28 +101,7 @@ First, modify the `Ray.trace` method so that we pass the `scene` into `nearestIn
 {% include_relative examples/05-lights/modules/ray.js %}
 ```
 
-Next. we'll add a new `illuminate` method to `Light` - we pass in the point, the normal, and the shape's color, and it'll calculate how much lighting should be added to that point on the shape's surface:
-
-```javascript
-// modules/light.js
-
-{% include_relative examples/05-lights/modules/light.js %}
-```
-
-The important thing to notice here is that we're calculating the `brightness` for each light source by taking the **dot product** of the surface normal and the light source. The reason this works is that if the normal is perpendicular to the light direction, the dot product will be 0 -- and that's exactly what we want, because if a light is shining directly *across* a surface, it doesn't actually contribute any illumination. On the other hand, if the surface at that point is directly facing the light source, the dot product will be 1, and so we'll get the maximum illumination from that light source.
-
-Next, update `shape.getColorAt(point,scene)` to call this method for each light in the scene.
-
-We could do this by looping through each light in the scene:
-
-```javascript
-scene.lights.forEach(light => {
-    let illumination = light.illuminate(point, normal, materialColor);
-    colorToReturn = colorToReturn.add(illumination)
-});
-```
-
-However, there's a more elegant way to do it using the *map/reduce* pattern: we can use `map` to map the list of lights into a list of illuminations, and then `reduce` to add all those illuminations and return the resulting color:
+Next, update `shape.getColorAt(point,scene)` to call this method for each light in the scene:
 
 ```javascript
 // modules/shape.js
@@ -129,13 +109,15 @@ However, there's a more elegant way to do it using the *map/reduce* pattern: we 
 {% include_relative examples/05-lights/modules/shape.js %}
 ```
 
+The important thing to notice here is that we're calculating the `brightness` for each light source by taking the **dot product** of the surface normal and the light source. The reason this works is that if the normal is perpendicular to the light direction, the dot product will be 0 -- and that's exactly what we want, because if a light is shining directly *across* a surface, it doesn't actually contribute any illumination. On the other hand, if the surface at that point is directly facing the light source, the dot product will be 1, and so we'll get the maximum illumination from that light source.
+
 Once that's all wired in, reload the page and you should get something like this:
 
 ![image-20220319235327800](assets/images/image-20220319235327800.png)
 
+**Download this code : [examples/05-lights.zip](examples/05-lights.zip)**
 
-
-
+**Run this code live: [examples/05-lights/index.html](examples/05-lights/index.html)**
 
 
 

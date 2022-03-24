@@ -1,16 +1,13 @@
 ---
 title: "7: Shadows"
 layout: module
-nav_order: 0700
+nav_order: 10700
 summary: >
     Adding support for shadows
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 07-shadows
 ---
-
-Run the live demo: [examples/07-shadows/index.html](examples/07-shadows/index.html)
-
-Download the code: [examples/07-shadows.zip](examples/07-shadows.zip)
 
 At the end of the last section, our scene looked like this:
 
@@ -30,11 +27,9 @@ Here's `shape.js` with the modified method in place:
 
 What we do here is, for each point on the shape's surface, we trace a ray from that point to the light source, and check whether that ray intersects any other shapes along the way. If it does, then we're in that shape's shadow, and so we should skip that light source when calculating how much light falls on this shape.
 
-Compare the result below with the original image above:
+Compare the result below with the original image above -- see how the shadows add depth and definition to the scene?
 
 ![image-20220320012307359](assets/images/image-20220320012307359.png)
-
-
 
 
 

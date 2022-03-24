@@ -10,8 +10,9 @@ export class Shape {
     findIntersections = ray => [];
 
     closestDistanceAlongRay = (ray) => {
-        var intersections = this.findIntersections(ray).filter(distance => distance > THRESHOLD);
-        return Math.min.apply(Math, intersections);
+        let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
+        let shortestDistance = Math.min.apply(Math, distances);
+        return shortestDistance;
     }
 
     reflect = (incident, normal) => {

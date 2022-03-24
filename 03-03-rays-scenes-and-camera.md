@@ -1,12 +1,13 @@
 ---
 title: "3.3: Rays, Scenes, and the Camera"
 layout: module
-nav_order: 0303
+nav_order: 10303
 summary: >
     Modelling light rays using vectors.
 
 typora-root-url: .\
 typora-copy-images-to: assets\images
+example: 03-tracer
 ---
 
 In this module, we'll introduce three more concepts, that should get us to the point where we can render an empty scene. *(Hey, we gotta start somewhere, right?)*

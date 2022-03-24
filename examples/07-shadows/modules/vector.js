@@ -39,12 +39,14 @@ export class Vector {
         this.x * that.y - this.y * that.x
     );
 
-    /** return the negation of this vector - a vector of equal
-     length pointing in exactly the opposite direction */
+    /** return a vector of equal length and opposite direction */
     invert = () => new Vector(-this.x, -this.y, -this.z);
 
-    /** return a vector in the same direction as this vector but with a length of 1 */
-    normalize = () => new Vector(this.x / this.length, this.y / this.length, this.z / this.length);
+    /** return a vector in which each component is divided by d */
+    divide = d => new Vector(this.x / d, this.y / d, this.z / d);
+
+    /** return a vector in the same direction whose length is 1 */
+    normalize = () => this.divide(this.length);
 
     /** add this vector to that vector, and return their sum */
     add = that => new Vector(this.x + that.x, this.y + that.y, this.z + that.z);

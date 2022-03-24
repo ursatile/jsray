@@ -35,7 +35,7 @@ layout: null
 </head>
 
 <body>
-    {% assign examples = "01-hello-world,02-canvas,03-tracer,04-shapes,05-lights,06-more-shapes,07-shadows,08-highlights" | split: "," %}
+    {% assign examples = "01-hello-world,02-canvas,03-tracer,04-shapes,05-lights,06-more-shapes,07-shadows,08-highlights,09-reflections,10-web-workers,11-imagedata,12-patterns" | split: "," %}
     {% for example in examples %}
     <div>
         <iframe src="examples/{{ example }}/index.html"></iframe>

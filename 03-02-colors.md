@@ -1,11 +1,12 @@
 ---
 title: '3.2: Colors'
 layout: module
-nav_order: 0302
+nav_order: 10302
 summary: >
   In this section, we'll create a Color class in JavaScript, and set up the color model we'll use to simulate objects, light and shade in our scene.
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 03-tracer
 ---
 
 In the last module, we added **vectors** to our project. Vectors are incredibly useful -- we can use them to model locations in 3D space, coordinates, rays of light, all kinds of things we're going to need. But to actually see anything, we need to put some objects in our world, and we need so simulate the material those objects are made from.

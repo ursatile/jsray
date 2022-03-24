@@ -1,11 +1,12 @@
 ---
 title: "9: Reflections"
 layout: module
-nav_order: 0900
+nav_order: 10900
 summary: >
     Adding reflections so we can model mirrors and reflective surfaces
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 09-reflections
 ---
 
 We're closing in on the classic ray-tracer demo image - a mirrored sphere resting on a chessboard. There's only two things missing... we can't do mirrors, and we can't do chessboards. 

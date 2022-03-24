@@ -1,11 +1,12 @@
 ---
 title: "3.1: Vectors and the 3D Coordinate System"
 layout: module
-nav_order: 0301
+nav_order: 10301
 summary: >
     In which we learn about vectors, 3D coordinate systems, and some neat JavaScript stuff like how to create immutable data structures using private class fields.
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 03-tracer
 ---
 
 To start building a ray tracer, we need a system for modelling three-dimensional space.

@@ -1,11 +1,12 @@
 ---
 title: "8: Specular Highlights"
 layout: module
-nav_order: 0800
+nav_order: 10800
 summary: >
     Adding support for specular highlights. That's the technical term for "shiny spots".
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 08-highlights
 ---
 
 Time to introduce some more terminology. The color of a shape in our tracer scene is actually controlled by a bunch of different parameters

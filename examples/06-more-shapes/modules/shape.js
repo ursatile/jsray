@@ -4,16 +4,18 @@ import { THRESHOLD } from './settings.js';
 const AMBIENT = 0.1;
 
 export class Shape {
-    constructor(material) {
-        this.material = material;
+    constructor(texture) {
+        this.texture = texture;
     }
     findIntersections = ray => [];
     closestDistanceAlongRay = (ray) => {
-        var intersections = this.findIntersections(ray).filter(distance => distance > THRESHOLD);
-        return Math.min.apply(Math, intersections);
+        let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
+        let shortestDistance = Math.min.apply(Math, distances);
+        return shortestDistance;
     }
+
     getColorAt = (point, scene) => {
-        let materialColor = this.material.getColorAt(point);
+        let materialColor = this.texture.getColorAt(point);
         let colorToReturn = materialColor.scale(AMBIENT);
         let normal = this.getNormalAt(point);
         scene.lights.forEach(light => {
@@ -26,5 +28,6 @@ export class Shape {
         });
         return colorToReturn;
     }
+
     getNormalAt = point => Vector.O;
 }

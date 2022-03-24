@@ -56,13 +56,16 @@ export class Color {
         if (values = /rgb\(([\d]+),([\d]+),([\d]+)\)/.exec(str)) return [+values[1], +values[2], +values[3]];
         else throw Error(`Invalid color: ${str}`);
     }
+    
     add = (that) => new Color(this.r + that.r, this.g + that.g, this.b + that.b);
+    
     multiply = (that) => {
         let rr = Math.floor(this.r * that.r / 0xff);
         let gg = Math.floor(this.g * that.g / 0xff);
         let bb = Math.floor(this.b * that.b / 0xff);
         return new Color(rr, gg, bb);
     }
+    
     scale = (factor) => new Color(this.r * factor, this.g * factor, this.b * factor);
 
     toString = () => `rgb(${this.r},${this.g},${this.b})`;

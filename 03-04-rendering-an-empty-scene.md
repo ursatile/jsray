@@ -1,16 +1,13 @@
 ---
 title: "3.4: Rendering an Empty Scene"
 layout: module
-nav_order: 0304
+nav_order: 10304
 summary: >
     In this section we'll create a scene containing only a camera and a background color, and run a test render to check that everything we've got so far is working properly.
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 03-tracer
 ---
-
-**Download code: [examples/03.tracer.zip](examples/03.tracer.zip)**
-
-**Run this code: [examples/03-tracer/index.html](examples/03-tracer/index.html)**
 
 So, we have vectors, colors, rays, a scene, a camera... now we're going to create the actual ray-tracer, hook that up to our HTML canvas, and render something.
 

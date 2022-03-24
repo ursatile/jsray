@@ -1,10 +1,11 @@
 ---
 title: '1: Creating the JSTracer application'
 layout: module
-nav_order: 0100
+nav_order: 10100
 summary: >
   Creating the project structure, and running it on your local machine using vite or spark.
 typora-root-url: ./
+example: 01-hello-world
 ---
 
 In this workshop, we're going to build a ray-tracer -- a program that renders photorealistic 3D scenes, directly in your web browser. Along the way, we're going to learn about a bunch of cool web technologies, like the HTML `<canvas>` element, ECMAScript modules, and JavaScript background workers.
@@ -47,11 +48,11 @@ and if you point a browser at http://localhost:3000/, you should see the "**Hell
 
 Next, we're going to replace the default Vite template files with our own versions.
 
-Download [jstracer-module01.zip](examples/jstracer-module01.zip) and unzip it into the `jstracer` directory (say "yes" if it prompts you to overwrite the existing files.)
+Downloadd [examples/01-hello-world.zip](examples/01-hello-world.zip) and unzip it into the `jstracer` directory (say "yes" if it prompts you to overwrite the existing files.)
 
 Now, when you run `yarn dev`, you should see this:
 
-![image-20220318163409732](/assets/images/image-20220318163409732.png)
+![image-20220324150804345](./assets/images/image-20220324150804345.png)
 
 ### Option 2: use rif/spark
 
@@ -59,14 +60,15 @@ Now, when you run `yarn dev`, you should see this:
 
 1. Create a project folder called `jstracer`.
 2. Download the Spark binary for your system from [https://github.com/rif/spark/releases](https://github.com/rif/spark/releases) into your `jstracer` directory.
-3. Download [jstracer-module01.zip](examples/jstracer-module01.zip) and unzip it into the `jstracer` directory.
+3. Download [examples/01-hello-world.zip](examples/01-hello-world.zip) and unzip it into the `jstracer` directory.
 
-You should now have this folder structure:
+You should end up with this folder structure:
 
 ```bash
 /jstracer
   - index.html
   - main.js
+  - greeter.js
   - style.css
   - favicon.ico
   - spark

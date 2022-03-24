@@ -1,11 +1,12 @@
 ---
 title: "12: Patterns"
 layout: module
-nav_order: 1200
+nav_order: 11200
 summary: >
     Extending materials so we can use patterns like checkerboards and stripes.
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 12-patterns
 ---
 
 Until now, every shape in our world is a single solid color. In this section, we'll see how to create different kinds of materials so we can create objects with patterned finishes, like stripes, rings, and the obligatory checkerboard pattern.
@@ -19,7 +20,7 @@ First, we'll create a striped pattern. Stripes are exactly 1 unit wide, and run 
 ```javascript
 // modules/patterns/stripes.js
 
-{% include_relative examples/13-patterns/modules/patterns/stripes.js %}
+{% include_relative examples/12-patterns/modules/patterns/stripes.js %}
 ```
 
 To create a striped shape, we pass a `new Stripes` into the `Texture` constructor:
@@ -44,7 +45,7 @@ The chessboard pattern uses the same principle as stripes, but we need to look a
 ```javascript
 // modules/patterns/chessboard.js
 
-{% include_relative examples/13-patterns/modules/patterns/chessboard.js %}
+{% include_relative examples/12-patterns/modules/patterns/chessboard.js %}
 ```
 
 As with `Stripes`, we need to specify two colors when creating a `Chessboard` pattern:
@@ -69,7 +70,7 @@ Tiles render as a repeating pattern of rectangular blocks surrounded by a unifor
 ```javascript
 // modules/patterns/tiles.js
 
-{% include_relative examples/13-patterns/modules/patterns/tiles.js %}
+{% include_relative examples/12-patterns/modules/patterns/tiles.js %}
 ```
 
 Here's a tiles pattern used as a floor in our reflection example:
@@ -81,11 +82,9 @@ let tiles = new Texture(
 )
 ```
 
-![image-20220320192513090](/assets/images/image-20220320192513090.png)
+![image-20220324142118152](./assets/images/image-20220324142118152.png)
 
 
-
-Try it live: 
 
 
 

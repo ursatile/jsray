@@ -1,11 +1,12 @@
 ---
 title: '2: Introducing the HTML Canvas API'
 layout: module
-nav_order: 0200
+nav_order: 10200
 summary: >
   Introducing the HTML canvas element and the browser APIs we can use to work with it.
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 02-canvas
 ---
 
 Back in the early days of the web, you'd occasionally see sites that created images using thousands of 1x1-pixel `div` or `span` elements, with each element assigned a different `background-color` to simulate individual pixels.

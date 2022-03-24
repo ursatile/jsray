@@ -11,17 +11,17 @@ function paint(x, y, width, height, color) {
   ctx.fillRect(x, y, width, height);
 }
 
-export function render() {
+function render() {
   let scene = ExampleScenes.AssortedFinishes();
   tracer.trace(scene, paint);
 };
 render();
 
-export function renderLightsDemo() {
+function renderLightsDemo() {
   let scene = ExampleScenes.ColoredLights()
   tracer.trace(scene, paint);
 }
 
-document.getElementById('render-finish-demo').addEventListener("click", renderFinishDemo);
+document.getElementById('render-finish-demo').addEventListener("click", render);
 document.getElementById('render-lights-demo').addEventListener("click", renderLightsDemo);
 

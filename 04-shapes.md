@@ -1,16 +1,13 @@
 ---
 title: "4: Shapes"
 layout: module
-nav_order: 0400
+nav_order: 10400
 summary: >
     Let's add some shapes to our ray-tracer.
 typora-root-url: ./
 typora-copy-images-to: assets\images
+example: 04-shapes
 ---
-
-**Download this code : [examples/04-shapes.zip](examples/04-shapes.zip)**
-
-**Run this code live: [examples/04-shapes/index.html](examples/04-shapes/index.html)**
 
 In section 3, we created a ray-tracing engine that can render empty scenes. Which doesn't sound like much, but along the way we've laid the foundations that'll make the next part of the workshop much more straightforward.
 
@@ -96,8 +93,3 @@ If it worked? You'll get this - five coloured circles.
 ![image-20220319234731133](assets/images/image-20220319234731133.png)
 
 The important thing to notice here is that even though we're just rendering them as flat discs, our ray tracer is smart enough to know which bits we can see, and which bits are hidden behind another shape.
-
-**Download this code : [examples/04-shapes.zip](examples/04-shapes.zip)**
-
-**Run this code live: [examples/04-shapes/index.html](examples/04-shapes/index.html)**
-

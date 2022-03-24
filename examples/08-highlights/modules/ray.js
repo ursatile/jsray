@@ -20,4 +20,6 @@ export class Ray {
         let point = this.start.add(this.direction.scale(distanceToNearestShape));
         return nearestIntersectingShape.getColorAt(point, this, scene);
     }
+
+    toString = () => `${this.start.toString()} => ${this.direction.toString()}`;
 }
