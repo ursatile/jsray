@@ -1,7 +1,7 @@
 ---
 title: "6: Planes and Boxes"
 layout: module
-nav_order: 600
+nav_order: 0600
 summary: >
     We add support for two new shapes - an infinite plane, and a rectangular box.
 typora-root-url: ./

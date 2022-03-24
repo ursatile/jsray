@@ -1,7 +1,7 @@
 ---
 title: '2: Introducing the HTML Canvas API'
 layout: module
-nav_order: 200
+nav_order: 0200
 summary: >
   Introducing the HTML canvas element and the browser APIs we can use to work with it.
 typora-root-url: ./
@@ -10,9 +10,7 @@ typora-copy-images-to: assets\images
 
 Back in the early days of the web, you'd occasionally see sites that created images using thousands of 1x1-pixel `div` or `span` elements, with each element assigned a different `background-color` to simulate individual pixels.
 
-Fortunately, modern browsers support an HTML element called `canvas`, standardized in 2006, which gives us a much finer degree of control when it comes to drawing lines, shapes and images in browser-based web applications.
-
-In this module, we'll add a 'canvas' element to our application, along with some simple JavaScript code that'll demonstrate how to render graphics onto our canvas.
+Fortunately, modern browsers support an HTML element called `canvas`, standardized in 2006, which gives us a much finer degree of control when it comes to drawing lines, shapes and images in browser-based web applications. In this module, we'll add a `canvas` element to our application, along with some simple JavaScript code that'll demonstrate how to render graphics onto our canvas.
 
 Open `index.html` and update the `body` element so it looks like this:
 
@@ -35,7 +33,7 @@ You should now see a blank page with an empty black canvas on it:
 
 ![image-20220318172105969](assets/images/image-20220318172105969.png)
 
-### Drawing graphics onto a canvas
+## Drawing graphics onto a canvas
 
 Now we're going to add some JavaScript code to demonstrate how to draw graphics onto the canvas.
 
@@ -43,63 +41,81 @@ Open `main.js`, delete the existing code, and replace it with this:
 
 ```javascript
 let myCanvas = document.getElementById('my-canvas')
-let ctx = myCanvas.getContext('2d')
-ctx.fillStyle = 'rgb(3,4,5)'
-ctx.fillRect(0, 0, 400, 300)
-ctx.fillStyle = '#dfd9dc'
-ctx.fillRect(0, 0, 100, 30)
-ctx.fillRect(110, 0, 100, 30)
-ctx.fillRect(0, 40, 30, 100)
-ctx.fillRect(0, 150, 30, 100)
-ctx.fillRect(220, 150, 50, 100)
-ctx.fillRect(100, 260, 110, 100)
-ctx.fillRect(220, 260, 110, 100)
-ctx.fillRect(340, 0, 60, 140)
-ctx.fillStyle = '#C14634'
-ctx.fillRect(40, 40, 170, 210)
-ctx.fillRect(340, 260, 170, 210)
-ctx.fillStyle = '#E2C158'
-ctx.fillRect(220, 0, 110, 30)
-ctx.fillRect(220, 40, 110, 100)
-ctx.fillStyle = '#224170'
-ctx.fillRect(0, 260, 90, 40)
-ctx.fillRect(280, 150, 120, 100)
+let ctx = myCanvas.getContext('2d');
+ctx.fillStyle = '#C14634';
+ctx.fillRect(40, 40, 170, 210);
 ```
 
 If you're using vite, the page will reload automatically. If you're using Spark, you'll need to refresh your browser. You should see this:
 
-![image-20220318173430750](/assets/images/image-20220318173430750.png)
+![image-20220324104859424](./assets/images/image-20220324104859424.png)
+
+To draw more complex shapes, we can just call `fillRect` over and over again:
+
+```javascript
+let myCanvas = document.getElementById('my-canvas')
+let ctx = myCanvas.getContext('2d');
+ctx.fillStyle = 'rgb(3,4,5)';
+ctx.fillRect(0, 0, 400, 300);
+ctx.fillStyle = '#dfd9dc';
+ctx.fillRect(0, 0, 100, 30);
+ctx.fillRect(110, 0, 100, 30);
+ctx.fillRect(0, 40, 30, 100);
+ctx.fillRect(0, 150, 30, 100);
+ctx.fillRect(220, 150, 50, 100);
+ctx.fillRect(100, 260, 110, 100);
+ctx.fillRect(220, 260, 110, 100);
+ctx.fillRect(340, 0, 60, 140);
+ctx.fillStyle = '#C14634';
+ctx.fillRect(40, 40, 170, 210);
+ctx.fillRect(340, 260, 170, 210);
+ctx.fillStyle = '#E2C158';
+ctx.fillRect(220, 0, 110, 30);
+ctx.fillRect(220, 40, 110, 100);
+ctx.fillStyle = '#224170';
+ctx.fillRect(0, 260, 90, 40);
+ctx.fillRect(280, 150, 120, 100);
+```
+
+![HTML Canvas image inspired by Piet Mondrian](./assets/images/image-20220318173430750.png)
+
+**Try it live: [examples/02-canvas/index.html#mondrian](examples/02-canvas/index.html#mondrian)**
 
 There we go... we're using JavaScript and the `<canvas>` element to create digital artworks inspired by [Piet Mondrian](https://en.wikipedia.org/wiki/Piet_Mondrian). Not bad.
 
-In this example, we introduce four new concepts:
+In this example, we've introduced four new concepts:
 
 1. We get a reference to the canvas using `document.getElementById` and specifying the `id` of our `canvas` element
 2. We create a **graphics context** by calling `myCanvas.getContext('2d')`. The `'2d'` here specifies we're using a 2-dimensional canvas; some browsers now support built-in 3D graphics using the WebGL API, but in this workshop we'll be rendering 3D graphics onto a 2D canvas.
 3. We're setting the context's **fill style** by specifying a color. Canvas graphics support all HTML color formats, including hex digits (`#123abc`), RGB values `rgb(0,127,255)`, and alpha transparency `rgba(63,127,255,0.5)`.
 4. We're calling `ctx.fillRect(top, left, width, height)` to draw a filled rectangle using the current fill style.
 
-### Procedural graphics
+## Procedural graphics
 
-Drawing individual rectangles by hand is kinda cool, but things don't get really exciting until we start using JS code to calculate the colors of the pixels we're drawing.
+Drawing individual rectangles by hand is kinda cool, but things don't get really exciting until we start using JS code to calculate the colors of the pixels we're drawing. One of the simplest procedural patterns is a chessboard pattern.
 
-Replace your `main.js` with this chunk of code:
+Here's the `getColorAtPixel` function for drawing a chessboard pattern. Based on the tile size, we work out whether this pixel is in an odd-numbered or an even-numbered row and column:
 
 ```javascript
-function getColorAtPixel (x, y) {
+(x, y) => {
+    const xOdd = (x % (2 * size) < size);
+    const yOdd = (y % (2 * size) < size);
+    return (xOdd != yOdd ? color1 : color2);
+}
+```
+
+![](/assets/images/chessboard.png)
+
+**Try it live: [examples/02-canvas/index.html#chessboard](examples/02-canvas/index.html#chessboard)**
+
+We can also calculate individual red, green, and blue pixel values based on the x/y coordinates passed into the function.
+
+```javascript
+(x, y) => {
   let r = (4 * x) % 256
   let g = (x + y) % 256
   let b = y % 256
   return `rgb(${r},${b},${g})`
-}
-
-let myCanvas = document.getElementById('my-canvas')
-let ctx = myCanvas.getContext('2d')
-for (let x = 0; x < myCanvas.width; x++) {
-  for (let y = 0; y < myCanvas.height; y++) {
-    ctx.fillStyle = getColorAtPixel(x, y)
-    ctx.fillRect(x, y, 1, 1)
-  }
 }
 ```
 
@@ -107,7 +123,23 @@ You should get an image something like this:
 
 ![image-20220318175251133](assets/images/image-20220318175251133.png)
 
-Take some time to play around with the `getColorAtPixel(x,y)` function here.
+**Try it live: [examples/02-canvas/index.html#gradiance](examples/02-canvas/index.html#gradiance)**
+
+## Exercise: Procedural Patterns
+
+Download the code for this section from [examples/02-canvas.zip](examples/02-canvas.zip)
+
+Add a new pattern to `modules/patterns.js`:
+
+1. Add a new `export function MyPattern` to `modules/patterns.js`, 
+
+2. Come up with a new method for translating the `x,y` coordinates into `r,g,b` color values - there's some suggestions below
+
+3. Add a new `case` to the `switch` statement in `main.js`:
+
+   `case "#mypattern": Patterns.MyPattern(myCanvas); break;`
+
+4. View your pattern by going to `index.html#mypattern`
 
 Here's a couple of fun things to try:
 
@@ -118,8 +150,12 @@ Here's a couple of fun things to try:
 
 Here's a few more examples:
 
+### Supernova
+
+Try it live: [examples/02-canvas/index.html#supernova](examples/02-canvas/index.html#supernova)
+
 ```javascript
-function getColorAtPixel (x, y) {
+(x, y) => {
   let r = (x * (1 + Math.sin(y / 100))) % 255 // 4*x % 255;
   let g = Math.abs(20 * Math.tan(y)) % 255
   let b = (y * (1 + Math.cos(x / 2))) % 255 // (x+y) % 255;
@@ -129,8 +165,12 @@ function getColorAtPixel (x, y) {
 
 ![image-20220318180643036](assets/images/image-20220318180643036.png)
 
+### Lasers
+
+Try it live: [examples/02-canvas/index.html#lasers](examples/02-canvas/index.html#lasers)
+
 ```javascript
-function getColorAtPixel (x, y) {
+(x, y) => {
   let r = 255 * Math.sin(200 - x / 20) + 255 * Math.cos(150 - y / 20)
   let g = 255 * Math.sin(200 - x / 20)
   let b = 255 * Math.cos(150 - y / 20)
@@ -140,7 +180,7 @@ function getColorAtPixel (x, y) {
 
 ![image-20220318181305507](assets/images/image-20220318181305507.png)
 
-## Review & Recap
+## The HTML Canvas: Review & Recap
 
 - The `canvas` element and API give us a way to draw graphics using JavaScript
 - To draw graphics, we need to get a **graphics context** for our canvas element.
@@ -149,6 +189,5 @@ function getColorAtPixel (x, y) {
 
 ## References and Further Reading
 
-The Canvas API:
-
-- [https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+* The Canvas API: [https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+* HTML Colors reference at w3schools: [https://www.w3schools.com/html/html_colors.asp](https://www.w3schools.com/html/html_colors.asp)

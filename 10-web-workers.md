@@ -1,7 +1,7 @@
 ---
 title: "11: Web Workers"
 layout: module
-nav_order: 900
+nav_order: 1000
 summary: >
     In this module, we move all our rendering into a background worker process so that our browser doesn't become unresponsive while a scene is rendering.
 typora-root-url: ./

@@ -1,7 +1,7 @@
 ---
 title: "9: Reflections"
 layout: module
-nav_order: 900
+nav_order: 0900
 summary: >
     Adding reflections so we can model mirrors and reflective surfaces
 typora-root-url: ./

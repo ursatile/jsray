@@ -1,16 +1,16 @@
 ---
 title: "3.4: Rendering an Empty Scene"
 layout: module
-nav_order: 304
+nav_order: 0304
 summary: >
     In this section we'll create a scene containing only a camera and a background color, and run a test render to check that everything we've got so far is working properly.
 typora-root-url: ./
 typora-copy-images-to: assets\images
 ---
 
-**You can download the code for this section here: [download/jstracer-03-tracer.zip](download/jstracer-03-tracer.zip)**
+**Download code: [examples/03.tracer.zip](examples/03.tracer.zip)**
 
-**Run this code live: [examples/03-tracer/index.html](examples/03-tracer/index.html)**
+**Run this code: [examples/03-tracer/index.html](examples/03-tracer/index.html)**
 
 So, we have vectors, colors, rays, a scene, a camera... now we're going to create the actual ray-tracer, hook that up to our HTML canvas, and render something.
 
@@ -34,7 +34,7 @@ Notice that the tracer doesn't actually update the `canvas` directly; instead, f
 
 ### Connecting it all together
 
-Update the `main.js` file in your project as follows:
+Update the `main.js` file in your project with this code:
 
 ```javascript
 // main.js
@@ -60,9 +60,9 @@ You should have a project structure now that looks like this:
   * [tracer.js](jstracer-part01/jstracer/modules/tracer.js)
   * [vector.js](jstracer-part01/jstracer/modules/vector.js)
 
-**You can download the code for this section here: [download/jstracer-03-tracer.zip](download/jstracer-03-tracer.zip)**
+**Download code: [examples/03.tracer.zip](examples/03.tracer.zip)**
 
-**Run this code live: [examples/03-tracer/index.html](examples/03-tracer/index.html)**
+**Run this code: [examples/03-tracer/index.html](examples/03-tracer/index.html)**
 
 
 If everything works, you'll get a solid block of bright blue sky:
@@ -76,4 +76,9 @@ let background = new Color(0, 20, 55);
 ```
 
 ![image-20220319152156710](assets/images/image-20220319152156710.png)
+
+## Review & Recap
+
+* The `Tracer` class is the connection between the browser's HTML and canvas elements, which work in 2D screen coordinates based on pixels, and the ray-tracing engine, which works in 3D world coordinates based on vectors.
+* Any ray in our scene that doesn't hit a shape will end up as `scene.background` - and because we don't have any shapes yet, all we can do is draw empty skies.
 

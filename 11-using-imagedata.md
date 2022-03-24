@@ -1,7 +1,7 @@
 ---
 title: "11: Using ImageData"
 layout: module
-nav_order: 900
+nav_order: 1100
 summary: >
     In this module, we look at how to use advanced data structures to optimise the performance of our web workers.
 typora-root-url: ./

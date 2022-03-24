@@ -1,18 +1,18 @@
 ---
 title: "4: Shapes"
 layout: module
-nav_order: 400
+nav_order: 0400
 summary: >
     Let's add some shapes to our ray-tracer.
 typora-root-url: ./
 typora-copy-images-to: assets\images
 ---
 
-**Download the code for this section here: [download/jstracer-04-shapes.zip](download/jstracer-04-hapes.zip)**
+**Download this code : [examples/04-shapes.zip](examples/04-shapes.zip)**
 
 **Run this code live: [examples/04-shapes/index.html](examples/04-shapes/index.html)**
 
-In Part 1, we created a ray-tracing engine that can render... empty scenes. Which doesn't sound like much, but along the way we've laid the foundations that'll make the next part of the workshop much more straightforward.
+In section 3, we created a ray-tracing engine that can render empty scenes. Which doesn't sound like much, but along the way we've laid the foundations that'll make the next part of the workshop much more straightforward.
 
 In this section, we'll add some coloured spheres to our tracer. For now, they'll appear as flat brightly-coloured discs -- this is fine; it'll let us test our shape intersection code before we start adding effects like shading and reflection in the next section.
 
@@ -26,7 +26,7 @@ We're going to create a base class called `Shape` - all the shapes we use in our
 
 For now, shapes in our world have only one responsibility: we can pass a ray of light into the shape and say "hey, does this ray intersect you anywhere?" -- and if it *does*, what's the distance from the start of the ray to the nearest intersection point?
 
-> Because we know the starting point of every ray, and the direction it's pointing, if we know the distance along that ray where it intersects the shape, we can calculate the exact point in space where that intersection is located.
+> Because we know the starting point of every ray, and the direction it's pointing, if we know the distance along that ray where it intersects the shape, we can calculate the exact point in space where that ray intersects that shape.
 
 ### The sphere
 
@@ -54,7 +54,7 @@ So we do some arithmetic sleight-of-hand to turn our sphere into those three val
 
 The important bit is that it'll give us an array of **distances**. If the ray doesn't intersect the sphere, we get back an empty array. If the ray just grazes the surface of the sphere, we get a single intersection, and return a single distance; and if the ray goes through the sphere, we get two intersection points.
 
-Now, we'll modify the `trace` method on our `Ray` object to look for these intersections.
+Now, we'll modify the `trace` method on our `Ray` object to look for these intersections:
 
 ```
 trace = (scene) => {  
@@ -97,7 +97,7 @@ If it worked? You'll get this - five coloured circles.
 
 The important thing to notice here is that even though we're just rendering them as flat discs, our ray tracer is smart enough to know which bits we can see, and which bits are hidden behind another shape.
 
-**Download the code for this section here: [download/jstracer-04-shapes.zip](download/jstracer-04-hapes.zip)**
+**Download this code : [examples/04-shapes.zip](examples/04-shapes.zip)**
 
 **Run this code live: [examples/04-shapes/index.html](examples/04-shapes/index.html)**
 

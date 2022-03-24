@@ -1,7 +1,7 @@
 ---
 title: "3.3: Rays, Scenes, and the Camera"
 layout: module
-nav_order: 303
+nav_order: 0303
 summary: >
     Modelling light rays using vectors.
 
@@ -29,7 +29,7 @@ Ray-tracing uses lots of complex floating-point arithmetic, and floating-point a
 
 To render a scene in our ray-tracer, we'll need to run hundreds of calculations checking whether various rays intersect with different shapes and surfaces; these are done using floating-point arithmetic, and we're often checking for a result that, in a perfect world, would equal zero. But as we've seen, we can't count on getting exact results from the JS arithmetic engine.
 
-To work around this, we define a `THRESHOLD`, and in several points in our code we'll assume that if two values differ by less than the threshold, we can treat them as equal. 
+To work around this, we define a `THRESHOLD`.  Any value below `THRESHOLD` can be treated as zero, and two values whose difference is less than `THRESHOLD` can be treated as equal.
 
 We'll set this in a new module called `settings.js`, so we can import it into any other module that needs to use it:
 
@@ -99,8 +99,16 @@ There are two additional arguments, `width` and `height`, which control the fiel
 
 Imagine holding a rectangular frame in front of your camera. We're going to render everything that's visible through the frame. The frame is `width` units wide and `height` units high, and centred at the`look_at` coordinate. If the camera `location` is close to the `look_at`, we get a very wide field of view (and shapes at the edges of our frame will appear more distorted). If the location is further away from the frame, we get a narrow field of view.
 
-![image-20220319150604912](assets/images/image-20220319150604912.png)
+![image-20220324120918154](./assets/images/image-20220324120918154.png)
 
 The `trace(scene,x,y)` method takes a scene, and the x- and y- coordinates of the point we're tracing; it works out what direction that ray will be going in, and then calls `ray.trace`
 
 > The camera works in **world coordinates**, so X and Y here are a position on the "viewport" -- they are NOT the x/y pixel coordinates of our HTML canvas. 
+
+## Review & Recap
+
+* We've introduced a `THRESHOLD` setting, to work around inaccuracies caused by floating-point arithmetic.
+* We've introduced a `Ray` class to model a single ray of light
+* We've introduced a `Scene` class, to model the scene which we're rendering. At the moment, scenes are empty except for a background color.
+* We've introduced `Camera`, which has a `location` and a `look_at` value, controlling where the camera is and which way it's pointing. *(OK, and also a bunch of complicated vector arithmetic to work out which way is 'up'...)*
+

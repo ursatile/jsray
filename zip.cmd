@@ -1,4 +1,9 @@
-del download\jstracer-part01.zip
-cd jstracer-part01\jstracer\
-7z a -r -x!node_modules\* ..\..\download\jstracer-part01.zip *.html *.css *.js
-cd ..\..
+del examples\*.zip
+cd examples
+for /D %%1 in (*.*) do (
+    cd %%1
+    7z a -r -x!node_modules\* ..\%%1.zip *.html *.css *.js *.svg
+    cd ..
+)
+cd ..
+

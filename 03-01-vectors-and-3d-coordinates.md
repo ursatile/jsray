@@ -1,16 +1,20 @@
 ---
 title: "3.1: Vectors and the 3D Coordinate System"
 layout: module
-nav_order: 301
+nav_order: 0301
 summary: >
     In which we learn about vectors, 3D coordinate systems, and some neat JavaScript stuff like how to create immutable data structures using private class fields.
 typora-root-url: ./
 typora-copy-images-to: assets\images
 ---
 
-To start building a ray tracer, we need a system for modelling three-dimensional space. 
+To start building a ray tracer, we need a system for modelling three-dimensional space.
 
-Now, this is where the maths starts to get gnarly. Here's the important part: **you don't need to understand *how* all the stuff here works; it's enough to know *what it does*.** 
+Our next milestone is going to be rendering a completely empty scene with no shapes in it. To get there, we need to implement a lot of new things, and unfortunately there's no way to see any of it working until we've got it all plugged in and wired up, so this section might feel a little bit like step 3 of "how to to draw an owl" -- sorry!
+
+![image-20220324112749895](./assets/images/image-20220324112749895.png)
+
+We're also going to introduce some pretty complex mathematics. Here's the important part: **you don't need to understand *how* all the stuff here works; it's enough to know *what it does*.** 
 
 We're going to model our world using a 3D coordinate system, based on something called a **vector**.  
 
@@ -38,7 +42,7 @@ We're going to create a JavaScript **module** called `vector.js`, which exports 
 
 Things to note here:
 
-* The coordinate values `x,y,z` are stored using **private properties**. These are a relatively recent addition to JavaScript; any field prefixed with `#` is private, and can't be manipulated from outside the object. By using private properties, we can make our vectors **immutable** -- once a vector has been constructed, you can't change the `x,y,z` values of that vector. 
+* The coordinate values `x,y,z` are stored using **private properties** `#x, #y, #z`. These are a relatively recent addition to JavaScript; any field prefixed with `#` is private, and can't be manipulated from outside the object. By using private properties, we can make our vectors **immutable** -- once a vector has been constructed, you can't change the `x,y,z` values of that vector. 
 
 * New vectors are constructed by specifying the *x,y,z* coordinates of the vector: 
 
@@ -52,7 +56,7 @@ Things to note here:
   `Vector.Y`
   `Vector.Z`
 
-  There's also a static vector for `<0,0,0>` called `O` - that's a letter O, not the number 0:
+  There's also a static vector for `<0,0,0>` called `O` - that's a letter `O`, not the number `0`:
 
   `Vector.O`
 

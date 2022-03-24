@@ -16,14 +16,9 @@ export class Shape {
         let materialColor = this.material.getColorAt(point);
         let colorToReturn = materialColor.scale(AMBIENT);
         let normal = this.getNormalAt(point);
-        scene.lights.forEach(light => {
-            let lightDirection = light.position.add(point.invert());
-            let brightness = normal.dot(lightDirection.normalize());
-            if (brightness > 0) {
-                let illumination = materialColor.multiply(light.color).scale(brightness);
-                colorToReturn = colorToReturn.add(illumination);
-            }
-        });
+        colorToReturn = scene.lights
+            .map(l => l.illuminate(point, normal, materialColor))
+            .reduce((oldColor, newColor) => oldColor.add(newColor), colorToReturn);
         return colorToReturn;
     }
     getNormalAt = point => Vector.O;

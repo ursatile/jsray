@@ -1,7 +1,7 @@
 ---
 title: "5: Lights and Shading"
 layout: module
-nav_order: 500
+nav_order: 0500
 summary: >
     In this section, we'll add lights to our scene, and learn how to shade the surface of a sphere.
 typora-root-url: ./
@@ -75,16 +75,18 @@ If you're curious about how it works, what we actually do here is calculate the 
 
 One more thing we need to do first: to calculate lights and shade, we need to be able to add, multiply, and scale colors. (Think about shining two different-coloured lights at the same spot on a white wall - the colour you actually see is created by adding together the colours of those two lights.)
 
-Add these methods to the `Color` class in `modules\material.js`:
+Add these methods to the `Color` class in `modules\color.js`:
 
 ```javascript
 add = (that) => new Color(this.r + that.r, this.g + that.g, this.b + that.b);
+
 multiply = (that) => {
     let rr = Math.floor(this.r * that.r / 0xff);
     let gg = Math.floor(this.g * that.g / 0xff);
     let bb = Math.floor(this.b * that.b / 0xff);
     return new Color(rr, gg, bb);
 }
+
 scale = (factor) => new Color(this.r * factor, this.g * factor, this.b * factor);
 ```
 
@@ -95,45 +97,37 @@ First, modify the `Ray.trace` method so that we pass the `scene` into `nearestIn
 ```javascript
 //modules/ray.js
 
-/** Trace this ray through the specified scene, and return the resulting color. */
-trace = (scene) => {
-    let distanceToNearestShape = Infinity;
-    let nearestIntersectingShape = null;
-    scene.shapes.forEach(shape => {
-        let distance = shape.closestDistanceAlongRay(this);
-        if (distance < distanceToNearestShape) {
-            distanceToNearestShape = distance;
-            nearestIntersectingShape = shape;
-        }
-    });
-    if (distanceToNearestShape == Infinity) return scene.background;
-    let point = this.start.add(this.direction.scale(distanceToNearestShape));
-
-    // MODIFY THIS LINE so that we're passing the scene as a second parameter
-    return nearestIntersectingShape.getColorAt(point, scene);
-}
+{% include_relative examples/05-lights/modules/ray.js %}
 ```
 
-Now, we'll implement `shape.getColorAt(point,scene)`:
+Next. we'll add a new `illuminate` method to `Light` - we pass in the point, the normal, and the shape's color, and it'll calculate how much lighting should be added to that point on the shape's surface:
 
 ```javascript
-getColorAt = (point, scene) => {
-    let materialColor = this.material.getColorAt(point);
-    let colorToReturn = Color.Black;
-    let normal = this.getNormalAt(point);
-    scene.lights.forEach(light => {
-        let direction = light.position.add(point.invert()).normalize();
-        let brightness = normal.dot(direction);
-        if (brightness > 0) {
-            let illumination = materialColor.multiply(light.color).scale(brightness);
-            colorToReturn = colorToReturn.add(illumination);
-        }
-    });
-    return colorToReturn;
-}
+// modules/light.js
+
+{% include_relative examples/05-lights/modules/light.js %}
 ```
 
 The important thing to notice here is that we're calculating the `brightness` for each light source by taking the **dot product** of the surface normal and the light source. The reason this works is that if the normal is perpendicular to the light direction, the dot product will be 0 -- and that's exactly what we want, because if a light is shining directly *across* a surface, it doesn't actually contribute any illumination. On the other hand, if the surface at that point is directly facing the light source, the dot product will be 1, and so we'll get the maximum illumination from that light source.
+
+Next, update `shape.getColorAt(point,scene)` to call this method for each light in the scene.
+
+We could do this by looping through each light in the scene:
+
+```javascript
+scene.lights.forEach(light => {
+    let illumination = light.illuminate(point, normal, materialColor);
+    colorToReturn = colorToReturn.add(illumination)
+});
+```
+
+However, there's a more elegant way to do it using the *map/reduce* pattern: we can use `map` to map the list of lights into a list of illuminations, and then `reduce` to add all those illuminations and return the resulting color:
+
+```javascript
+// modules/shape.js
+
+{% include_relative examples/05-lights/modules/shape.js %}
+```
 
 Once that's all wired in, reload the page and you should get something like this:
 

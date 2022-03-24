@@ -1,7 +1,7 @@
 ---
 title: "7: Shadows"
 layout: module
-nav_order: 600
+nav_order: 0700
 summary: >
     Adding support for shadows
 typora-root-url: ./

@@ -1,7 +1,7 @@
 ---
 title: '1: Creating the JSTracer application'
 layout: module
-nav_order: 100
+nav_order: 0100
 summary: >
   Creating the project structure, and running it on your local machine using vite or spark.
 typora-root-url: ./

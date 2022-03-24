@@ -1,9 +1,9 @@
 ---
-title: "3.2: Colors"
+title: '3.2: Colors'
 layout: module
-nav_order: 302
+nav_order: 0302
 summary: >
-    In this section, we'll create a Color class in JavaScript, and set up the color model we'll use to simulate objects, light and shade in our scene.
+  In this section, we'll create a Color class in JavaScript, and set up the color model we'll use to simulate objects, light and shade in our scene.
 typora-root-url: ./
 typora-copy-images-to: assets\images
 ---
@@ -12,9 +12,9 @@ In the last module, we added **vectors** to our project. Vectors are incredibly 
 
 In this module, we'll create:
 
-* A base class called `Material`. All the shapes in our world are made out of materials; the material controls how light interacts with that shape.
-* A class called `Color`, representing a solid color.
-  * `Color` will be used in the next module as well, when we start modelling the way rays of light bounce around our scene and interact with shapes and light sources.
+- A base class called `Material`. All the shapes in our world are made out of materials; the material controls how light interacts with that shape.
+- A class called `Color`, representing a solid color.
+  - `Color` will be used in the next module as well, when we start modelling the way rays of light bounce around our scene and interact with shapes and light sources.
 
 ### Materials and Colors
 
@@ -30,14 +30,14 @@ Material defines a single method called `getColorAt` - we give it a point somewh
 
 JSTracer uses the same color model as HTML; red, green, and blue values range from 0 through 255. (You'll sometimes see 255 sometimes written as `0xff`, for consistency with the HTML hex color model.)
 
-#### Constructing new colors
+### Constructing new colors
 
-We want to be create colors by providing either numeric RGB values or on HTML color strings. 
+We want to be create colors by providing either numeric RGB values or on HTML color strings.
 
 Many object-oriented languages, like Java and C#, support something called **method overloading**, which lets us define multiple methods with the same name but with different arguments, and because we can use method overloading on constructors we could write something like this:
 
 ```csharp
-public Color(string htmlString) { 
+public Color(string htmlString) {
 	/* create a color from an HTML string */
 }
 
@@ -73,9 +73,6 @@ the value of `g` will be `undefined`, and so the constructor will pass the value
 
 ## Review & Recap
 
-* JSTracer uses the HTML color model; colors have a red, green, and blue value, each from 0 to 255.
-* We've defined a base class, `Material` for all the materials used in our 3D scene
-* We've created a single kind of material, `Color`, for objects which are a solid color
-
-## References and Further Reading
-
+- JSTracer uses the HTML color model; colors have a red, green, and blue value, each from 0 to 255.
+- We've defined a base class, `Material` for all the materials used in our 3D scene
+- We've created a single kind of material, `Color`, for objects which are a solid color

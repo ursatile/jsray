@@ -1,7 +1,7 @@
 ---
 title: "8: Specular Highlights"
 layout: module
-nav_order: 800
+nav_order: 0800
 summary: >
     Adding support for specular highlights. That's the technical term for "shiny spots".
 typora-root-url: ./
