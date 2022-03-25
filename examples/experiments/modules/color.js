@@ -1,10 +1,13 @@
 import { Finish } from './finish.js';
 
+import { Material } from './material.js';
+
 // The maximum total intensity of an HTML color is 255+255+255 = 765
 const MAX_INTENSITY = 765;
 
-export class Color {
+export class Color extends Material {
     constructor(r, g, b) {
+        super();
         if (g == undefined) {
             [this.r, this.g, this.b] = this.parseHtmlColor(r);
             // } else if (r > 0 && r < 1 && g > 0 && g <= 1 && b > 0 && b <= 1) {
