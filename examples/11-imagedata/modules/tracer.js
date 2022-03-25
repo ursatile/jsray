@@ -15,7 +15,7 @@ class Tracer {
                 let x = (xPixel / this.canvasWidth) - 0.5;
                 let y = (yPixel / this.canvasHeight) - 0.5;
                 let pixelColor = scene.trace(x, y);
-                callback(xPixel, yPixel, pixelColor, step);
+                callback(xPixel, yPixel, step, step, pixelColor);
             }
         }
         var duration = (new Date().valueOf() - started);

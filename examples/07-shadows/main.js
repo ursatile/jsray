@@ -6,14 +6,14 @@ let ctx = canvas.getContext('2d');
 let tracer = new Tracer(canvas.width, canvas.height);
 
 function paint(x, y, width, height, color) {
-  var rgb = `rgb(${color.r},${color.g},${color.b})`;
-  ctx.fillStyle = rgb;
-  ctx.fillRect(x, y, width, height);
+    var rgb = `rgb(${color.r},${color.g},${color.b})`;
+    ctx.fillStyle = rgb;
+    ctx.fillRect(x, y, width, height);
 }
 
 export function render() {
-  let scene = ExampleScenes.AssortedShapes();
-  tracer.trace(scene, paint);
+    let scene = ExampleScenes.AssortedShapes();
+    tracer.trace(scene, paint);
 }
 
 render();

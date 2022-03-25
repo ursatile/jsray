@@ -1,7 +1,7 @@
 import { THRESHOLD } from './settings.js';
 
 // How much color do we see from areas that aren't illuminated by any light source?
-const AMBIENT = 0.1;
+const AMBIENT = 0.18;
 
 export class Shape {
     constructor(texture) {

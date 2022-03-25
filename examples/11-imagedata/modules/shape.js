@@ -10,8 +10,9 @@ export class Shape {
     findIntersections = ray => [];
 
     closestDistanceAlongRay = (ray) => {
-        var intersections = this.findIntersections(ray).filter(distance => distance > THRESHOLD);
-        return Math.min.apply(Math, intersections);
+        let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
+        let shortestDistance = Math.min.apply(Math, distances);
+        return shortestDistance;
     }
 
     reflect = (incident, normal) => {
@@ -45,7 +46,6 @@ export class Shape {
                 if (!shadow) {
                     let illumination = materialColor.multiply(light.color).scale(brightness * this.texture.finish.diffuse);
                     colorToReturn = colorToReturn.add(illumination);
-
                     let specular = reflex.dot(lightDirection.normalize());
                     if (specular > 0) {
                         let exponent = 16 * this.texture.finish.specular * this.texture.finish.specular;

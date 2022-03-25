@@ -19,7 +19,9 @@ In this module, we'll create:
 
 ### Materials and Colors
 
-Create a new file in your project called `modules/material.js`, with the following content:
+All the shapes in our world will be made of a `material`, and to start with, the only materials we're going to worry about are solid colours. 
+
+Here's the code for the `Material` class:
 
 ```javascript
 // modules/material.js
@@ -27,13 +29,23 @@ Create a new file in your project called `modules/material.js`, with the followi
 {% include_relative examples/03-tracer/modules/material.js %}
 ```
 
-Material defines a single method called `getColorAt` - we give it a point somewhere in our scene, and it'll tell us what colour the material at that point is.
+`Material` defines a single method called `getColorAt` - we give it a 3D point somewhere in our scene, and it'll tell us what colour the material at that point is. For the default material, that's `Color.Gray50`.
+
+Next, create a new file in your project called `modules/color.js`, with the following content:
+
+```javascript
+// modules/color.js
+
+{% include_relative examples/03-tracer/modules/color.js %}
+```
+
+`Color` extends `Material` and provides a `getColorAt` implementation that just returns the color.
 
 JSTracer uses the same color model as HTML; red, green, and blue values range from 0 through 255. (You'll sometimes see 255 sometimes written as `0xff`, for consistency with the HTML hex color model.)
 
 ### Constructing new colors
 
-We want to be create colors by providing either numeric RGB values or on HTML color strings.
+We want to be able to create colors by providing either numeric RGB values or on HTML color strings.
 
 Many object-oriented languages, like Java and C#, support something called **method overloading**, which lets us define multiple methods with the same name but with different arguments, and because we can use method overloading on constructors we could write something like this:
 

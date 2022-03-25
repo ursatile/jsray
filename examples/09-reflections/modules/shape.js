@@ -46,7 +46,6 @@ export class Shape {
                 if (!shadow) {
                     let illumination = materialColor.multiply(light.color).scale(brightness * this.texture.finish.diffuse);
                     colorToReturn = colorToReturn.add(illumination);
-
                     let specular = reflex.dot(lightDirection.normalize());
                     if (specular > 0) {
                         let exponent = 16 * this.texture.finish.specular * this.texture.finish.specular;

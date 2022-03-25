@@ -1,17 +1,18 @@
 import { Tracer } from './modules/tracer.js';
 import * as ExampleScenes from './scenes/examples.js';
 
-function makeCallback(width, step) {
-    let rgbaData = new Uint8ClampedArray(width * 4 * step);
-    return function (x, y, pixelColor, step) {
-        let rgba = new Array(step).fill(pixelColor.rgba).flat();
-        for (let row = 0; row < step; row++) rgbaData.set(rgba, ((row * width) + x) * 4);
-        if (x + step == width) {
-            let imageData = new ImageData(rgbaData, width, step);
+function makeCallback(canvasWidth, step) {
+    let rgbaData = new Uint8ClampedArray(canvasWidth * 4 * step);
+    function callback(x, y, width, height, color) {
+        let rgba = new Array(width).fill(color.rgba).flat();
+        for (let row = 0; row < height; row++) rgbaData.set(rgba, ((row * canvasWidth) + x) * 4);
+        if (x + width == canvasWidth) {
+            let imageData = new ImageData(rgbaData, canvasWidth, height);
             let data = { what: 'putImageData', x: 0, y: y, imageData: imageData };
             self.postMessage(data);
         }
     }
+    return callback;
 }
 
 self.addEventListener('message', function (message) {
