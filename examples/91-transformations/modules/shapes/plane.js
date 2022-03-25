@@ -2,8 +2,8 @@ import { Shape } from '../shape.js';
 
 export class Plane extends Shape {
 
-    constructor(normal, distance, material, transformations) {
-        super(material, transformations);
+    constructor(normal, distance, texture, transformations) {
+        super(texture, transformations);
         this.normal = normal;
         this.distance = distance;
     }
