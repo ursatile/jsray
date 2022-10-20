@@ -32,7 +32,7 @@ Create a new file called `modules/light.js`:
 Lights in our world have a **location** and a **color**; to create a new light, we need to specify where it is, and what color it is.
 
 * The brightest light we can have is pure white `(255,255,255)`, or `#ffffff`
-* Lights in JSTracer are invisible. They illuminate other objects, but they don't actually *appear* in the scene; if you point the camera directly at a light source, you won't see anything.
+* Lights in Radiance are invisible. They illuminate other objects, but they don't actually *appear* in the scene; if you point the camera directly at a light source, you won't see anything.
 
 Now we'll modify our `Scene` class to accept an array of lights when we create a scene:
 

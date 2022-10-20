@@ -1,5 +1,5 @@
 ---
-title: '1: Creating the JSTracer application'
+title: '1: Creating the Radiance application'
 layout: module
 nav_order: 10100
 summary: >

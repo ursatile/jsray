@@ -41,7 +41,7 @@ Next, create a new file in your project called `modules/color.js`, with the foll
 
 `Color` extends `Material` and provides a `getColorAt` implementation that just returns the color.
 
-JSTracer uses the same color model as HTML; red, green, and blue values range from 0 through 255. (You'll sometimes see 255 sometimes written as `0xff`, for consistency with the HTML hex color model.)
+Radiance uses the same color model as HTML; red, green, and blue values range from 0 through 255. (You'll sometimes see 255 sometimes written as `0xff`, for consistency with the HTML hex color model.)
 
 ### Constructing new colors
 
@@ -86,6 +86,6 @@ the value of `g` will be `undefined`, and so the constructor will pass the value
 
 ## Review & Recap
 
-- JSTracer uses the HTML color model; colors have a red, green, and blue value, each from 0 to 255.
+- Radiance uses the HTML color model; colors have a red, green, and blue value, each from 0 to 255.
 - We've defined a base class, `Material` for all the materials used in our 3D scene
 - We've created a single kind of material, `Color`, for objects which are a solid color
