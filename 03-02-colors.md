@@ -11,35 +11,15 @@ example: 03-tracer
 
 In the last module, we added **vectors** to our project. Vectors are incredibly useful -- we can use them to model locations in 3D space, coordinates, rays of light, all kinds of things we're going to need. But to actually see anything, we need to put some objects in our world, and we need so simulate the material those objects are made from.
 
-In this module, we'll create:
+In this module, we'll create a class called `Color`, representing a solid color. `Color` will be used in the next module as well, when we start modelling the way rays of light bounce around our scene and interact with shapes and light sources.
 
-- A base class called `Material`. All the shapes in our world are made out of materials; the material controls how light interacts with that shape.
-- A class called `Color`, representing a solid color.
-  - `Color` will be used in the next module as well, when we start modelling the way rays of light bounce around our scene and interact with shapes and light sources.
-
-### Materials and Colors
-
-All the shapes in our world will be made of a `material`, and to start with, the only materials we're going to worry about are solid colours. 
-
-Here's the code for the `Material` class:
-
-```javascript
-// modules/material.js
-
-{% include_relative examples/03-tracer/modules/material.js %}
-```
-
-`Material` defines a single method called `getColorAt` - we give it a 3D point somewhere in our scene, and it'll tell us what colour the material at that point is. For the default material, that's `Color.Gray50`.
-
-Next, create a new file in your project called `modules/color.js`, with the following content:
+Create a new file in your project called `modules/color.js`, with the following content:
 
 ```javascript
 // modules/color.js
 
 {% include_relative examples/03-tracer/modules/color.js %}
 ```
-
-`Color` extends `Material` and provides a `getColorAt` implementation that just returns the color.
 
 Radiance uses the same color model as HTML; red, green, and blue values range from 0 through 255. (You'll sometimes see 255 sometimes written as `0xff`, for consistency with the HTML hex color model.)
 

@@ -11,34 +11,6 @@ example: 03-tracer
 
 In this module, we'll introduce three more concepts, that should get us to the point where we can render an empty scene. *(Hey, we gotta start somewhere, right?)*
 
-### The settings file and rendering thresholds
-
-> *"JavaScript arithmetic is Wobbly. It's good arithmetic, but it Wobbles and the numbers get in the wrong places."*
->
-> ​	-- Winnie the Pooh ([probably](https://en.wikiquote.org/wiki/Spelling)).
-
-Ray-tracing uses lots of complex floating-point arithmetic, and floating-point arithmetic isn't exact. The best we can guarantee is a very, very close approximation. Try running this in a JavaScript console:
-
-```javascript
-> 0.1 + 0.2
-< 0.30000000000000004
-
-> (0.1 + 0.2) - 0.3 == 0
-< false
-```
-
-To render a scene in our ray-tracer, we'll need to run hundreds of calculations checking whether various rays intersect with different shapes and surfaces; these are done using floating-point arithmetic, and we're often checking for a result that, in a perfect world, would equal zero. But as we've seen, we can't count on getting exact results from the JS arithmetic engine.
-
-To work around this, we define a `THRESHOLD`.  Any value below `THRESHOLD` can be treated as zero, and two values whose difference is less than `THRESHOLD` can be treated as equal.
-
-We'll set this in a new module called `settings.js`, so we can import it into any other module that needs to use it:
-
-```javascript
-// modules/settings.js
-
-{% include_relative examples/03-tracer/modules/settings.js %}
-```
-
 ### Ray
 
 Ray-tracers work by tracing rays -- modelling individual rays of light that bounce around our scene, interacting with shapes, lights and shadows.

@@ -67,13 +67,12 @@ Things to note here:
 * `v1.cross(v2)` returns the **[cross product](https://en.wikipedia.org/wiki/Cross_product)** of vectors `v1` and `v2`
 * `v1.invert()` returns a new vector which is the inverse vector of `v1`. 
   * The inverse of `<x,y,z>` is `<-x,-y,-z>`
-
 * `v1.add(v2)` returns the **sum** of vectors `v1` and `v2`
   * The sum of a vector and its inverse is always `<0,0,0>`
-
+* `v1.subtract(v2)` returns the **difference** between vectors `v1` and `v2`
+  * Subtracting a vector from itself should always return `<0,0,0>`
 * `v1.scale(factor)` scales the vector by the specified factor.
   * `v1.invert()` is equal to `v1.scale(-1)`
-
 
 ## Review & Recap
 
