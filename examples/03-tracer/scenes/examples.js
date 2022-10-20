@@ -1,4 +1,4 @@
-import { Camera, Scene, Vector, Color } from '../modules/tracer.js';
+import { Camera, Scene, Vector, Color } from '../modules/renderer.js';
 
 export function EmptySky() {
     let camera = new Camera(new Vector(-4, 1, -5), new Vector(0, 1, 0));

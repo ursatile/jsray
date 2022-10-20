@@ -1,4 +1,4 @@
-import { Camera, Scene, Vector, Color } from '../modules/tracer.js';
+import { Camera, Scene, Vector, Color } from '../modules/renderer.js';
 import { Sphere } from '../modules/shapes/sphere.js';
 import { Plane } from '../modules/shapes/plane.js';
 import { Box } from '../modules/shapes/box.js';

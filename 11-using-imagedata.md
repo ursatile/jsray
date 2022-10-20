@@ -43,9 +43,9 @@ let imageData = new ImageData(rgbaData, width, height);
 
 Finally, the `canvas` has a method called `putImageData(data, x, y)`, which is a heavily optimised (i.e. very fast) method for rendering a chunk of pixel data onto a canvas at a specific location.
 
-### Modifying our tracer to use ImageData
+### Modifying our renderer to use ImageData
 
-We're going to modify our tracer code so that the worker will add pixels to an array buffer, and then when it has a full row of pixel data, it'll send a mesage to the main thread saying "hey, here's a row of pixels for you!" and the main thread will draw that row using `putImageData`.
+We're going to modify our renderer code so that the worker will add pixels to an array buffer, and then when it has a full row of pixel data, it'll send a mesage to the main thread saying "hey, here's a row of pixels for you!" and the main thread will draw that row using `putImageData`.
 
 It's not *quite* as simple as just rendering every row in turn, because we can specify a `step` parameter to speed up renders by rendering blocks of pixels instead of each individual pixel, so we need to account for this: if `step==4`, say, then each callback will draw a `width x 4	` strip of pixels.
 

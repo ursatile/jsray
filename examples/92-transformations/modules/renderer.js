@@ -3,7 +3,7 @@ import { Vector } from './vector.js';
 import { Camera } from './camera.js';
 import { Scene } from './scene.js';
 
-class Tracer {
+class Renderer {
     constructor(canvasWidth, canvasHeight) {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
@@ -15,7 +15,7 @@ class Tracer {
                 let x = (xPixel / this.canvasWidth) - 0.5;
                 let y = (yPixel / this.canvasHeight) - 0.5;
                 let pixelColor = scene.trace(x, y);
-                callback(xPixel, yPixel, step, step, pixelColor);
+                callback(xPixel, yPixel, pixelColor, step);
             }
         }
         var duration = (new Date().valueOf() - started);
@@ -23,4 +23,4 @@ class Tracer {
     }
 }
 
-export { Tracer, Scene, Camera, Color, Vector };
+export { Renderer, Scene, Camera, Color, Vector };

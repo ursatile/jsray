@@ -1,4 +1,4 @@
-import { Tracer } from './modules/tracer.js';
+import { Renderer } from './modules/renderer.js';
 import * as ExampleScenes from './scenes/examples.js';
 
 function makeCallback(canvasWidth, step) {
@@ -19,10 +19,10 @@ self.addEventListener('message', function (message) {
     let data = message.data;
     switch (data.command) {
         case 'start':
-            let tracer = new Tracer(data.width, data.height);
+            let renderer = new Renderer(data.width, data.height);
             let scene = ExampleScenes.ShapesOnTiledFloor();
             let callback = makeCallback(data.width, data.step);
-            tracer.trace(scene, callback, data.step);
+            renderer.trace(scene, callback, data.step);
             self.close();
             self.postMessage({ what: 'finished' });
             break;

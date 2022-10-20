@@ -28,7 +28,7 @@ minima:
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: 'JSTracer: A JS Ray-Tracer'
+title: 'JSTracer: A JS Ray Tracer'
 email: dylan@ursatile.com
 description: >- # this means to ignore newlines until "baseurl:"
   Material and code samples for Dylan Beattie's JavaScript ray-tracer workshop.

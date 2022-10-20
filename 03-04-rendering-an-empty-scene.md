@@ -13,21 +13,21 @@ So, we have vectors, colors, rays, a scene, a camera... now we're going to creat
 
 We don't have any shapes yet, so all we'll be able to render is empty space, but we can control the background color of our scene so we should at least be able to check that the empty sky in our empty world is the right color.
 
-### Creating the tracer
+### Creating the renderer
 
-Create a new file called `modules/tracer.js`, that looks like this:
+Create a new file called `modules/renderer.js`, that looks like this:
 
 ```javascript
-// modules/tracer.js
+// modules/renderer.js
 
-{% include_relative examples/03-tracer/modules/tracer.js %}
+{% include_relative examples/03-tracer/modules/renderer.js %}
 ```
 
-The main purpose of the `Tracer` class is to translate HTML canvas pixel coordinates into floating-point world coordinates, and then call `scene.trace` once for each pixel on our canvas.
+The main purpose of the `Renderer` class is to translate HTML canvas pixel coordinates into floating-point world coordinates, and then call `scene.trace` once for each pixel on our canvas.
 
->  The tracer includes a variable called `step`; this controls how many pixels we'll render in each loop. The default value `step=1` will render every pixel in the canvas, but this can take a long time - and if we're trying to use `console.log` to debug our code, it'll slow things to a crawl. Setting `step` to 10 or even `100` will render solid 10x10 or 100x100 blocks of pixels, which speeds things up considerably.
+>  The renderer includes a variable called `step`; this controls how many pixels we'll render in each loop. The default value `step=1` will render every pixel in the canvas, but this can take a long time - and if we're trying to use `console.log` to debug our code, it'll slow things to a crawl. Setting `step` to 10 or even `100` will render solid 10x10 or 100x100 blocks of pixels, which speeds things up considerably.
 
-Notice that the tracer doesn't actually update the `canvas` directly; instead, for each pixel that's rendered, it'll call a `callback` function and pass the `x`, `y`, `color`  and `step` values.
+Notice that the renderer doesn't actually update the `canvas` directly; instead, for each pixel that's rendered, it'll call a `callback` function and pass the `x`, `y`, `color`  and `step` values.
 
 ### Connecting it all together
 
@@ -39,7 +39,7 @@ Update the `main.js` file in your project with this code:
 {% include_relative examples/03-tracer/main.js %}
 ```
 
-In this file, we create a scene containing a camera and a background color, then create a `Tracer`, and trace that scene, using a callback function that renders each pixel (or pixel block) to our HTML canvas element.
+In this file, we create a scene containing a camera and a background color, then create a `Renderer`, and trace that scene, using a callback function that renders each pixel (or pixel block) to our HTML canvas element.
 
 ### Checklist:
 
@@ -54,10 +54,10 @@ You should have a project structure now that looks like this:
   * [ray.js](jstracer-part01/jstracer/modules/ray.js)
   * [scene.js](jstracer-part01/jstracer/modules/scene.js)
   * [settings.js](jstracer-part01/jstracer/modules/settings.js)
-  * [tracer.js](jstracer-part01/jstracer/modules/tracer.js)
+  * [renderer.js](jstracer-part01/jstracer/modules/renderer.js)
   * [vector.js](jstracer-part01/jstracer/modules/vector.js)
 
-**Download code: [examples/03.tracer.zip](examples/03.tracer.zip)**
+**Download code: [examples/03.renderer.zip](examples/03.renderer.zip)**
 
 **Run this code: [examples/03-tracer/index.html](examples/03-tracer/index.html)**
 
@@ -76,6 +76,6 @@ let background = new Color(0, 20, 55);
 
 ## Review & Recap
 
-* The `Tracer` class is the connection between the browser's HTML and canvas elements, which work in 2D screen coordinates based on pixels, and the ray-tracing engine, which works in 3D world coordinates based on vectors.
+* The `Renderer` class is the connection between the browser's HTML and canvas elements, which work in 2D screen coordinates based on pixels, and the ray-tracing engine, which works in 3D world coordinates based on vectors.
 * Any ray in our scene that doesn't hit a shape will end up as `scene.background` - and because we don't have any shapes yet, all we can do is draw empty skies.
 

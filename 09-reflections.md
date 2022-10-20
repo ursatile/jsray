@@ -27,7 +27,7 @@ First, we need to add another property to our `Finish` class, which controls how
 
 We're going to add reflection support by using recursion -- whenever a ray reflects from a shape, that effectively runs a whole fresh trace to figure out what the "reflected" scene looks like, and then adds that the the result of the original trace.
 
-If you've ever stood between two parallel mirrors, you've seen this kind of recursion happening in real life... and if they were optically perfect mirrors in a vacuum, you'd get infinite reflections. But computers don't really like doing infinite things. So to stop our tracer disappearing into an infinite loop, we need to put a limit on how many times a ray will reflect before we give up and assume what we've got by now is good enough.
+If you've ever stood between two parallel mirrors, you've seen this kind of recursion happening in real life... and if they were optically perfect mirrors in a vacuum, you'd get infinite reflections. But computers don't really like doing infinite things. So to stop our renderer disappearing into an infinite loop, we need to put a limit on how many times a ray will reflect before we give up and assume what we've got by now is good enough.
 
 We're going to add a MAX_DEPTH to our `settings.js` module, and then pass a `depth` parameter to the `Ray.trace` method; each time we recursively trace a ray, we'll increment the `depth`, and if `depth > MAX_DEPTH`, we bail out.
 

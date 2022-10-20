@@ -1,4 +1,4 @@
-import { Camera, Scene, Tracer, Vector, Color } from './modules/tracer.js';
+import { Camera, Scene, Renderer, Vector, Color } from './modules/renderer.js';
 import { Sphere } from './modules/shapes/sphere.js';
 import { Plane } from './modules/shapes/plane.js';
 import { Box } from './modules/shapes/box.js';
@@ -66,8 +66,8 @@ export function render(reflection, step = 1) {
   let scene = new Scene(camera, background, shapes, lights);
   let canvas = document.getElementById('my-canvas');
   let ctx = canvas.getContext('2d');
-  let tracer = new Tracer(canvas.width, canvas.height);
-  tracer.trace(scene, (x, y, color, step) => {
+  let renderer = new Renderer(canvas.width, canvas.height);
+  renderer.trace(scene, (x, y, color, step) => {
     var rgb = `rgb(${color.r},${color.g},${color.b})`;
     ctx.fillStyle = rgb;
     ctx.fillRect(x, y, step, step);

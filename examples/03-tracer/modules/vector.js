@@ -3,19 +3,21 @@ export class Vector {
     #x = 0;
     #y = 0;
     #z = 0;
-    #length = 0;
+    #length = -1;
 
     constructor(x, y, z) {
         this.#x = x;
         this.#y = y;
-        this.#z = z;
-        this.#length = Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+        this.#z = z;        
     }
 
     get x() { return this.#x; }
     get y() { return this.#y; }
     get z() { return this.#z; }
-    get length() { return this.#length };
+    get length() { 
+        if (this.#length < 0) this.#length = Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+        return this.#length 
+    };
 
     /** the unit X vector <1,0,0> */
     static X = new Vector(1, 0, 0);

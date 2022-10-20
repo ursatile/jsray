@@ -9,9 +9,9 @@ typora-copy-images-to: assets\images
 example: 08-highlights
 ---
 
-Time to introduce some more terminology. The color of a shape in our tracer scene is actually controlled by a bunch of different parameters
+Time to introduce some more terminology. The color of a shape in our renderer scene is actually controlled by a bunch of different parameters
 
-* **ambient** color is how much of the shape's underlying color is visible, even when it isn't directly illuminated. Ambient lighting is a bit of a hack; in the real world, especially in daylight, there's so much reflected sunlight and artificial light bouncing around that we can see what color objects are even if they're not being directly illuminated. Calculating those kinds of lighting effects in a tracer is prohibitively difficult, though, so if we need it, we fake it by adding a bit of ambient color to the object's appearance.
+* **ambient** color is how much of the shape's underlying color is visible, even when it isn't directly illuminated. Ambient lighting is a bit of a hack; in the real world, especially in daylight, there's so much reflected sunlight and artificial light bouncing around that we can see what color objects are even if they're not being directly illuminated. Calculating those kinds of lighting effects in a renderer is prohibitively difficult, though, so if we need it, we fake it by adding a bit of ambient color to the object's appearance.
 * **diffuse** color is how strongly the shape reacts to direct light sources.
 * **specular** highlights are the bright shiny spots we get when a light source reflects in the surface of a smooth curved object.
 

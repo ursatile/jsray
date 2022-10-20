@@ -1,3 +1,5 @@
+// modules/scene.js
+
 import { Color } from './color.js';
 
 export class Scene {

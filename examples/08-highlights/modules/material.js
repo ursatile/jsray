@@ -1,3 +1,5 @@
+// modules/material.js
+
 import { Color } from './color.js';
 
 export class Material {

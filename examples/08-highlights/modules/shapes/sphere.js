@@ -28,7 +28,7 @@ export class Sphere extends Shape {
 
         // If the discriminant is zero, the ray touches the surface of the sphere
         // but doesn't actually go through it, so there is only one intersection.        
-        if (discriminant == 0) return [-b / (2 * a)];
+        if (discriminant < THRESHOLD) return [-b / (2 * a)];
 
         // Otherwise we have two intersections - one on the way in, one on the way out.
         return [

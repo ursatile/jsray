@@ -26,7 +26,7 @@ To implement transparency and refraction, we'd need to:
 
 We can't create a box that isn't aligned with the `x/y/z` axes of our scene, because there's no way to rotate a box around an axis.
 
-We can use a 4x4 *transformation matrix* to move, stretch, squash and rotate our shapes around in our scenes; the arithmetic for this gets pretty complicated, but it makes our tracer much more flexible in terms of the scenes that it can render.
+We can use a 4x4 *transformation matrix* to move, stretch, squash and rotate our shapes around in our scenes; the arithmetic for this gets pretty complicated, but it makes our renderer much more flexible in terms of the scenes that it can render.
 
 ### More Procedural Textures
 
@@ -50,5 +50,5 @@ Want to make a box with a hole in it? Or glue a cone onto a cylinder to make a 3
 
 ### Create a Scene Description Language
 
-Scenes in our tracer currently have to be written as JavaScript functions. We could add a JSON-based format for describing scenes, or even create a completely separate scene description language by using a tool like peg.js to create a parser that supports any syntax we like.
+Scenes in our renderer currently have to be written as JavaScript functions. We could add a JSON-based format for describing scenes, or even create a completely separate scene description language by using a tool like peg.js to create a parser that supports any syntax we like.
 

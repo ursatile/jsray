@@ -1,9 +1,9 @@
-import { Tracer } from './modules/tracer.js';
+import { Renderer } from './modules/renderer.js';
 import * as ExampleScenes from './scenes/examples.js';
 
 let canvas = document.getElementById('my-canvas');
 let ctx = canvas.getContext('2d');
-let tracer = new Tracer(canvas.width, canvas.height);
+let renderer = new Renderer(canvas.width, canvas.height);
 
 function paint(x, y, width, height, color) {
     var rgb = `rgb(${color.r},${color.g},${color.b})`;
@@ -13,13 +13,13 @@ function paint(x, y, width, height, color) {
 
 function render() {
     let scene = ExampleScenes.AssortedFinishes();
-    tracer.trace(scene, paint);
+    renderer.trace(scene, paint);
 };
 render();
 
 function renderLightsDemo() {
     let scene = ExampleScenes.ColoredLights()
-    tracer.trace(scene, paint);
+    renderer.trace(scene, paint);
 }
 
 document.getElementById('render-finish-demo').addEventListener("click", render);

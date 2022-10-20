@@ -9,13 +9,13 @@ typora-copy-images-to: assets\images
 example: 10-web-workers
 ---
 
-As our tracer gets more powerful, scenes will take more time to render -- but because we're hosting our tracer inside a web browser, which only has a single processing thread, this means our browser becomes unresponsive while a scene is rendering. It also means we have no way to stop a render once it's started.
+As our renderer gets more powerful, scenes will take more time to render -- but because we're hosting our renderer inside a web browser, which only has a single processing thread, this means our browser becomes unresponsive while a scene is rendering. It also means we have no way to stop a render once it's started.
 
 In this section, we're going to use a technology called **web workers** to move our rendering into a background thread.
 
 ### Browser support for worker modules
 
-Because our tracer code uses JavaScript modules, adding web workers requires a browser that supports **worker modules** - and as of March 2022, worker modules *do not work in Mozilla Firefox.*
+Because our renderer code uses JavaScript modules, adding web workers requires a browser that supports **worker modules** - and as of March 2022, worker modules *do not work in Mozilla Firefox.*
 
 ![image-20220321141006404](./assets/images/image-20220321141006404.png)
 
@@ -83,13 +83,13 @@ But take a look in the browser's console log:
 Render completed in 0.734 seconds
 ```
 
-That message is coming from the `Tracer` itself... so what's going on?
+That message is coming from the `Renderer` itself... so what's going on?
 
 The answer is: we're using the web worker API in a *really* inefficient way. 
 
-The tracer is taking 0.7 seconds to rip through the entire scene and render every pixel... and for every one of those pixels, it's posting a message to the foreground thread saying "hey, I just rendered pixel (3,4) - it's red!"
+The renderer is taking 0.7 seconds to rip through the entire scene and render every pixel... and for every one of those pixels, it's posting a message to the foreground thread saying "hey, I just rendered pixel (3,4) - it's red!"
 
-Internally, the browser pushes all those message into a queue, and then processes them as fast as it can.  So after 0.7 seconds, our tracer has rendered the entire scene, and pushed a few hundred thousand messages onto the queue -- one for every rendered pixel. The delay isn't the renderer itself; we're waiting for the browser to dequeue, unpack, and render several hundred thousand messages.
+Internally, the browser pushes all those message into a queue, and then processes them as fast as it can.  So after 0.7 seconds, our renderer has rendered the entire scene, and pushed a few hundred thousand messages onto the queue -- one for every rendered pixel. The delay isn't the renderer itself; we're waiting for the browser to dequeue, unpack, and render several hundred thousand messages.
 
 In the next module, we'll look at a much more efficient way to pass rendered data from the worker back to the main browser thread.
 

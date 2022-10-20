@@ -11,7 +11,7 @@ example: 04-shapes
 
 In section 3, we created a ray-tracing engine that can render empty scenes. Which doesn't sound like much, but along the way we've laid the foundations that'll make the next part of the workshop much more straightforward.
 
-In this section, we'll add some coloured spheres to our tracer. For now, they'll appear as flat brightly-coloured discs -- this is fine; it'll let us test our shape intersection code before we start adding effects like shading and reflection in the next section.
+In this section, we'll add some coloured spheres to our renderer. For now, they'll appear as flat brightly-coloured discs -- this is fine; it'll let us test our shape intersection code before we start adding effects like shading and reflection in the next section.
 
 We're going to create a base class called `Shape` - all the shapes we use in our scenes will extend `Shape`. Create a new file called `modules/shape.js` with this content:
 

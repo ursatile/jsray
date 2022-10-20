@@ -1,6 +1,7 @@
 import { Ray } from './ray.js';
 import { THRESHOLD } from './settings.js';
 
+
 export class Shape {
 
     constructor(texture) {
