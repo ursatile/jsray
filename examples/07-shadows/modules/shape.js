@@ -1,16 +1,13 @@
+import { Color } from './color.js';
 import { Ray } from './ray.js';
 import { THRESHOLD } from './settings.js';
-
-// How much color do we see from areas that aren't illuminated by any light source?
-const AMBIENT = 0.18;
-
 export class Shape {
 
-    constructor(texture) {
-        this.texture = texture;
+    constructor(color) {
+        this.color = color;
     }
 
-    findIntersections = ray => [];
+    findIntersections = ray => { throw("You need to implement findIntersections in derived classes"); };
 
     closestDistanceAlongRay = (ray) => {
         let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
@@ -19,12 +16,12 @@ export class Shape {
     }
 
     getColorAt = (point, scene) => {
-        let materialColor = this.texture.getColorAt(point);
-        let colorToReturn = materialColor.scale(AMBIENT);
-        let normal = this.getNormalAt(point);
+        let normal = this.getNormalAt(point);        
+        let colorToReturn = Color.Black;
         let otherShapes = scene.shapes.filter(s => s != this);
+
         scene.lights.forEach(light => {
-            let lightDirection = light.position.add(point.invert());
+            let lightDirection = light.position.subtract(point);
             let brightness = normal.dot(lightDirection.normalize());
             if (brightness > 0) {
                 // Trace a ray from this point to the light source. 
@@ -33,13 +30,13 @@ export class Shape {
                 let distanceToLight = lightDirection.length;
                 let shadow = otherShapes.some(shape => shape.closestDistanceAlongRay(shadowRay) <= distanceToLight);
                 if (!shadow) {
-                    let illumination = materialColor.multiply(light.color).scale(brightness);
-                    colorToReturn = colorToReturn.add(illumination);
+                  let illumination = this.color.multiply(light.color).scale(brightness);
+                  colorToReturn = colorToReturn.add(illumination);
                 }
             }
         });
         return colorToReturn;
     }
 
-    getNormalAt = point => Vector.O;
+    getNormalAt = point => { throw("You need to implement getNormalAt in derived classes"); }
 }

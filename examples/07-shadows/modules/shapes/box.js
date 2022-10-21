@@ -6,8 +6,8 @@ const axes = ['x', 'y', 'z'];
 
 export class Box extends Shape {
 
-    constructor(corner1, corner2, texture) {
-        super(texture);
+    constructor(corner1, corner2, color) {
+        super(color);
         this.lowerCorner = new Vector(Math.min(corner1.x, corner2.x), Math.min(corner1.y, corner2.y), Math.min(corner1.z, corner2.z));
         this.upperCorner = new Vector(Math.max(corner1.x, corner2.x), Math.max(corner1.y, corner2.y), Math.max(corner1.z, corner2.z));
         this.vertices = [this.lowerCorner, this.upperCorner];

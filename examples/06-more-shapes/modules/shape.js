@@ -18,8 +18,8 @@ export class Shape {
         let normal = this.getNormalAt(point);        
         let colorToReturn = Color.Black;
         scene.lights.forEach(light => {
-            let lightDirection = light.position.subtract(point).normalize();
-            let brightness = normal.dot(lightDirection);
+            let lightDirection = light.position.subtract(point);
+            let brightness = normal.dot(lightDirection.normalize());
             if (brightness > 0) {
                 let illumination = this.color.multiply(light.color).scale(brightness);
                 colorToReturn = colorToReturn.add(illumination);
