@@ -1,33 +1,32 @@
-import { THRESHOLD } from './settings.js';
-
 // How much color do we see from areas that aren't illuminated by any light source?
-const AMBIENT = 0.18;
-
+import { Color } from './color.js';
 export class Shape {
-    constructor(texture) {
-        this.texture = texture;
+
+    constructor(color) {
+        this.color = color;
     }
-    findIntersections = ray => [];
+
+    findIntersections = ray => { throw("You need to implement findIntersections in derived classes"); };
+
     closestDistanceAlongRay = (ray) => {
-        let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
+        let distances = this.findIntersections(ray);
         let shortestDistance = Math.min.apply(Math, distances);
         return shortestDistance;
     }
 
     getColorAt = (point, scene) => {
-        let materialColor = this.texture.getColorAt(point);
-        let colorToReturn = materialColor.scale(AMBIENT);
-        let normal = this.getNormalAt(point);
+        let normal = this.getNormalAt(point);        
+        let colorToReturn = Color.Black;
         scene.lights.forEach(light => {
-            let lightDirection = light.position.add(point.invert());
-            let brightness = normal.dot(lightDirection.normalize());
+            let lightDirection = light.position.subtract(point).normalize();
+            let brightness = normal.dot(lightDirection);
             if (brightness > 0) {
-                let illumination = materialColor.multiply(light.color).scale(brightness);
+                let illumination = this.color.multiply(light.color).scale(brightness);
                 colorToReturn = colorToReturn.add(illumination);
             }
         });
         return colorToReturn;
     }
 
-    getNormalAt = point => Vector.O;
+    getNormalAt = point => { throw("You need to implement getNormalAt in derived classes"); }
 }

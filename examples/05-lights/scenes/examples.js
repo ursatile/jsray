@@ -9,14 +9,14 @@ export function EmptySky() {
 }
 
 export function ColoredSpheres() {
-    let camera = new Camera(new Vector(0, 2, -3), new Vector(0, 1, 0));
-    let background = new Color(0, 0, 0);
+    let camera = new Camera(new Vector(0, 1, -3), Vector.O);
+    let background = Color.Black;
     let shapes = [
-        new Sphere(new Vector(0, 1, 0), 1, new Color("#fff")),
-        new Sphere(new Vector(2, 1, 2), 1, new Color("#0f0")),
-        new Sphere(new Vector(4, 1, 4), 1, new Color("#00f")),
-        new Sphere(new Vector(-2, 1, 2), 1, new Color("#f00")),
-        new Sphere(new Vector(-4, 1, 4), 1, new Color("#fc0")),
+        new Sphere(Vector.O, 1, Color.White),
+        new Sphere(new Vector(2, 0, 2), 1, Color.Green),
+        new Sphere(new Vector(4, 0, 4), 1, Color.Blue),
+        new Sphere(new Vector(-2, 0, 2), 1, Color.Red),
+        new Sphere(new Vector(-4, 0, 4), 1, Color.Yellow),
     ];
     return new Scene(camera, background, shapes);
 }
