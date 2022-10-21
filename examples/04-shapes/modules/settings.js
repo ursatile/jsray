@@ -1,1 +1,1 @@
-export const THRESHOLD = 0.000001;
+export const THRESHOLD = Number.EPSILON * 1000;

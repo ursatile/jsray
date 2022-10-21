@@ -4,6 +4,7 @@ export class Vector {
     #y = 0;
     #z = 0;
     #length = null;
+    #squid = null;
 
     constructor(x, y, z) {
         this.#x = x;
@@ -16,8 +17,13 @@ export class Vector {
     get z() { return this.#z; }
 
     get length() { 
-        return this.#length ??= Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+        return this.#length ??= Math.sqrt(this.squid);
     };
+
+    /** Return the squared Euclidian distance of this e */
+    get squid() {
+        return this.#squid ??= (this.#x * this.#x + this.#y * this.#y + this.#z * this.#z);
+    }
 
     /** the unit X vector <1,0,0> */
     static X = new Vector(1, 0, 0);

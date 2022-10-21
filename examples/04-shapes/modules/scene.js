@@ -6,5 +6,5 @@ export class Scene {
         this.shapes = shapes ?? [];
         this.background = background ?? Color.Black;
     }
-    trace = (x, y) => this.camera.trace(this, x, y).clip();
+    trace = (x, y) => this.camera.trace(this, x, y);
 }

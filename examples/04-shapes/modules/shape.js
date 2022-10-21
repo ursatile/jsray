@@ -1,20 +1,14 @@
-import { THRESHOLD } from './settings.js';
-
 export class Shape {
 
-    constructor(texture) {
-        this.texture = texture;
+    constructor(color) {
+        this.color = color;
     }
 
     findIntersections = ray => [];
 
     closestDistanceAlongRay = (ray) => {
-        let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
+        let distances = this.findIntersections(ray);
         let shortestDistance = Math.min.apply(Math, distances);
         return shortestDistance;
     }
-
-    getColorAt = (point) => this.texture.getColorAt(point);
-
-    getNormalAt = point => Vector.O;
 }
