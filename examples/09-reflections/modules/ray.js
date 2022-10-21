@@ -5,29 +5,28 @@ export class Ray {
      * point, and pointing in the specified direction */
     constructor(start, direction) {
         this.start = start;
-        this.direction = direction.normalize();
+        this.direction = direction;
     }
+
     /** Trace this ray through the specified scene, and return the resulting color. */
     trace = (scene, depth = 0) => {
         if (depth > MAX_DEPTH) return scene.background;
-        let distanceToNearestShape = Infinity;
-        let nearestIntersectingShape = null;
-        scene.shapes.forEach(shape => {
-            let distance = shape.closestDistanceAlongRay(this);
-            if (distance < distanceToNearestShape) {
-                distanceToNearestShape = distance;
-                nearestIntersectingShape = shape;
-            }
-        });
-        if (distanceToNearestShape == Infinity) return scene.background;
-        let point = this.start.add(this.direction.scale(distanceToNearestShape));
-        return nearestIntersectingShape.getColorAt(point, this, scene, depth + 1);
+        let distances = scene.shapes.map(s => s.closestDistanceAlongRay(this));
+        let shortestDistance = Math.min.apply(Math, distances);
+        if (shortestDistance == Infinity) return scene.background;
+        let nearestShape = scene.shapes[distances.indexOf(shortestDistance)];
+        let point = this.start.add(this.direction.scale(shortestDistance));
+        return nearestShape.getColorAt(point, this, scene, depth + 1);
     }
 
     reflect = normal => {
         let inverse = this.direction.invert();
         return inverse.add(normal.scale(normal.dot(inverse)).add(this.direction).scale(2));
     }
+    get length() { return this.direction.length; }
+
+    /** Construct a new ray between two points by calling Ray.from(point1).to(point2) */
+    static from = origin => ({ to: target => new Ray(origin, target.subtract(origin)) });
 
     toString = () => `${this.start.toString()} => ${this.direction.toString()}`;
 }

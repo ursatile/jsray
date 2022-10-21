@@ -8,14 +8,14 @@ class Renderer {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
     }
-    render(scene, callback) {
+    trace(scene, callback, step = 1) {
         var started = new Date().valueOf();
-        for (let yPixel = 0; yPixel < this.canvasHeight; yPixel++) {
-            for (let xPixel = 0; xPixel < this.canvasWidth; xPixel++) {
+        for (let yPixel = 0; yPixel < this.canvasHeight; yPixel += step) {
+            for (let xPixel = 0; xPixel < this.canvasWidth; xPixel += step) {
                 let x = (xPixel / this.canvasWidth) - 0.5;
                 let y = (yPixel / this.canvasHeight) - 0.5;
                 let pixelColor = scene.trace(x, y);
-                callback(xPixel, yPixel, pixelColor);
+                callback(xPixel, yPixel, step, step, pixelColor);
             }
         }
         var duration = (new Date().valueOf() - started);

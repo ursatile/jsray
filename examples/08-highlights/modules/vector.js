@@ -65,5 +65,7 @@ export class Vector {
 
     /** scale this vector by the specified factor */
     scale = (factor) => new Vector(this.x * factor, this.y * factor, this.z * factor);
+
+    static from = (origin) => ({ to: target => target.subtract(origin) });
 }
 

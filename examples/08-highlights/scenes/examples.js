@@ -33,7 +33,7 @@ export function ColoredSpheresWithLight() {
 export function AssortedShapes() {
     let camera = new Camera(new Vector(-5, 3.5, -9), new Vector(0, 2, 0), 2, 1.5);
     let background = new Color(0, 0, 0);
-    let lights = [new Light(new Vector(-12, 6, -6), Color.White)];
+    let lights = [new Light(new Vector(-15, 10, -10), Color.White)];
     let shapes = [
         new Plane(Vector.Y, 0, Color.White),
         new Box(new Vector(-1, 0, -1), new Vector(1, 2, 1), new Color(0, 127, 255)),

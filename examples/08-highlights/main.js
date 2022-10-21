@@ -11,18 +11,13 @@ function paint(x, y, color) {
   ctx.fillRect(x, y, 1, 1);
 }
 
-function render() {
-    let scene = ExampleScenes.AssortedFinishes();
-    renderer.render(scene, paint);
-};
+let renderFinishDemo = () => renderer.render(ExampleScenes.AssortedFinishes(), paint);
+let renderLightsDemo = () => renderer.render(ExampleScenes.ColoredLights(), paint);
+let renderShapesDemo = () => renderer.render(ExampleScenes.AssortedShapes(), paint);
 
-render();
-
-function renderLightsDemo() {
-    let scene = ExampleScenes.ColoredLights()
-    renderer.render(scene, paint);
-}
-
-document.getElementById('render-finish-demo').addEventListener("click", render);
+document.getElementById('render-finish-demo').addEventListener("click", renderFinishDemo);
 document.getElementById('render-lights-demo').addEventListener("click", renderLightsDemo);
+document.getElementById('render-shapes-demo').addEventListener("click", renderShapesDemo);
+
+renderFinishDemo();
 

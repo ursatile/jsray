@@ -14,7 +14,7 @@ export class Plane extends Shape {
         // therefore the ray is parallel to the plane and will never intersect.
         if (angle == 0) return [];
 
-        let b = this.normal.dot(ray.start.subtract(this.normal.scale(this.distance)));
+        let b = this.normal.dot(ray.start.add(this.normal.scale(this.distance).invert()));
         return [-b / angle];
     };
 

@@ -1,6 +1,10 @@
-export class Color {
+import { Texture, Finish } from "./texture.js";
+
+export class Color extends Texture {
     constructor(r, g, b) {
+        super(null, Finish.Default);
         [this.r, this.g, this.b] = [r, g, b];
+        this.material = this;
     }
 
     static White = new Color(255, 255, 255);
