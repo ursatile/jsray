@@ -1,4 +1,3 @@
-// How much color do we see from areas that aren't illuminated by any light source?
 import { Color } from './color.js';
 export class Shape {
 

@@ -23,6 +23,6 @@ export function ColoredSpheres() {
 
 export function ColoredSpheresWithLight() {
     let scene = ColoredSpheres();
-    scene.lights = [new Light(new Vector(5, 10, -5), Color.White)];
+    scene.lights = [ new Light(new Vector(5, 10, -5), Color.White) ];
     return scene;
 }
