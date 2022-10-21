@@ -7,10 +7,10 @@ export class Shape {
         this.texture = texture;
     }
 
-    findIntersections = ray => [];
+    intersect = ray => [];
 
     closestDistanceAlongRay = (ray) => {
-        let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
+        let distances = this.intersect(ray).filter(d => d > THRESHOLD);
         let shortestDistance = Math.min.apply(Math, distances);
         return shortestDistance;
     }

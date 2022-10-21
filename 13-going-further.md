@@ -18,7 +18,7 @@ All the objects in our world so far are **opaque** -- light bounces off them, bu
 
 To implement transparency and refraction, we'd need to:
 
-* Add support for an alpha channel, so we can create transparent colours
+* Add support for an alpha channel, so we can create transparent colors
   * Some tracers actually support two different kinds of transparency, sometimes known as **filter** and **transmit**. **Filter** is like looking through colored glass; light can pass through, but the color of the object affects the color of the light. **Transmit** means light can pass through the object but won't change color - think about looking through a very fine piece of gauze.
 * To support **refraction**, we need to add an **index of refraction** property to an object's `Finish`. Then, when a ray of light hits the object surface, we calculate **two** rays - a reflected ray, and a refracted ray - and recursively trace each of these through the scene.
 

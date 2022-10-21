@@ -11,11 +11,11 @@ export class Shape {
         this.mrofsnart = this.transform.inverse().transpose();
     }
 
-    findIntersections = ray => [];
+    intersect = ray => [];
 
     closestDistanceAlongRay = ray => {
         let roo = this.worldToShape(ray);
-        var distances = this.findIntersections(roo).filter(distance => distance > THRESHOLD);
+        var distances = this.intersect(roo).filter(distance => distance > THRESHOLD);
         let distance = Math.min.apply(Math, distances);
         return this.shapeToWorld(roo.direction.scale(distance)).length;
     }

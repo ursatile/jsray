@@ -7,7 +7,7 @@ export class Sphere extends Shape {
         this.radius = radius;
     }
 
-    findIntersections = ray => {
+    intersect = ray => {
         let rd = ray.direction;
         // Offset - the position of the sphere relative to the start of the ray
         let os = ray.start.subtract(this.center);

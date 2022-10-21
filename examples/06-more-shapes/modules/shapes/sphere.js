@@ -7,7 +7,7 @@ export class Sphere extends Shape {
         this.radius = radius;
     }
 
-    findIntersections = ray => {
+    intersect = ray => {
         // Calculate a,b,c so we can plug them into the quadratic formula
         let a = Math.pow(ray.direction.x, 2)
             + Math.pow(ray.direction.y, 2)

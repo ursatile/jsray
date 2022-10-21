@@ -14,4 +14,6 @@ export class Ray {
         let point = this.start.add(this.direction.scale(shortestDistance));
         return nearestShape.getColorAt(point, scene);
     }
+
+    toString = () => `${this.start.toString()} => ${this.direction.toString()}`;
 }

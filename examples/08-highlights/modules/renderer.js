@@ -1,5 +1,3 @@
-// modules/renderer.js
-
 import { Color } from './color.js';
 import { Vector } from './vector.js';
 import { Camera } from './camera.js';
@@ -10,14 +8,14 @@ class Renderer {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
     }
-    trace(scene, callback, step = 1) {
+    render(scene, callback) {
         var started = new Date().valueOf();
-        for (let yPixel = 0; yPixel < this.canvasHeight; yPixel += step) {
-            for (let xPixel = 0; xPixel < this.canvasWidth; xPixel += step) {
+        for (let yPixel = 0; yPixel < this.canvasHeight; yPixel++) {
+            for (let xPixel = 0; xPixel < this.canvasWidth; xPixel++) {
                 let x = (xPixel / this.canvasWidth) - 0.5;
                 let y = (yPixel / this.canvasHeight) - 0.5;
                 let pixelColor = scene.trace(x, y);
-                callback(xPixel, yPixel, step, step, pixelColor);
+                callback(xPixel, yPixel, pixelColor);
             }
         }
         var duration = (new Date().valueOf() - started);

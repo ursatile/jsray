@@ -15,7 +15,7 @@ export class Box extends Shape {
 
     contains = (point, axis) => this.lowerCorner[axis] < point[axis] && point[axis] < this.upperCorner[axis];
 
-    findIntersectionsOnAxis = (axis, ray) => {
+    intersectOnAxis = (axis, ray) => {
         let [o1, o2] = axes.filter(a => a != axis);
         let intersections = new Array();
         if (ray.direction[axis] == 0) return [];
@@ -27,10 +27,10 @@ export class Box extends Shape {
         return intersections;
     }
 
-    findIntersections = (ray) => {
-        return this.findIntersectionsOnAxis('x', ray)
-            .concat(this.findIntersectionsOnAxis('y', ray))
-            .concat(this.findIntersectionsOnAxis('z', ray));
+    intersect = (ray) => {
+        return this.intersectOnAxis('x', ray)
+            .concat(this.intersectOnAxis('y', ray))
+            .concat(this.intersectOnAxis('z', ray));
     }
 
     getNormalAt = (pos) => {

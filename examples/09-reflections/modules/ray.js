@@ -24,5 +24,10 @@ export class Ray {
         return nearestIntersectingShape.getColorAt(point, this, scene, depth + 1);
     }
 
+    reflect = normal => {
+        let inverse = this.direction.invert();
+        return inverse.add(normal.scale(normal.dot(inverse)).add(this.direction).scale(2));
+    }
+
     toString = () => `${this.start.toString()} => ${this.direction.toString()}`;
 }

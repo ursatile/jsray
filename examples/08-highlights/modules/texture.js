@@ -1,15 +1,18 @@
-import { Color } from './color.js';
-import { Finish } from './finish.js';
-
 export class Texture {
-
     constructor(material, finish) {
-        this.material = material ?? Color.Gray50;
-        this.finish = finish ?? Finish.Default;
+        this.material = material;
+        this.finish = finish;
     }
 
     getColorAt = point => this.material.getColorAt(point);
-
 }
 
-export { Color, Finish };
+export class Finish {
+    static Default = new Finish();
+
+    constructor(options = {}) {
+        this.ambient = options.ambient ?? 0.1;
+        this.diffuse = options.diffuse ?? 0.5;
+        this.specular = options.specular ?? 0;
+    }
+}

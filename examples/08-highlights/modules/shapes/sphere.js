@@ -7,7 +7,7 @@ export class Sphere extends Shape {
         this.radius = radius;
     }
 
-    findIntersections = ray => {
+    intersect = ray => {
         // Calculate a,b,c so we can plug them into the quadratic formula
         let a = Math.pow(ray.direction.x, 2)
             + Math.pow(ray.direction.y, 2)
@@ -28,7 +28,7 @@ export class Sphere extends Shape {
 
         // If the discriminant is zero, the ray touches the surface of the sphere
         // but doesn't actually go through it, so there is only one intersection.        
-        if (discriminant < THRESHOLD) return [-b / (2 * a)];
+        if (discriminant == 0) return [-b / (2 * a)];
 
         // Otherwise we have two intersections - one on the way in, one on the way out.
         return [

@@ -26,18 +26,12 @@ A texture has two parts:
 * the **material** -- what's the object actually made of? 
 * the **finish** -- how shiny is it? Does it have highlights?
 
-We're going to introduce two new classes here, `texture.js` and `finish.js`:
+We're going to introduce two new classes here, `Texture` and `Finish`, both declared in :
 
 ```javascript
 // modules/texture.js
 
 {% include_relative examples/08-highlights/modules/texture.js %}
-```
-
-```javascript
-//modules/finish.js
-
-{% include_relative examples/08-highlights/modules/finish.js %}
 ```
 
 When we create shapes in a scene, we now have the ability to specify a finish as well as a color:
@@ -82,9 +76,7 @@ let exponent = 16 * this.material.finish.specular * this.material.finish.specula
 specular = Math.pow(specular, exponent);
 ```
 
-Yes, that's raising it to the power of 16. That's what produces the sharp drop-off effect around the specular highlight.
-
-Here's the modifed `shape.js` with the ambient, diffuse and specular calculations included:
+Yes, that's raising it to the power of 16. That's what produces the sharp drop-off effect around the specular highlight. Here's the modified `shape.js` with the ambient, diffuse and specular calculations included:
 
 ```javascript
 // modules/shape.js
@@ -92,7 +84,7 @@ Here's the modifed `shape.js` with the ambient, diffuse and specular calculation
 {% include_relative examples/08-highlights/modules/shape.js %}
 ```
 
-Check out the [live demo for this section](examples/08-highlights/index.html) to see two examples of lighting effects in action; one is the code used to draw the image above; the other shows how white spheres react to coloured lights:
+Check out the [live demo for this section](examples/08-highlights/index.html) to see two examples of lighting effects in action; one is the code used to draw the image above; the other shows how white spheres react to colored lights:
 
 ![image-20220320113806912](assets/images/image-20220320113806912.png)
 

@@ -6,10 +6,10 @@ export class Shape {
         this.color = color;
     }
 
-    findIntersections = ray => { throw("You need to implement findIntersections in derived classes"); };
+    intersect = ray => { throw("Classes which extend Shape must implement intersect"); };
 
     closestDistanceAlongRay = (ray) => {
-        let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
+        let distances = this.intersect(ray).filter(d => d > THRESHOLD);
         let shortestDistance = Math.min.apply(Math, distances);
         return shortestDistance;
     }
@@ -28,5 +28,5 @@ export class Shape {
         return colorToReturn;
     }
 
-    getNormalAt = point => { throw("You need to implement getNormalAt in derived classes"); }
+    getNormalAt = point => { throw("Classes which extend Shape must implement getNormalAt"); }
 }

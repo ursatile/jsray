@@ -8,13 +8,13 @@ export class Plane extends Shape {
         this.distance = distance;
     }
 
-    findIntersections = ray => {
+    intersect = ray => {
         let angle = ray.direction.dot(this.normal);
         // if the dot-product is zero, the ray is perpendicular to the plane's normal,
         // therefore the ray is parallel to the plane and will never intersect.
         if (angle == 0) return [];
 
-        let b = this.normal.dot(ray.start.add(this.normal.scale(this.distance).invert()));
+        let b = this.normal.dot(ray.start.subtract(this.normal.scale(this.distance)));
         return [-b / angle];
     };
 

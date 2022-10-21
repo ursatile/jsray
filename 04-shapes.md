@@ -11,7 +11,7 @@ example: 04-shapes
 
 In section 3, we created a ray-tracing engine that can render empty scenes. Which doesn't sound like much, but along the way we've laid the foundations that'll make the next part of the workshop much more straightforward.
 
-In this section, we'll add some coloured spheres to our renderer. For now, they'll appear as flat brightly-coloured discs -- this is fine; it'll let us test our shape intersection code before we start adding effects like shading and reflection in the next section.
+In this section, we'll add some colored spheres to our renderer. For now, they'll appear as flat brightly-colored discs -- this is fine; it'll let us test our shape intersection code before we start adding effects like shading and reflection in the next section.
 
 ### Number.EPSILON and rendering thresholds
 
@@ -55,7 +55,7 @@ Here's the code: put this in `modules/shapes/sphere.js`:
 {% include_relative examples/04-shapes/modules/shapes/sphere.js %}
 ```
 
-All the sphere actually needs to do is override the `findIntersections` method from the `Shape` base class, and provide the code that'll find intersections between a ray travelling through space, and the surface of a sphere. Each ray will intersect the sphere in zero, one, or two places.
+All the sphere actually needs to do is override the `intersect` method from the `Shape` base class, and provide the code that'll find intersections between a ray travelling through space, and the surface of a sphere. Each ray will intersect the sphere in zero, one, or two places.
 
 The intersections here are the roots of a quadratic equation - the thing you probably learned in high school and though you'd never use again. Just in case you've forgotten, here's the Quadratic Formula Kitten to remind you:
 
@@ -106,7 +106,7 @@ Now we'll modify `main.js` to create some spheres and add them to our scene:
 {% include_relative examples/04-shapes/main.js %}
 ```
 
-If it worked? You'll get this - five coloured circles.
+If it worked? You'll get this - five colored circles.
 
 ![image-20220319234731133](assets/images/image-20220319234731133.png)
 

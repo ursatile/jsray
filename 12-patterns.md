@@ -15,7 +15,7 @@ A pattern works by extending `Material` and returning different colors for diffe
 
 ### Stripes
 
-First, we'll create a striped pattern. Stripes are exactly 1 unit wide, and run parallel to the Z-axis; to create a stripe pattern, we specify two colours. 
+First, we'll create a striped pattern. Stripes are exactly 1 unit wide, and run parallel to the Z-axis; to create a stripe pattern, we specify two colors. 
 
 ```javascript
 // modules/patterns/stripes.js

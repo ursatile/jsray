@@ -16,11 +16,11 @@ export class Shape {
         console.log('------------------------------------------------');
     }
 
-    findIntersections = ray => [];
+    intersect = ray => [];
 
     closestDistanceAlongRay = ray => {
         let localRay = this.worldToLocal(ray);
-        var distances = this.findIntersections(localRay).filter(distance => distance > THRESHOLD);
+        var distances = this.intersect(localRay).filter(distance => distance > THRESHOLD);
         let distance = Math.min.apply(Math, distances);
         if (distance == Infinity) return distance;
         var result = (this.localToWorld(localRay.direction.scale(distance))).length;

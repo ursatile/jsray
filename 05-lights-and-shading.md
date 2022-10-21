@@ -74,7 +74,7 @@ getNormalAt = point => point.add(this.center.invert()).normalize();
 
 If you're curious about how it works, what we actually do here is calculate the vector between the point and the centre of sphere, and then **normalize** that to get a vector that's pointing in the same direction and is exactly 1 unit long. (All we care about with a normal is the direction; the magnitude of a normal vector isn't important.)
 
-One more thing we need to do first: to calculate lights and shade, we need to be able to add, multiply, and scale colors. (Think about shining two different-coloured lights at the same spot on a white wall - the colour you actually see is created by adding together the colours of those two lights.)
+One more thing we need to do first: to calculate lights and shade, we need to be able to add, multiply, and scale colors. (Think about shining two different-colored lights at the same spot on a white wall - the color you actually see is created by adding together the colors of those two lights.)
 
 Add these methods to the `Color` class in `modules\color.js`:
 

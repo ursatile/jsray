@@ -7,24 +7,19 @@ export class Shape {
         this.texture = texture;
     }
 
-    findIntersections = ray => [];
+    intersect = ray => [];
 
     closestDistanceAlongRay = (ray) => {
-        let distances = this.findIntersections(ray).filter(d => d > THRESHOLD);
+        let distances = this.intersect(ray).filter(d => d > THRESHOLD);
         let shortestDistance = Math.min.apply(Math, distances);
         return shortestDistance;
-    }
-
-    reflect = (incident, normal) => {
-        let inverse = incident.invert();
-        return inverse.add(normal.scale(normal.dot(inverse)).add(incident).scale(2));
     }
 
     getColorAt = (point, ray, scene, depth) => {
         let materialColor = this.texture.getColorAt(point);
         let colorToReturn = materialColor.scale(this.texture.finish.ambient);
         let normal = this.getNormalAt(point);
-        let reflex = this.reflect(ray.direction, normal);
+        let reflex = ray.reflect(normal);
 
         let reflectionAmount = this.texture.finish.reflection;
         if (reflectionAmount) {
@@ -43,15 +38,16 @@ export class Shape {
                 let shadowRay = new Ray(point, lightDirection);
                 let distanceToLight = lightDirection.length;
                 let shadow = otherShapes.some(shape => shape.closestDistanceAlongRay(shadowRay) <= distanceToLight);
-                if (!shadow) {
-                    let illumination = materialColor.multiply(light.color).scale(brightness * this.texture.finish.diffuse);
-                    colorToReturn = colorToReturn.add(illumination);
-                    let specular = reflex.dot(lightDirection.normalize());
-                    if (specular > 0) {
-                        let exponent = 16 * this.texture.finish.specular * this.texture.finish.specular;
-                        specular = Math.pow(specular, exponent);
-                        colorToReturn = colorToReturn.add(light.color.scale(this.texture.finish.specular * specular));
-                    }
+                if (shadow) return;
+
+                let illumination = materialColor.multiply(light.color).scale(brightness * this.texture.finish.diffuse);
+                colorToReturn = colorToReturn.add(illumination);
+
+                let specular = reflex.dot(lightDirection.normalize());
+                if (specular > 0) {
+                    let exponent = 16 * this.texture.finish.specular * this.texture.finish.specular;
+                    specular = Math.pow(specular, exponent);
+                    colorToReturn = colorToReturn.add(light.color.scale(this.texture.finish.specular * specular));
                 }
             }
         });

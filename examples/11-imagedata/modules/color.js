@@ -33,7 +33,7 @@ export class Color extends Material {
      * Values < 0 become 0; values > 255 become 255. */
     clamp = value => (value > 0xff ? 0xff : value < 0 ? 0 : value);
 
-    /** Clip the colour to prevent overflows, while maintaining 
+    /** Clip the color to prevent overflows, while maintaining 
      * the relative amounts of red/green/blue */
     clip = function () {
         let rr = this.r;
