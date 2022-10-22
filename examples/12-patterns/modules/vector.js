@@ -44,7 +44,7 @@ export class Vector {
     invert = () => new Vector(-this.x, -this.y, -this.z);
 
     /** return a vector in the same direction as this vector but with a length of 1 */
-    normalize = () => new Vector(this.x / this.length, this.y / this.length, this.z / this.length);
+    unit = () => new Vector(this.x / this.length, this.y / this.length, this.z / this.length);
 
     /** add this vector to that vector, and return their sum */
     add = that => new Vector(this.x + that.x, this.y + that.y, this.z + that.z);

@@ -6,7 +6,7 @@ export class Ray {
      * point, and pointing in the specified direction */
     constructor(start, direction) {
         this.start = new Vector(start.x, start.y, start.z, 1); // start;
-        this.direction = direction.normalize();
+        this.direction = direction.unit();
     }
     /** Trace this ray through the specified scene, and return the resulting color. */
     trace = (scene, depth = 0) => {

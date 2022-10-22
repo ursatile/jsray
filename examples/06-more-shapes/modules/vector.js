@@ -51,7 +51,7 @@ export class Vector {
     divide = d => new Vector(this.x / d, this.y / d, this.z / d);
 
     /** return a vector in the same direction whose length is 1 */
-    normalize = () => this.divide(this.length);
+    unit = () => this.divide(this.length);
 
     /** return a vector of equal length and opposite direction */
     invert = () => new Vector(-this.x, -this.y, -this.z);
@@ -65,5 +65,7 @@ export class Vector {
 
     /** scale this vector by the specified factor */
     scale = (factor) => new Vector(this.x * factor, this.y * factor, this.z * factor);
+
+    static from = (origin) => ({ to: target => target.subtract(origin) });
 }
 

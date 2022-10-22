@@ -50,8 +50,8 @@ export class Vector {
     /** return a vector in which each component is divided by d */
     divide = d => new Vector(this.x / d, this.y / d, this.z / d);
 
-    /** return a vector in the same direction whose length is 1 */
-    normalize = () => this.divide(this.length);
+    /** return a vector in the same direction whose length is 1 (sometimes called the normalized vector) */
+    unit = () => this.divide(this.length);
 
     /** return a vector of equal length and opposite direction */
     invert = () => new Vector(-this.x, -this.y, -this.z);

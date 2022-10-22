@@ -35,7 +35,7 @@ export class Shape {
             if (shadow) return;
 
             let vector = Vector.from(point).to(light.position);
-            let brightness = normal.dot(vector.normalize());
+            let brightness = normal.dot(vector.unit());
             if (brightness <= 0) return;
             
             color = color

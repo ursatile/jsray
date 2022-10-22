@@ -46,7 +46,7 @@ export class Vector {
     divide = d => new Vector(this.x / d, this.y / d, this.z / d);
 
     /** return a vector in the same direction whose length is 1 */
-    normalize = () => this.divide(this.length);
+    unit = () => this.divide(this.length);
 
     /** add this vector to that vector, and return their sum */
     add = that => new Vector(this.x + that.x, this.y + that.y, this.z + that.z);

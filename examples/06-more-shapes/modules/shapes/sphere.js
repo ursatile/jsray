@@ -1,40 +1,37 @@
 import { Shape } from '../shape.js';
+import { Vector } from '../vector.js';
 
 export class Sphere extends Shape {
-    constructor(center, radius, texture) {
-        super(texture);
+    constructor(center, radius, material) {
+        super(material);
         this.center = center;
         this.radius = radius;
     }
 
     intersect = ray => {
-        // Calculate a,b,c so we can plug them into the quadratic formula
-        let a = Math.pow(ray.direction.x, 2)
-            + Math.pow(ray.direction.y, 2)
-            + Math.pow(ray.direction.z, 2);
-        let b = 2 * (ray.start.x - this.center.x) * ray.direction.x
-            + 2 * (ray.start.y - this.center.y) * ray.direction.y
-            + 2 * (ray.start.z - this.center.z) * ray.direction.z;
-        let c = Math.pow(ray.start.x - this.center.x, 2)
-            + Math.pow(ray.start.y - this.center.y, 2)
-            + Math.pow(ray.start.z - this.center.z, 2)
-            - Math.pow(this.radius, 2);
+        // Offset - the position of the sphere relative to the start of the ray
+        let os = Vector.from(this.center).to(ray.start);
 
-        let discriminant = b * b - 4 * a * c;
+        // Calculate a,b,c so we can plug them into the quadratic formula. Except
+        // a should be the squared Euclidian distance of the ray direction,
+        // but ray directions are normalised to a unit vector, so a will be 1, so we can ignore it.
+        let b = 2 * os.dot(ray.direction);
+        let c = os.squid - this.radius * this.radius;
+        
+        let discriminant = b * b - 4 * c;
 
-        // If discriminant is negative, the ray never intersects the sphere.
+        // If b^2-4ac is negative, the ray never intersects the sphere.
         // Math nerds: that means the quadratic equation has complex solutions ;)
         if (discriminant < 0) return [];
 
-        // If the discriminant is zero, the ray touches the surface of the sphere
+        // If the root is zero, the ray touches the surface of the sphere
         // but doesn't actually go through it, so there is only one intersection.        
-        if (discriminant == 0) return [-b / (2 * a)];
+        if (discriminant == 0) return [-b / 2 ];
 
         // Otherwise we have two intersections - one on the way in, one on the way out.
-        return [
-            (-b - Math.sqrt(discriminant)) / (2 * a),
-            (-b + Math.sqrt(discriminant)) / (2 * a)
-        ];
+        let root = Math.sqrt(discriminant);
+        return [ (-b - root) / 2, (-b + root) / 2 ];
     };
-    getNormalAt = point => point.add(this.center.invert()).normalize();
+    
+    getNormalAt = point => point.subtract(this.center).unit();
 }

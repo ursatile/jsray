@@ -3,7 +3,7 @@ export class Ray {
      * point, and pointing in the specified direction */
     constructor(start, direction) {
         this.start = start;
-        this.direction = direction.normalize();
+        this.direction = direction.unit();
     }
     /** Trace this ray through the specified scene, and return the resulting color. */
     trace = (scene) => {
@@ -14,4 +14,6 @@ export class Ray {
         let point = this.start.add(this.direction.scale(shortestDistance));
         return nearestShape.getColorAt(point, scene);
     }
+
+    toString = () => `${this.start.toString()} => ${this.direction.toString()}`;
 }

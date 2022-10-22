@@ -1,31 +1,33 @@
+import { THRESHOLD } from './settings.js';
+import { Vector } from './vector.js';
 import { Color } from './color.js';
+
 export class Shape {
 
-    constructor(color) {
-        this.color = color;
+    constructor(material) {
+        this.material = material;
     }
 
     intersect = ray => { throw("Classes which extend Shape must implement intersect"); };
 
+    getNormalAt = point => { throw ("Classes which extend Shape must implement getNormalAt"); }
+
     closestDistanceAlongRay = (ray) => {
-        let distances = this.intersect(ray);
+        let distances = this.intersect(ray).filter(d => d > THRESHOLD);
         let shortestDistance = Math.min.apply(Math, distances);
         return shortestDistance;
     }
 
     getColorAt = (point, scene) => {
-        let normal = this.getNormalAt(point);        
-        let colorToReturn = Color.Black;
+        let normal = this.getNormalAt(point);
+        let color = Color.Black;
         scene.lights.forEach(light => {
-            let lightDirection = light.position.subtract(point).normalize();
-            let brightness = normal.dot(lightDirection);
-            if (brightness > 0) {
-                let illumination = this.color.multiply(light.color).scale(brightness);
-                colorToReturn = colorToReturn.add(illumination);
-            }
+            let v = Vector.from(point).to(light.position);
+            let brightness = normal.dot(v.unit());
+            if (brightness <= 0) return;            
+            let illumination = light.illuminate(this.material, point, brightness);
+            color = color.add(illumination);
         });
-        return colorToReturn;
+        return color;
     }
-
-    getNormalAt = point => { throw("Classes which extend Shape must implement getNormalAt"); }
 }

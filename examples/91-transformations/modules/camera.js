@@ -11,10 +11,10 @@ export class Camera {
             this.location = this.location.add(new Vector(0, 0, -THRESHOLD));
         }
         // Work out which way the camera's actually pointing...
-        this.direction = this.look_at.add(this.location.invert()).normalize();
+        this.direction = this.look_at.add(this.location.invert()).unit();
         // and then work out which way is "right" and "up" relative to the camera
-        this.right = Vector.Y.cross(this.direction).normalize().scale(width / 2);
-        this.up = this.right.cross(this.direction).invert().normalize().scale(height / 2);
+        this.right = Vector.Y.cross(this.direction).unit().scale(width / 2);
+        this.up = this.right.cross(this.direction).invert().unit().scale(height / 2);
     }
 
     trace(scene, x, y) {

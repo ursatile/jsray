@@ -59,7 +59,7 @@ export class Shape {
         let otherShapes = scene.shapes.filter(s => s != this);
         scene.lights.forEach(light => {
             let lightDirection = light.position.add(point.invert());
-            let brightness = this.worldToLocal(normal).dot(lightDirection.normalize());
+            let brightness = this.worldToLocal(normal).dot(lightDirection.unit());
             if (brightness > 0) {
                 // Trace a ray from this point to the light source. 
                 // If that ray hits a shape before it hits the light, then we're in shadow
@@ -70,7 +70,7 @@ export class Shape {
                     let illumination = materialColor.multiply(light.color).scale(brightness * this.texture.finish.diffuse);
                     colorToReturn = colorToReturn.add(illumination);
 
-                    let specular = reflex.dot(lightDirection.normalize());
+                    let specular = reflex.dot(lightDirection.unit());
                     if (specular > 0) {
                         let exponent = 16 * this.texture.finish.specular * this.texture.finish.specular;
                         specular = Math.pow(specular, exponent);

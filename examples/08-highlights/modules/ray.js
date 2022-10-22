@@ -3,7 +3,7 @@ export class Ray {
      * point, and pointing in the specified direction */
     constructor(start, direction) {
         this.start = start;
-        this.direction = direction;
+        this.direction = direction.unit();
     }
 
     /** Trace this ray through the specified scene, and return the resulting color. */
@@ -20,10 +20,6 @@ export class Ray {
         let inverse = this.direction.invert();
         return inverse.add(normal.scale(normal.dot(inverse)).add(this.direction).scale(2));
     }
-    get length() { return this.direction.length; }
-
-    /** Construct a new ray between two points by calling Ray.from(point1).to(point2) */
-    static from = origin => ({ to: target => new Ray(origin, target.subtract(origin)) });
-
+    
     toString = () => `${this.start.toString()} => ${this.direction.toString()}`;
 }

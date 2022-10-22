@@ -25,7 +25,7 @@ export function ColoredSpheres() {
 
 export function ColoredSpheresWithLight() {
     let scene = ColoredSpheres();
-    scene.lights = [new Light(new Vector(5, 10, -5), Color.White)];
+    scene.lights = [ new Light(new Vector(5, 10, -5), Color.White) ];
     return scene;
 }
 
@@ -35,11 +35,11 @@ export function AssortedShapes() {
     let lights = [new Light(new Vector(-12, 6, -6), Color.White)];
     let shapes = [
         new Plane(Vector.Y, 0, Color.White),
-        new Box(new Vector(-1, 0, -1), new Vector(1, 2, 1), new Color(0, 127, 255)),
-        new Sphere(new Vector(3, 1, 0), 1, new Color(0, 255, 0)),
-        new Sphere(new Vector(3, 0.5, -2), 0.5, new Color(0, 0, 255)),
-        new Sphere(new Vector(-1, 1, 2), 1, new Color(255, 0, 0)),
-        new Sphere(new Vector(-2, 2, 5), 2, new Color(255, 192, 0)),
+        new Box(new Vector(-1, 0, -1), new Vector(1, 2, 1), Color.Red),
+        new Sphere(new Vector(3, 1, 0), 1, Color.Magenta),
+        new Sphere(new Vector(3, 0.5, -2), 0.5, Color.Yellow),
+        new Sphere(new Vector(-1, 1, 2), 1, Color.Green),
+        new Sphere(new Vector(-2, 2, 5), 2, Color.Blue),
     ];
     return new Scene(camera, background, shapes, lights);
 }

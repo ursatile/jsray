@@ -17,7 +17,7 @@ export class Texture {
 
     highlight = (reflex, light, lightVector) => {
         if (this.finish.specular == 0) return Color.Black;
-        let intensity = reflex.dot(lightVector.normalize());
+        let intensity = reflex.dot(lightVector.unit());
         if (intensity <= 0) return Color.Black;
         let exponent = 100 * this.finish.specular * this.finish.specular;
         intensity = Math.pow(intensity, exponent);
