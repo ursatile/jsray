@@ -4,7 +4,7 @@ import { Finish } from './finish.js';
 export class Texture {
 
     constructor(material, finish) {
-        this.material = material ?? Color.Gray50;
+        this.material = material ?? Color.Grey;
         this.finish = finish ?? Finish.Default;
     }
 

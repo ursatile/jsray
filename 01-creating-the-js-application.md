@@ -27,8 +27,8 @@ If you already have a JavaScript environment that includes `npm`, `yarn`, or `pn
 These instructions use the `yarn` package manager; if you're using `npm` or `pnpm`, check out the documentation at [https://vitejs.dev/guide/#scaffolding-your-first-vite-project](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) to see how to scaffold your project.
 
 ```bash
-yarn create vite jstracer --template vanilla
-cd jstracer
+yarn create vite radiance --template vanilla
+cd radiance
 yarn
 yarn dev
 ```
@@ -48,7 +48,7 @@ and if you point a browser at http://localhost:3000/, you should see the "**Hell
 
 Next, we're going to replace the default Vite template files with our own versions.
 
-Downloadd [examples/01-hello-world.zip](examples/01-hello-world.zip) and unzip it into the `jstracer` directory (say "yes" if it prompts you to overwrite the existing files.)
+Downloadd [examples/01-hello-world.zip](examples/01-hello-world.zip) and unzip it into the `radiance` directory (say "yes" if it prompts you to overwrite the existing files.)
 
 Now, when you run `yarn dev`, you should see this:
 
@@ -58,14 +58,14 @@ Now, when you run `yarn dev`, you should see this:
 
 [rif/spark](https://github.com/rif/spark/releases) describes itself as an "emergency web server". It's a tiny standalone application that will turn any directory on your system into a web server, and it's ideal for testing client-side web apps if you don't have, or don't want, a JavaScript development server.
 
-1. Create a project folder called `jstracer`.
-2. Download the Spark binary for your system from [https://github.com/rif/spark/releases](https://github.com/rif/spark/releases) into your `jstracer` directory.
-3. Download [examples/01-hello-world.zip](examples/01-hello-world.zip) and unzip it into the `jstracer` directory.
+1. Create a project folder called `radiance`.
+2. Download the Spark binary for your system from [https://github.com/rif/spark/releases](https://github.com/rif/spark/releases) into your `radiance` directory.
+3. Download [examples/01-hello-world.zip](examples/01-hello-world.zip) and unzip it into the `radiance` directory.
 
 You should end up with this folder structure:
 
 ```bash
-/jstracer
+/radiance
   - index.html
   - main.js
   - greeter.js

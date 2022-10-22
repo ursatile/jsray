@@ -1,62 +1,48 @@
+import { Vector } from './vector.js';
 import { Ray } from './ray.js';
 import { THRESHOLD } from './settings.js';
-
 export class Shape {
 
     constructor(texture) {
         this.texture = texture;
     }
 
-    intersect = ray => [];
+    intersect = ray => { throw("Classes which extend Shape must implement intersect"); };
+
+    getNormalAt = point => { throw("Classes which extend Shape must implement getNormalAt"); }
 
     closestDistanceAlongRay = (ray) => {
         let distances = this.intersect(ray).filter(d => d > THRESHOLD);
         let shortestDistance = Math.min.apply(Math, distances);
         return shortestDistance;
     }
-
-    reflect = (incident, normal) => {
-        let inverse = incident.invert();
-        return inverse.add(normal.scale(normal.dot(inverse)).add(incident).scale(2));
+    /** Returns true if this shape would block a ray of light from point1 to point2 */
+    occludes = (origin, target) => {
+        let ray = Ray.from(origin).to(target);
+        return this.closestDistanceAlongRay(ray) <= ray.length;
     }
 
     getColorAt = (point, ray, scene, depth) => {
-        let materialColor = this.texture.getColorAt(point);
-        let colorToReturn = materialColor.scale(this.texture.finish.ambient);
+        let color = this.texture.getAmbientColorAt(point);        
         let normal = this.getNormalAt(point);
-        let reflex = this.reflect(ray.direction, normal);
+        let reflex = ray.reflect(normal);
 
-        let reflectionAmount = this.texture.finish.reflection;
-        if (reflectionAmount) {
-            let reflectionRay = new Ray(point, reflex);
-            let reflectedColor = reflectionRay.trace(scene, depth);
-            colorToReturn = colorToReturn.add(reflectedColor.scale(reflectionAmount));
-        }
+        color = color.add(this.texture.reflect(point, reflex, scene, depth));
 
-        let otherShapes = scene.shapes.filter(s => s != this);
         scene.lights.forEach(light => {
-            let lightDirection = light.position.add(point.invert());
-            let brightness = normal.dot(lightDirection.normalize());
-            if (brightness > 0) {
-                // Trace a ray from this point to the light source. 
-                // If that ray hits a shape before it hits the light, then we're in shadow
-                let shadowRay = new Ray(point, lightDirection);
-                let distanceToLight = lightDirection.length;
-                let shadow = otherShapes.some(shape => shape.closestDistanceAlongRay(shadowRay) <= distanceToLight);
-                if (!shadow) {
-                    let illumination = materialColor.multiply(light.color).scale(brightness * this.texture.finish.diffuse);
-                    colorToReturn = colorToReturn.add(illumination);
-                    let specular = reflex.dot(lightDirection.normalize());
-                    if (specular > 0) {
-                        let exponent = 16 * this.texture.finish.specular * this.texture.finish.specular;
-                        specular = Math.pow(specular, exponent);
-                        colorToReturn = colorToReturn.add(light.color.scale(this.texture.finish.specular * specular));
-                    }
-                }
-            }
-        });
-        return colorToReturn;
-    }
 
-    getNormalAt = point => Vector.O;
+            let shadow = scene.shapes.some(shape => shape.occludes(point, light.position));
+            if (shadow) return;
+
+            let vector = Vector.from(point).to(light.position);
+            let brightness = normal.dot(vector.normalize());
+            if (brightness <= 0) return;
+            
+            color = color
+                .add(this.texture.illuminate(point, light, brightness))
+                .add(this.texture.highlight(reflex, light, vector));
+                      
+        });
+        return color;
+    }
 }

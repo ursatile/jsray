@@ -11,7 +11,19 @@
 
 <body>
   <canvas id="my-canvas" width="400" height="300"></canvas>
+  <br />
+  <label for="shader">Shader:</label>
+  <select name="shader" id="shader">
+    <!-- TODO: add an option for your shader function here -->
+    <option>Chessboard</option>
+    <option>Lasergrid</option>
+    <option>Supernova</option>
+    <option>Gradiance</option>
+  </select>
+  <label for="step">Step Size:</label>
+  <input name="step" id="step" type="number" min="1" max="100" value="1" />
   <script type="module" src="./main.js"></script>
+  <input type="button" id="go-button" value="Go" />
 </body>
 
 </html>

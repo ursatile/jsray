@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radiance: A JavaScript Ray Tracer</title>
+  <link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <canvas id="my-canvas" width="640" height="480"></canvas>
+  <form>
+    <label for="step-input">Step Size: (1-20)</label>
+    <input type="number" min="1" max="100" name="step" value="4" id="step-input" />
+    <input type="button" id="render-button" name="renderButton" value="Render" />
+    <input type="button" id="cancel-button" name="cancelButton" value="Cancel" />
+  </form>
+  <script type="module" src="./main.js">
+  </script>
+</body>
+
+</html>

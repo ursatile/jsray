@@ -4,13 +4,13 @@ import { THRESHOLD } from './settings.js';
 
 export class Camera {
     constructor(location, look_at, width = 4, height = 3) {
-        this.location = location ?? Vector.Z.invert();
-        this.look_at = look_at ?? Vector.O;
+        this.location = location;
+        this.look_at = look_at;
 
-        // Putting the camera directly above look_at causes divide-by-zero errors, 
-        // so we fudge it.
-        if (this.location.x == this.look_at.x && this.location.z == this.look_at.z) {
-            this.location = this.location.add(new Vector(0, 0, -THRESHOLD));
+        // If the camera is DIRECTLY above the look_at point, things go weird, so 
+        // we nudge it backwards ever so slightly...
+        if (this.location.x == this.look_at.x && this.location.x == this.look_at.z) {
+            this.location = this.location.add(new Vector(0,0,-THRESHOLD));
         }
 
         // Calculate the direction - the vector pointing at the centre of the "frame"

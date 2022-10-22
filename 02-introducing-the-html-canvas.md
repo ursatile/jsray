@@ -1,5 +1,5 @@
 ---
-title: '2: Introducing the HTML Canvas API'
+title: '2.1: The HTML Canvas API'
 layout: module
 nav_order: 10200
 summary: >
@@ -80,7 +80,7 @@ ctx.fillRect(280, 150, 120, 100);
 
 ![HTML Canvas image inspired by Piet Mondrian](./assets/images/image-20220318173430750.png)
 
-**Try it live: [examples/02-canvas/index.html#mondrian](examples/02-canvas/index.html#mondrian)**
+**Try it live: [examples/02-canvas/mondrian.html](examples/02-canvas/mondrian.html)**
 
 There we go... we're using JavaScript and the `<canvas>` element to create digital artworks inspired by [Piet Mondrian](https://en.wikipedia.org/wiki/Piet_Mondrian). Not bad.
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mondrian</title>
+    <link type="text/css" rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="my-canvas" width="400" height="300"></canvas>
+    <script>
+      let canvas = document.getElementById('my-canvas')
+      let ctx = canvas.getContext('2d')
+      ctx.fillStyle = 'rgb(3,4,5)'
+      ctx.fillRect(0, 0, 400, 300)
+      ctx.fillStyle = '#dfd9dc'
+      ctx.fillRect(0, 0, 100, 30)
+      ctx.fillRect(110, 0, 100, 30)
+      ctx.fillRect(0, 40, 30, 100)
+      ctx.fillRect(0, 150, 30, 100)
+      ctx.fillRect(220, 150, 50, 100)
+      ctx.fillRect(100, 260, 110, 100)
+      ctx.fillRect(220, 260, 110, 100)
+      ctx.fillRect(340, 0, 60, 140)
+      ctx.fillStyle = '#C14634'
+      ctx.fillRect(40, 40, 170, 210)
+      ctx.fillRect(340, 260, 170, 210)
+      ctx.fillStyle = '#E2C158'
+      ctx.fillRect(220, 0, 110, 30)
+      ctx.fillRect(220, 40, 110, 100)
+      ctx.fillStyle = '#224170'
+      ctx.fillRect(0, 260, 90, 40)
+      ctx.fillRect(280, 150, 120, 100)
+    </script>
+  </body>
+</html>

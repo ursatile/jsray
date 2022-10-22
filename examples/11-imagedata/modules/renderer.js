@@ -8,7 +8,7 @@ class Renderer {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
     }
-    trace(scene, callback, step = 1) {
+    render(scene, callback, step = 1) {
         var started = new Date().valueOf();
         for (let yPixel = 0; yPixel < this.canvasHeight; yPixel += step) {
             for (let xPixel = 0; xPixel < this.canvasWidth; xPixel += step) {

@@ -36,7 +36,7 @@ export function AssortedShapes() {
     let background = new Color(0, 0, 0);
     let lights = [new Light(new Vector(-12, 6, -6), Color.White)];
     let shapes = [
-        new Plane(Vector.Y, 0, Color.Gray50),
+        new Plane(Vector.Y, 0, Color.Grey),
         new Box(new Vector(-1, 0, -1), new Vector(1, 2, 1), new Color("#09f")),
         new Sphere(new Vector(3, 1, 0), 1, new Color("#0f0")),
         new Sphere(new Vector(3, 0.5, -2), 0.5, new Color("#00f")),

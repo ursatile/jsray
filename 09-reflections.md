@@ -18,9 +18,9 @@ Let's start by adding reflection support. Here's the scene we're going to use:
 First, we need to add another property to our `Finish` class, which controls how reflective a shape is. A finish with `reflection==1` is a perfect mirror; a finish with `reflection == 0` doesn't reflect at all.
 
 ```javascript
-// modules/finish.js
+// modules/texture.js
 
-{% include_relative examples/09-reflections/modules/finish.js %}
+{% include_relative examples/09-reflections/modules/texture.js %}
 ```
 
 ### Reflection, recursion, and MAX_DEPTH

@@ -40,6 +40,7 @@ export class Box extends Shape {
         if (Math.abs(this.upperCorner.y - pos.y) < THRESHOLD) return Vector.Y;
         if (Math.abs(this.lowerCorner.z - pos.z) < THRESHOLD) return Vector.Z.invert();
         if (Math.abs(this.upperCorner.z - pos.z) < THRESHOLD) return Vector.Z;
+        throw (new Error(`The point ${pos.toString()} is not on the surface of ${this.toString()}`));
     }
-    toString = () => `Box from ${this.lowerCorner.toString()} to ${this.upperCorner.toString()}`;
+    toString = () => `box(${this.lowerCorner.toString()}, ${this.upperCorner.toString()})`;
 }

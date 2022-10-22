@@ -31,7 +31,7 @@ export function ColoredSpheresWithLight() {
 }
 
 export function AssortedShapes() {
-    let camera = new Camera(new Vector(-5, 3.5, -9), new Vector(0, 2, 0), 2, 1.5);
+    let camera = new Camera(new Vector(-5, 3.5, -9), new Vector(0, 2, 0), 16/8, 9/8);
     let background = new Color(0, 0, 0);
     let lights = [new Light(new Vector(-15, 10, -10), Color.White)];
     let shapes = [
@@ -102,11 +102,11 @@ export function ColoredLights() {
 
 export function ReflectingShapes(reflection = 0.5) {
     let finish = new Finish({ reflection: reflection, ambient: 0.1, diffuse: 0.7, specular: 0.7 })
-    let camera = new Camera(new Vector(-5, 5, -9), new Vector(0, 2, 0), 2, 1.5);
+    let camera = new Camera(new Vector(-5, 5, -9), new Vector(0, 2, 0), 16/8, 9/8);
     let background = new Color(0, 0, 0);
     let lights = [new Light(new Vector(-8, 12, -6), Color.White)];
     let shapes = [
-        new Plane(Vector.Y, 0, new Texture(Color.Gray50, finish)),
+        new Plane(Vector.Y, 0, new Texture(Color.Grey, finish)),
         new Box(new Vector(5, 0, 5), new Vector(1, 4, 3), new Texture(new Color(100, 0, 150), finish)),
         new Sphere(new Vector(3, 1, 0), 1, new Texture(new Color(0, 200, 50), finish)),
         new Sphere(new Vector(3, 0.5, -2), 0.5, new Texture(new Color(0,0,250), finish)),

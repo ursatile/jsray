@@ -45,17 +45,17 @@ In this file, we create a scene containing a camera and a background color, then
 
 You should have a project structure now that looks like this:
 
-* [index.html](jstracer-part01/jstracer/index.html)
-* [style.css](jstracer-part01/jstracer/style.css)
-* [main.js](jstracer-part01/jstracer/main.js)
+* [index.html](radiance-part01/radiance/index.html)
+* [style.css](radiance-part01/radiance/style.css)
+* [main.js](radiance-part01/radiance/main.js)
 * modules/
-  * [camera.js](jstracer-part01/jstracer/modules/camera.js)
-  * [material.js](jstracer-part01/jstracer/modules/material.js)
-  * [ray.js](jstracer-part01/jstracer/modules/ray.js)
-  * [scene.js](jstracer-part01/jstracer/modules/scene.js)
-  * [settings.js](jstracer-part01/jstracer/modules/settings.js)
-  * [renderer.js](jstracer-part01/jstracer/modules/renderer.js)
-  * [vector.js](jstracer-part01/jstracer/modules/vector.js)
+  * [camera.js](radiance-part01/radiance/modules/camera.js)
+  * [material.js](radiance-part01/radiance/modules/material.js)
+  * [ray.js](radiance-part01/radiance/modules/ray.js)
+  * [scene.js](radiance-part01/radiance/modules/scene.js)
+  * [settings.js](radiance-part01/radiance/modules/settings.js)
+  * [renderer.js](radiance-part01/radiance/modules/renderer.js)
+  * [vector.js](radiance-part01/radiance/modules/vector.js)
 
 **Download code: [examples/03.renderer.zip](examples/03.renderer.zip)**
 
