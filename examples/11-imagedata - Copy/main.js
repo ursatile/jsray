@@ -26,14 +26,27 @@ function handleMessageFromWorker(message) {
 }
 
 function render() {
+    let step = parseInt(stepInput.value);
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    let worker = new Worker('worker.js', { type: 'module' });
-    worker.addEventListener('message', handleMessageFromWorker);
-    cancelButton.addEventListener("click", function () {
-        worker.terminate();
-        updateStatus(false);
+    var blocks = [
+        { x: 0, y: 0, width: ctx.canvas.width / 2, height: ctx.canvas.height / 2 },
+        { x: ctx.canvas.width / 2, y: 0, width: ctx.canvas.width / 2, height: ctx.canvas.height / 2 },
+        { x: 0, y: ctx.canvas.height / 2, width: ctx.canvas.width / 2, height: ctx.canvas.height / 2 },
+        { x: ctx.canvas.width / 2, y: ctx.canvas.height / 2, width: ctx.canvas.width / 2, height: ctx.canvas.height / 2 },
+    ];
+    blocks.forEach(block => {
+        let worker = new Worker('worker.js', { type: 'module' });
+        worker.addEventListener('message', handleMessageFromWorker);
+        cancelButton.addEventListener("click", function () {
+            worker.terminate();
+            updateStatus(false);
+        });
+        worker.postMessage({
+            command: 'render',
+            canvas: { width: canvas.width, height: canvas.height },
+            block: block
+        });
     });
-    worker.postMessage({ command: 'render', width: canvas.width, height: canvas.height });
     updateStatus(true);
 };
 

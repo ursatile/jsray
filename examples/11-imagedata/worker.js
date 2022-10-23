@@ -1,14 +1,17 @@
 import { Renderer } from './modules/renderer.js';
 import * as ExampleScenes from './scenes/examples.js';
 
-function makeCallback(blockWidth, blockX) {
-    let rgbaData = new Uint8ClampedArray(blockWidth * 4);
-    function callback(x, y, width, height, color) {
-        rgbaData.set(color.rgba, (x - blockX) * 4);
-        if (x + width == (blockWidth + blockX)) {
-            let imageData = new ImageData(rgbaData, blockWidth, 1);
-            let data = { what: 'putImageData', x: blockX, y: y, imageData: imageData };
+function makeCallback(width, rowsPerCallback = 1) {    
+    let rgbaData = new Uint8ClampedArray(width * 4 * rowsPerCallback);
+    let yOffset = 0;
+    function callback(x, y, color) {
+        let offset = ((y % rowsPerCallback) * width + x) * 4; // each rgba takes four array elements
+        rgbaData.set(color.rgba, offset);
+        if (offset + 4 == rgbaData.length) {
+            let imageData = new ImageData(rgbaData, width, rowsPerCallback);
+            let data = { command: 'putImageData', x: 0, y: yOffset, imageData: imageData };
             self.postMessage(data);
+            yOffset += rowsPerCallback;
         }
     }
     return callback;
@@ -18,13 +21,13 @@ function makeCallback(blockWidth, blockX) {
 self.addEventListener('message', function (message) {
     let data = message.data;
     switch (data.command) {
-        case 'start':
-            let renderer = new Renderer(data.canvas.width, data.canvas.height);
+        case 'render':
+            let renderer = new Renderer(data.width, data.height);
             let scene = ExampleScenes.AssortedShapes();
-            let callback = makeCallback(data.block.width, data.block.x);
-            renderer.render(scene, callback, data.step, data.block);
+            let callback = makeCallback(data.width, 20);
+            renderer.render(scene, callback);
             self.close();
-            self.postMessage({ what: 'finished' });
+            self.postMessage({ command: 'finished' });
             break;
     }
 });
