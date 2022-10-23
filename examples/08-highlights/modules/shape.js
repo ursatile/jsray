@@ -30,7 +30,7 @@ export class Shape {
 
     getColorAt = (point, ray, scene) => {
         let normal = this.getNormalAt(point);
-        let color = Color.Black;
+        let color = this.appearance.getAmbientColorAt(point);
         let reflex = ray.reflect(normal);
         scene.lights.forEach(light => {
             let v = Vector.from(point).to(light.position);
@@ -40,6 +40,7 @@ export class Shape {
 
             let brightness = normal.dot(v.unit());
             if (brightness <= 0) return;            
+
             let illumination = light.illuminate(this.appearance, point, brightness);
             color = color.add(illumination);
 

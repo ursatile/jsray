@@ -5,8 +5,8 @@ import { Ray } from './ray.js';
 
 export class Shape {
 
-    constructor(material) {
-        this.material = material;
+    constructor(appearance) {
+        this.appearance = appearance;
     }
 
     intersect = () => { throw ("Classes which extend Shape must implement intersect"); };
@@ -36,10 +36,10 @@ export class Shape {
             if (scene.shapes.some(shape => shape.castsShadowFor(point, v))) return;
 
             let brightness = normal.dot(v.unit());
-            if (brightness <= 0) return;            
-            let illumination = light.illuminate(this.material, point, brightness);
+            if (brightness <= 0) return;
+
+            let illumination = light.illuminate(this.appearance, point, brightness);
             color = color.add(illumination);
-            
         });
         return color;
     }

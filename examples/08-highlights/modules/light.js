@@ -7,5 +7,5 @@ export class Light {
     /** When the specified light hits the specified material with the specified brightness,
     * what color do we need to add to the result? */
     illuminate = (appearance, point, brightness) => 
-         appearance.getColorAt(point).multiply(this.color).scale(brightness);
+         appearance.getDiffuseColorAt(point).multiply(this.color).scale(brightness);
 }

@@ -3,7 +3,7 @@ import { Ray } from "./ray.js";
 
 export class Texture {
     constructor(material, finish) {
-        this.material = material;
+        this.material = material ?? Color.Grey;
         this.finish = finish;
     }
 

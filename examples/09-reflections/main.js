@@ -16,7 +16,7 @@ function paint(x, y, color) {
 function render() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     let reflection = parseFloat(reflectionInput.value) ?? 0.5;
-    let scene = ExampleScenes.ReflectingShapes(reflection);
+    let scene = ExampleScenes.AssortedShapes(reflection);
     renderer.render(scene, paint);
 };
 renderButton.addEventListener("click", render);

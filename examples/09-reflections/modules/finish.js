@@ -7,6 +7,7 @@ export class Finish {
         this.ambient = options.ambient ?? 0.1;
         this.diffuse = options.diffuse ?? 0.7;
         this.shiny = options.shiny ?? 0;
+        this.reflection = options.reflection ?? 0;
     }
 
     addHighlight = (reflex, light, lightVector) => {
