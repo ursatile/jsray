@@ -2,8 +2,8 @@ import { Shape } from '../shape.js';
 import { Vector } from '../vector.js';
 
 export class Sphere extends Shape {
-    constructor(center, radius, material) {
-        super(material);
+    constructor(center, radius, appearance) {
+        super(appearance);
         this.center = center;
         this.radius = radius;
     }

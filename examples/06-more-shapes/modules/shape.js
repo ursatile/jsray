@@ -4,8 +4,8 @@ import { Color } from './color.js';
 
 export class Shape {
 
-    constructor(material) {
-        this.material = material;
+    constructor(appearance) {
+        this.appearance = appearance;
     }
 
     intersect = () => { throw ("Classes which extend Shape must implement intersect"); };
@@ -25,7 +25,7 @@ export class Shape {
             let v = Vector.from(point).to(light.position);
             let brightness = normal.dot(v.unit());
             if (brightness <= 0) return;            
-            let illumination = light.illuminate(this.material, point, brightness);
+            let illumination = light.illuminate(this.appearance, point, brightness);
             color = color.add(illumination);
         });
         return color;

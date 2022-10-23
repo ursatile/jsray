@@ -6,7 +6,7 @@ export class Shape {
         this.color = color;
     }
 
-    intersect = ray => { throw("Classes which extend Shape must implement intersect"); };
+    intersect = () => { throw ("Classes which extend Shape must implement intersect"); };
 
     closestDistanceAlongRay = (ray) => {
         let distances = this.intersect(ray).filter(d => d > THRESHOLD);

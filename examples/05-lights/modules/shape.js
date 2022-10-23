@@ -4,13 +4,13 @@ import { Color } from './color.js';
 
 export class Shape {
 
-    constructor(material) {
-        this.material = material;
+    constructor(appearance) {
+        this.appearance = appearance;
     }
 
-    intersect = ray => { throw("Classes which extend Shape must implement intersect"); };
+    intersect = () => { throw ("Classes which extend Shape must implement intersect"); };
 
-    getNormalAt = point => { throw ("Classes which extend Shape must implement getNormalAt"); }
+    getNormalAt = () => { throw ("Classes which extend Shape must implement getNormalAt"); }
 
     closestDistanceAlongRay = (ray) => {
         let distances = this.intersect(ray).filter(d => d > THRESHOLD);
@@ -25,7 +25,7 @@ export class Shape {
             let v = Vector.from(point).to(light.position);
             let brightness = normal.dot(v.unit());
             if (brightness <= 0) return;            
-            let illumination = light.illuminate(this.material, point, brightness);
+            let illumination = light.illuminate(this.appearance, point, brightness);
             color = color.add(illumination);
         });
         return color;

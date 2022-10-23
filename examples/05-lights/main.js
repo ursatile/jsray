@@ -10,5 +10,5 @@ function paint(x, y, width, height, color) {
   ctx.fillRect(x, y, width, height);
 }
 
-let scene = ExampleScenes.ColoredSpheresWithLight();
+let scene = ExampleScenes.ColoredSpheres();
 renderer.render(scene, paint);

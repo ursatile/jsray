@@ -6,6 +6,12 @@ export class Camera {
         this.location = location;
         this.look_at = look_at;
 
+        // If the camera is DIRECTLY above the look_at point, things go weird, so 
+        // we nudge it backwards ever so slightly...
+        if (this.location.x == this.look_at.x && this.location.x == this.look_at.z) {
+            this.location = this.location.add(new Vector(0,0,-0.0000001));
+        }
+
         // Calculate the direction - the vector pointing at the centre of the "frame"
         this.direction = this.look_at.add(this.location.invert()).unit();
 

@@ -7,4 +7,6 @@ export class Ray {
     }
     /** Trace this ray through the specified scene, and return the resulting color. */
     trace = (scene) => scene.background;
+
+    toString = () => `ray: <${this.start.toString()}> => <${this.direction.toString()}>`;
 }

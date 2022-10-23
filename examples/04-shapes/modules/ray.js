@@ -13,4 +13,6 @@ export class Ray {
         let nearestShape = scene.shapes[distances.indexOf(shortestDistance)];
         return nearestShape.color;
     }
+
+    toString = () => `ray: <${this.start.toString()}> => <${this.direction.toString()}>`;
 }

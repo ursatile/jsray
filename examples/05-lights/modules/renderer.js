@@ -11,14 +11,15 @@ class Renderer {
         this.#canvasWidth = canvasWidth;
         this.#canvasHeight = canvasHeight;
     }
+        
     render(scene, callback, step = 1) {
         var started = new Date().valueOf();
-        for (let y = 0; y < this.#canvasHeight; y += step) {
-            for (let x = 0; x < this.#canvasWidth; x += step) {
-                let tx = (x / this.#canvasWidth) - 0.5;
-                let ty = (y / this.#canvasHeight) - 0.5;
-                let pixelColor = scene.trace(tx, ty);
-                callback(x, y, step, step, pixelColor);
+        for (let pixelY = 0; pixelY < this.#canvasHeight; pixelY += step) {
+            for (let pixelX = 0; pixelX < this.#canvasWidth; pixelX += step) {
+                let sceneX = (pixelX / this.#canvasWidth) - 0.5;
+                let sceneY = (pixelY / this.#canvasHeight) - 0.5;
+                let pixelColor = scene.trace(sceneX, sceneY);
+                callback(pixelX, pixelY, step, step, pixelColor);
             }
         }
         var duration = (new Date().valueOf() - started);
