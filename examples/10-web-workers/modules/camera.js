@@ -1,16 +1,15 @@
 import { Vector } from './vector.js';
 import { Ray } from './ray.js';
-import { THRESHOLD } from './settings.js';
 
 export class Camera {
-    constructor(location, look_at, width = 4, height = 3) {
+    constructor(location, look_at, width = 4, height = 9/4) {
         this.location = location;
         this.look_at = look_at;
 
         // If the camera is DIRECTLY above the look_at point, things go weird, so 
         // we nudge it backwards ever so slightly...
         if (this.location.x == this.look_at.x && this.location.x == this.look_at.z) {
-            this.location = this.location.add(new Vector(0,0,-THRESHOLD));
+            this.location = this.location.add(new Vector(0,0,-0.0000001));
         }
 
         // Calculate the direction - the vector pointing at the centre of the "frame"

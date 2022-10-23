@@ -21,5 +21,5 @@ export class Ray {
         return inverse.add(normal.scale(normal.dot(inverse)).add(this.direction).scale(2));
     }
     
-    toString = () => `${this.start.toString()} => ${this.direction.toString()}`;
+    toString = () => `ray: <${this.start.toString()}> => <${this.direction.toString()}>`;
 }

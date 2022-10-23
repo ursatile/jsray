@@ -3,7 +3,7 @@ import { Ray } from './ray.js';
 import { THRESHOLD } from './settings.js';
 
 export class Camera {
-    constructor(location, look_at, width = 4, height = 3) {
+    constructor(location, look_at, width = 4, height = 9/4) {
         this.location = location ?? Vector.Z.invert();
         this.look_at = look_at ?? Vector.O;
 

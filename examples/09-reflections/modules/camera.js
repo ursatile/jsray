@@ -2,7 +2,7 @@ import { Vector } from './vector.js';
 import { Ray } from './ray.js';
 
 export class Camera {
-    constructor(location, look_at, width = 4, height = 3) {
+    constructor(location, look_at, width = 4, height = 9/4) {
         this.location = location;
         this.look_at = look_at;
 

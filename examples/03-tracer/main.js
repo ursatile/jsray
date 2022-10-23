@@ -4,12 +4,12 @@ let canvas = document.getElementById('my-canvas');
 let ctx = canvas.getContext('2d');
 let renderer = new Renderer(canvas.width, canvas.height);
 
-function paint(x, y, width, height, color) {  
+function paintPixel(x, y, color) {  
   ctx.fillStyle = color.html;
-  ctx.fillRect(x, y, width, height);
+  ctx.fillRect(x, y, 1, 1);
 }
 
-let camera = new Camera(new Vector(-4, 1, -5), new Vector(0, 1, 0));
+let camera = new Camera(new Vector(-4, 1, -5), new Vector(0, 1, 0), 16, 9);
 let background = new Color(120, 150, 255);
 let scene = new Scene(camera, background);
-renderer.render(scene, paint);
+renderer.render(scene, paintPixel);

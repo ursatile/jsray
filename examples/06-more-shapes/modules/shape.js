@@ -24,8 +24,8 @@ export class Shape {
         scene.lights.forEach(light => {
             let v = Vector.from(point).to(light.position);
             let brightness = normal.dot(v.unit());
-            if (brightness <= 0) return;    
-                    
+            if (brightness <= 0) return;
+
             let illumination = light.illuminate(this.appearance, point, brightness);
             color = color.add(illumination);
         });

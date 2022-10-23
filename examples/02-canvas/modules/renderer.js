@@ -5,12 +5,12 @@ class Renderer {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
     }
-    render(getPixelColor, callback, step = 1) {
+    render(getPixelColor, callback) {
         var started = new Date().valueOf();
-        for (let y = 0; y < this.canvasHeight; y+= step) {
-            for (let x = 0; x < this.canvasWidth; x+= step) {
+        for (let y = 0; y < this.canvasHeight; y++) {
+            for (let x = 0; x < this.canvasWidth; x++) {
                 let color = getPixelColor(x,y);
-                callback(x, y, step, step, color);
+                callback(x, y, color);
             }
         }
         var duration = (new Date().valueOf() - started);
