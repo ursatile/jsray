@@ -2,8 +2,8 @@ import { Shape } from '../shape.js';
 
 export class Plane extends Shape {
 
-    constructor(normal, distance, texture) {
-        super(texture);
+    constructor(normal, distance, appearance) {
+        super(appearance);
         this.normal = normal;
         this.distance = distance;
     }
@@ -14,7 +14,7 @@ export class Plane extends Shape {
         // therefore the ray is parallel to the plane and will never intersect.
         if (angle == 0) return [];
 
-        let b = this.normal.dot(ray.start.add(this.normal.scale(this.distance).invert()));
+        let b = this.normal.dot(ray.start.subtract(this.normal.scale(this.distance)));
         return [-b / angle];
     };
 

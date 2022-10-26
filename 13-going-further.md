@@ -32,7 +32,7 @@ We can use a 4x4 *transformation matrix* to move, stretch, squash and rotate our
 
 Right at the start of the workshop, we looked at some examples of procedural patterns, like the gradiance and supernova examples.
 
-Using procedural textures, we can simulate all sorts of real and imagined materials and textures. Wood can be simulated as a pattern of concentric rings (think about cutting down a tree, and then cutting and carving shapes from the tree trunk). We can also use different algorithms to produce clouds, and geometric patterns like hexagonal tiles.
+Using procedural appearances, we can simulate all sorts of real and imagined materials and textures. Wood can be simulated as a pattern of concentric rings (think about cutting down a tree, and then cutting and carving shapes from the tree trunk). We can also use different algorithms to produce clouds, and geometric patterns like hexagonal tiles.
 
 ### More shapes
 

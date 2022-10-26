@@ -18,9 +18,9 @@ Let's start by adding reflection support. Here's the scene we're going to use:
 First, we need to add another property to our `Finish` class, which controls how reflective a shape is. A finish with `reflection==1` is a perfect mirror; a finish with `reflection == 0` doesn't reflect at all.
 
 ```javascript
-// modules/texture.js
+// modules/appearance.js
 
-{% include_relative examples/09-reflections/modules/texture.js %}
+{% include_relative examples/09-reflections/modules/appearance.js %}
 ```
 
 ### Reflection, recursion, and MAX_DEPTH
@@ -44,7 +44,7 @@ We're going to add a MAX_DEPTH to our `settings.js` module, and then pass a `dep
 Finally, we need to add a snippet of code to `shape.js` so that if a shape has a non-zero reflection, it'll create a new ray, bounce that ray off into the scene to see what else it hits, calculate the reflected color, and add that to the returned color:
 
 ```javascript
-let reflectionAmount = this.texture.finish.reflection;
+let reflectionAmount = this.appearance.finish.reflection;
 if (reflectionAmount) {
     let reflectionRay = new Ray(point, reflex);
     let reflectedColor = reflectionRay.trace(scene, depth);

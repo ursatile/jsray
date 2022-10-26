@@ -1,5 +1,28 @@
 import { Material } from '../material.js';
 
+export class Chessboard extends Material {
+    constructor(color1, color2, size = 1) {
+        super();
+        this.color1 = color1;
+        this.color2 = color2;
+        this.size = size;
+    }
+    getColorAt = point => {
+        let rank = Math.abs(Math.round(point.x/this.size)) % 2;
+        let file = Math.abs(Math.round(point.z/this.size)) % 2;
+        return (rank == file ? this.color1 : this.color2);
+    }
+}
+
+export class Stripes extends Material {
+    constructor(color1, color2) {
+        super();
+        this.color1 = color1;
+        this.color2 = color2;
+    }
+    getColorAt = point => Math.round(point.x) % 2 == 0 ? this.color1 : this.color2;
+}
+
 export class Tiles extends Material {
     constructor(size, spacing, color1, color2) {
         super();

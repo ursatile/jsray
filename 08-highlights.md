@@ -19,25 +19,25 @@ The spheres in this image are all made from the same material -- they're the sam
 
 ![Image showing examples of ambient, diffuse, and specular lighting](assets/images/image-20220320111620031.png)
 
-To use these optical properties in our scenes, we need to add a new property to our shapes. Until now, everything in our world has been a solid color; now we're going to introduce the idea of a texture.
+To use these optical properties in our scenes, we need to add a new property to our shapes. Until now, everything in our world has been a solid color; now we're going to introduce something called **appearance**.
 
-A texture has two parts:
+A shape's appearance has two parts:
 
 * the **material** -- what's the object actually made of? 
 * the **finish** -- how shiny is it? Does it have highlights?
 
-We're going to introduce two new classes here, `Texture` and `Finish`, both declared in :
+We're going to introduce two new classes here, `Appearance` and `Finish`:
 
 ```javascript
-// modules/texture.js
+// modules/appearance.js
 
-{% include_relative examples/08-highlights/modules/texture.js %}
+{% include_relative examples/08-highlights/modules/appearance.js %}
 ```
 
 When we create shapes in a scene, we now have the ability to specify a finish as well as a color:
 
 ```javascript
-let shinyRed = new Texture(
+let shinyRed = new Appearance(
    new Color(255,0,0),
    new Finish({ambient: 0.1, diffuse: 0.6, specular: 0.9})
 };
@@ -45,7 +45,7 @@ let shinyRed = new Texture(
 let shinyRedBall = new Sphere(
 	Vector.X 	// centre,
 	1 			// radius,
-	shinyRed 	// texture
+	shinyRed 	// appearance
 );
 ```
 

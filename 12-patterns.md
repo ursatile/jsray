@@ -20,16 +20,16 @@ First, we'll create a striped pattern. Stripes are exactly 1 unit wide, and run 
 ```javascript
 // modules/patterns/stripes.js
 
-{% include_relative examples/12-patterns/modules/patterns/stripes.js %}
+{% include_relative examples/13-patterns/modules/patterns/stripes.js %}
 ```
 
-To create a striped shape, we pass a `new Stripes` into the `Texture` constructor:
+To create a striped shape, we pass a `new Stripes` into the `Appearance` constructor:
 
 ```javascript
 var plane = new Plane(
 	Vector.Y, 
 	0, 
-	new Texture(
+	new Appearance(
 		new Stripes(Color.Black, Color.White), 
 		new Finish({reflection: 0.1, diffuse: 0.7, ambient: 0.1 })
 	}
@@ -45,7 +45,7 @@ The chessboard pattern uses the same principle as stripes, but we need to look a
 ```javascript
 // modules/patterns/chessboard.js
 
-{% include_relative examples/12-patterns/modules/patterns/chessboard.js %}
+{% include_relative examples/13-patterns/modules/patterns/chessboard.js %}
 ```
 
 As with `Stripes`, we need to specify two colors when creating a `Chessboard` pattern:
@@ -54,7 +54,7 @@ As with `Stripes`, we need to specify two colors when creating a `Chessboard` pa
 var plane = new Plane(
 	Vector.Y, 
 	0, 
-	new Texture(
+	new Appearance(
 		new Chessboard(Color.Black, Color.White), 
 		new Finish({reflection: 0.1, diffuse: 0.7, ambient: 0.1 })
 	}
@@ -70,13 +70,13 @@ Tiles render as a repeating pattern of rectangular blocks surrounded by a unifor
 ```javascript
 // modules/patterns/tiles.js
 
-{% include_relative examples/12-patterns/modules/patterns/tiles.js %}
+{% include_relative examples/13-patterns/modules/patterns/tiles.js %}
 ```
 
 Here's a tiles pattern used as a floor in our reflection example:
 
 ```javascript
-let tiles = new Texture(
+let tiles = new Appearance(
 	new Tiles(new Vector(1, 1, 1), 0.05, Color.Black, new Color("#fff")),
 	new Finish({ ambient: 0, diffuse: 0.7, reflection: 0.2 })
 )

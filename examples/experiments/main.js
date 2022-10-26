@@ -4,7 +4,7 @@ import { Plane } from './modules/shapes/plane.js';
 import { Box } from './modules/shapes/box.js';
 import { Light } from './modules/light.js';
 import { Finish } from './modules/finish.js';
-import { Texture } from './modules/texture.js';
+import { Texture } from './modules/appearance.js';
 import { Stripes } from './modules/patterns/stripes.js';
 import { Layers } from './modules/patterns/layers.js';
 import { Chessboard } from './modules/patterns/chessboard.js';
@@ -48,19 +48,19 @@ export function render(reflection, step = 1) {
     0.95: new Color(255, 246, 176),
     1.00: new Color(197, 132, 75)
   });
-  let tiles = new Texture(
+  let tiles = new Appearance(
     new Tiles(new Vector(1, 1, 1), 0.05, Color.Black, new Color("#0f0")),
     new Finish({ ambient: 0.2, diffuse: 0.7 })
   )
   let shapes = [
     new Plane(Vector.Y, 0, tiles),
-    //    new Sphere(new Vector(1, 2, 0), 2, new Texture(rings, new Finish({ ambient: 0.2, diffuse: 0.7, specular: 0, reflection: 0 }))),
+    //    new Sphere(new Vector(1, 2, 0), 2, new Appearance(rings, new Finish({ ambient: 0.2, diffuse: 0.7, specular: 0, reflection: 0 }))),
     //new Sphere(new Vector(1, 2, 0), 2, bricks),
-    //new Box(new Vector(5, 0, 5), new Vector(1, 4, 3), new Texture(layers)),
-    new Sphere(new Vector(3, 1, 0), 1, new Texture(new Color("#0c3"), finish)),
-    new Sphere(new Vector(3, 0.5, -2), 0.5, new Texture(new Color("#00f"), finish)),
-    new Sphere(new Vector(-1, 1, 2), 1, new Texture(new Color("#f00"), finish)),
-    new Sphere(new Vector(-2, 2, 5), 2, new Texture(new Color("#fc0"), finish)),
+    //new Box(new Vector(5, 0, 5), new Vector(1, 4, 3), new Appearance(layers)),
+    new Sphere(new Vector(3, 1, 0), 1, new Appearance(new Color("#0c3"), finish)),
+    new Sphere(new Vector(3, 0.5, -2), 0.5, new Appearance(new Color("#00f"), finish)),
+    new Sphere(new Vector(-1, 1, 2), 1, new Appearance(new Color("#f00"), finish)),
+    new Sphere(new Vector(-2, 2, 5), 2, new Appearance(new Color("#fc0"), finish)),
   ];
 
   let scene = new Scene(camera, background, shapes, lights);
