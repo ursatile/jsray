@@ -14,7 +14,8 @@ export class Sphere extends Shape {
 
         // Calculate a,b,c so we can plug them into the quadratic formula. Except
         // a should be the squared Euclidian distance of the ray direction,
-        // but ray directions are normalised to a unit vector, so a will be 1, so we can ignore it.
+        // but ray directions are normalised to a unit vector, so a will be 1, 
+        // so we can ignore it.
         let b = 2 * os.dot(ray.direction);
         let c = os.squid - this.radius * this.radius;
         
