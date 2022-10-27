@@ -3,6 +3,7 @@ import { Vector } from './vector.js';
 import { Color } from './color.js';
 import { Ray } from './ray.js';
 import { Finish } from './finish.js';
+
 export class Shape {
 
     constructor(appearance) {

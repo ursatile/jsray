@@ -43,9 +43,9 @@ function partition(width, height, howManyBlocks) {
 let runningWorkers = 0;
 function render() {
     console.log("Rendering:");
-    var started = new Date().valueOf();
+    window.renderStarted = new Date().valueOf();
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    let blocks = partition(ctx.canvas.width, ctx.canvas.height, 8);
+    let blocks = partition(ctx.canvas.width, ctx.canvas.height,256);
     blocks.forEach(block => {
         let worker = new Worker('worker.js', { type: 'module' });
         worker.addEventListener('message', handleMessageFromWorker);
@@ -63,6 +63,10 @@ function render() {
 function updateStatus(running) {
     renderButton.disabled = running;
     cancelButton.disabled = !running;
+    if (!running) {
+      var elapsed = (new Date().valueOf()) - window.renderStarted;
+      console.log(`Render completed in ${elapsed / 1000} seconds`);
+    }
 }
 
 renderButton.addEventListener("click", render);

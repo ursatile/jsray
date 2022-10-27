@@ -1,7 +1,7 @@
 ---
-title: "12: Patterns"
+title: "13: Patterns"
 layout: module
-nav_order: 11200
+nav_order: 11300
 summary: >
     Extending materials so we can use patterns like checkerboards and stripes.
 typora-root-url: ./
@@ -9,7 +9,7 @@ typora-copy-images-to: assets\images
 example: 12-patterns
 ---
 
-Until now, every shape in our world is a single solid color. In this section, we'll see how to create different kinds of materials so we can create objects with patterned finishes, like stripes, rings, and the obligatory checkerboard pattern.
+Until now, every shape in our world is a single solid color. In this section, we'll see how to create different kinds of materials so we can create objects with patterned finishes, like stripes, rings -- and the famous chessboard pattern.
 
 A pattern works by extending `Material` and returning different colors for different points, depending on those points' coordinates.
 

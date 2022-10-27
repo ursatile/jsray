@@ -3,8 +3,6 @@ export class Vector {
     #x = 0;
     #y = 0;
     #z = 0;
-    #length = null;
-    #squid = null;
 
     constructor(x, y, z) {
         this.#x = x;
@@ -16,26 +14,21 @@ export class Vector {
     get y() { return this.#y; }
     get z() { return this.#z; }
 
+    static X = new Vector(1, 0, 0);
+    static Y = new Vector(0, 1, 0);
+    static Z = new Vector(0, 0, 1);
+    static O = new Vector(0, 0, 0);
+
+    #length = null;
     get length() { 
         return this.#length ??= Math.sqrt(this.squid);
     };
 
-    /** Return the squared Euclidian distance of this e */
+    #squid = null;
+    /** Return x² + y² + z², known as the squared Euclidian distance */
     get squid() {
         return this.#squid ??= (this.#x * this.#x + this.#y * this.#y + this.#z * this.#z);
-    }
-
-    /** the unit X vector <1,0,0> */
-    static X = new Vector(1, 0, 0);
-
-    /** the unit Y vector <0,1,0> */
-    static Y = new Vector(0, 1, 0);
-
-    /** the unit Z vector <0,0,1> */
-    static Z = new Vector(0, 0, 1);
-
-    /** the zero vector, aka the origin <0,0,0> */
-    static O = new Vector(0, 0, 0);
+    }    
 
     /** return the dot-product of this vector and that vector */
     dot = (that) => this.x * that.x + this.y * that.y + this.z * that.z;
