@@ -36,7 +36,7 @@ export function AssortedShapes() {
         new Sphere(new Vector(6, 1, -4), 1, new Appearance(Color.Yellow)),
         new Sphere(new Vector(-2, 2, 4), 2, new Appearance(Color.Green)),
         new Sphere(new Vector(-4, 4, 10), 4, new Appearance(Color.Blue)),
-        new Sphere(new Vector(-3.2, 1, -1), 1, new Appearance(Color.Cyan))),
+        new Sphere(new Vector(-3.2, 1, -1), 1, new Appearance(Color.Cyan)),
     ];
     return new Scene(camera, background, shapes, lights);
 }

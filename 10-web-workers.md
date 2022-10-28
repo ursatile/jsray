@@ -1,5 +1,5 @@
 ---
-title: "11: Web Workers"
+title: "10: Web Workers"
 layout: module
 nav_order: 11000
 summary: >

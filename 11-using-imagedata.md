@@ -6,7 +6,7 @@ summary: >
     In this module, we look at how to use advanced data structures to optimise the performance of our web workers.
 typora-root-url: ./
 typora-copy-images-to: assets\images
-example: 11-using-imagedata
+example: 11-imagedata
 ---
 
 In the last section, we moved our rendering calculations into a web worker, but this didn't deliver the performance improvements we hoped for -- in fact, it made everything significantly slower.

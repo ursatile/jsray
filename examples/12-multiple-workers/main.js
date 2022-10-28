@@ -27,16 +27,26 @@ function handleMessageFromWorker(message) {
     }
 }
 
-function partition(width, height, howManyBlocks) {
-    let blockWidth = width / howManyBlocks;
+function partition(width, height, rows, columns) {
+    let blockWidth = Math.ceil(width / rows);
+    let blockHeight = Math.ceil(height / columns);
     let x = 0;
+    let y = 0;
     let blocks = [];
     while (x + blockWidth < width) {
-        blocks.push({x: x, y: 0, width: blockWidth, height: height});
+        while (y + blockHeight < height) {
+            blocks.push({ x: x, y: y, width: blockWidth, height: blockHeight });
+            y += blockHeight;
+        }
+        blocks.push({ x: x, y: y, width: blockWidth, height: blockHeight });
+        y = 0;
         x += blockWidth;
     }
-    blocks.push({x:x, y: 0, width: width-x, height: height});
-    console.log(blocks);
+    while (y + blockHeight < height) {
+        blocks.push({ x: x, y: y, width: width - x, height: blockHeight });
+        y += blockHeight;
+    }
+    blocks.push({ x: x, y: y, width: width - x, height: height - y });
     return blocks;
 }
 
@@ -45,8 +55,10 @@ function render() {
     console.log("Rendering:");
     window.renderStarted = new Date().valueOf();
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    let blocks = partition(ctx.canvas.width, ctx.canvas.height,256);
+    let blocks = partition(ctx.canvas.width, ctx.canvas.height, 4, 4);
+    ctx.strokeStyle = "#999";
     blocks.forEach(block => {
+        ctx.strokeRect(block.x, block.y, block.width, block.height);
         let worker = new Worker('worker.js', { type: 'module' });
         worker.addEventListener('message', handleMessageFromWorker);
         cancelButton.addEventListener("click", function () {
@@ -64,8 +76,8 @@ function updateStatus(running) {
     renderButton.disabled = running;
     cancelButton.disabled = !running;
     if (!running) {
-      var elapsed = (new Date().valueOf()) - window.renderStarted;
-      console.log(`Render completed in ${elapsed / 1000} seconds`);
+        var elapsed = (new Date().valueOf()) - window.renderStarted;
+        console.log(`Render completed in ${elapsed / 1000} seconds`);
     }
 }
 

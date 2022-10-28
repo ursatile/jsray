@@ -28,7 +28,7 @@ export function ColoredSpheres() {
 
 export function AssortedShapes(reflection = 0.5) {    
     let camera = new Camera(new Vector(-5, 5, -12), new Vector(0, 3, 0), 3.2, 1.8);
-    let background = new Color(0, 0, 0);
+    let background = new Color(50, 50, 150);
     let lights = [new Light(new Vector(-30, 25, -12), Color.White)];
     let finish = new Finish({reflection: reflection});
     let shapes = [
