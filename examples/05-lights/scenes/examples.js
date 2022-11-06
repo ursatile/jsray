@@ -10,14 +10,14 @@ export function EmptySky() {
 }
 
 export function ColoredSpheres() {
-    let camera = new Camera(new Vector(0, 1, -3), Vector.O);
+    let camera = new Camera(new Vector(0, 2, -8), Vector.Z);
     let background = Color.Black;
     let shapes = [
-        new Sphere(Vector.O, 1, new Appearance(Color.White)),
-        new Sphere(new Vector(2, 0, 2), 1, new Appearance(Color.Green)),
-        new Sphere(new Vector(4, 0, 4), 1, new Appearance(Color.Blue)),
-        new Sphere(new Vector(-2, 0, 2), 1, new Appearance(Color.Red)),
-        new Sphere(new Vector(-4, 0, 4), 1, new Appearance(Color.Yellow)),
+        new Sphere(new Vector(-4, 0, 4), 1, Color.Yellow),
+        new Sphere(new Vector(-2, 0, 2), 1, Color.Red),
+        new Sphere(new Vector(+0, 0, 0), 1, Color.White),
+        new Sphere(new Vector(+2, 0, 2), 1, Color.Green),
+        new Sphere(new Vector(+4, 0, 4), 1, Color.Blue),
     ];
     let lights = [ new Light(new Vector(5, 10, -5), Color.White) ]; 
     return new Scene(camera, background, shapes, lights);

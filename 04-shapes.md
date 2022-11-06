@@ -72,19 +72,12 @@ The important bit is that it'll give us an array of **distances**. If the ray do
 Now, we'll modify the `trace` method on our `Ray` object to look for these intersections:
 
 ```
-trace = (scene) => {  
-    let distanceToNearestShape = Infinity;
-    let nearestIntersectingShape = null;
-    scene.shapes.forEach(shape => {
-        let distance = shape.closestDistanceAlongRay(this);
-        if (distance < distanceToNearestShape) {
-            distanceToNearestShape = distance;
-            nearestIntersectingShape = shape;
-        }
-    });
-    if (distanceToNearestShape == Infinity) return scene.background;
-    let point = this.start.add(this.direction.scale(distanceToNearestShape));
-    return nearestIntersectingShape.getColorAt(point, this.direction, scene);
+trace = (scene) => {
+    let distances = scene.shapes.map(s => s.closestDistanceAlongRay(this));
+    let shortestDistance = Math.min.apply(Math, distances);
+    if (shortestDistance == Infinity) return scene.background;
+    let nearestShape = scene.shapes[distances.indexOf(shortestDistance)];
+    return nearestShape.color;
 }
 ```
 

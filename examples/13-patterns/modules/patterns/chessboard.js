@@ -8,8 +8,8 @@ export class Chessboard extends Material {
         this.size = size;
     }
     getColorAt = point => {
-        let rank = Math.floor(point.x/this.size) % 2;
-        let file = Math.floor(point.z/this.size) % 2;
+        let rank = Math.floor(point.x/this.size);
+        let file = Math.floor(point.z/this.size);
         let light = ((rank ^ file) & 1) == 1;
         return (light ? this.color1 : this.color2);
     }

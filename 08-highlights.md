@@ -29,6 +29,13 @@ A shape's appearance has two parts:
 We're going to introduce two new classes here, `Appearance` and `Finish`:
 
 ```javascript
+// modules/finish.js
+
+{% include_relative examples/08-highlights/modules/finish.js %}
+```
+
+
+```javascript
 // modules/appearance.js
 
 {% include_relative examples/08-highlights/modules/appearance.js %}

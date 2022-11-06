@@ -3,18 +3,18 @@ export class Vector {
     #x = 0;
     #y = 0;
     #z = 0;
+    #xyz = [];
     #length = null;
     #squid = null;
 
     constructor(x, y, z) {
-        this.#x = x;
-        this.#y = y;
-        this.#z = z;        
+        this.#xyz = [this.#x, this.#y, this.#z] = [x, y, z];
     }
 
     get x() { return this.#x; }
     get y() { return this.#y; }
     get z() { return this.#z; }
+
 
     get length() { 
         return this.#length ??= Math.sqrt(this.squid);
@@ -22,7 +22,7 @@ export class Vector {
 
     /** Return the squared Euclidian distance of this e */
     get squid() {
-        return this.#squid ??= (this.#x * this.#x + this.#y * this.#y + this.#z * this.#z);
+        return this.#squid ??= this.#xyz.map(c => c*c).reduce((a,b) => a+b);
     }
 
     /** the unit X vector <1,0,0> */

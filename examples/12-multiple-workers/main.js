@@ -52,25 +52,26 @@ function partition(width, height, rows, columns) {
 
 let runningWorkers = 0;
 function render() {
-    console.log("Rendering:");
-    window.renderStarted = new Date().valueOf();
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    let blocks = partition(ctx.canvas.width, ctx.canvas.height, 4, 4);
+    let blocks = partition(ctx.canvas.width, ctx.canvas.height, 4, 2);
     ctx.strokeStyle = "#999";
     blocks.forEach(block => {
         ctx.strokeRect(block.x, block.y, block.width, block.height);
-        let worker = new Worker('worker.js', { type: 'module' });
-        worker.addEventListener('message', handleMessageFromWorker);
-        cancelButton.addEventListener("click", function () {
-            worker.terminate();
-            updateStatus(false);
-        });
-        worker.postMessage({ command: 'render', width: canvas.width, height: canvas.height, block: block });
+        runWorkerForBlock(canvas, block);
         runningWorkers++;
     });
     updateStatus(true);
 };
 
+function runWorkerForBlock(canvas, block) {
+    let worker = new Worker('worker.js', { type: 'module' });
+    worker.addEventListener('message', handleMessageFromWorker);
+    cancelButton.addEventListener("click", function () {
+        worker.terminate();
+        updateStatus(false);
+    });
+    worker.postMessage({ command: 'render', width: canvas.width, height: canvas.height, block: block });
+}
 
 function updateStatus(running) {
     renderButton.disabled = running;

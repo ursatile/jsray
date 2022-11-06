@@ -4,7 +4,7 @@ export class Finish {
     static Default = new Finish();
 
     constructor(options = {}) {
-        this.ambient = options.ambient ?? 0.1;
+        this.ambient = options.ambient ?? 0;
         this.diffuse = options.diffuse ?? 0.7;
         this.shiny = options.shiny ?? 0;
         this.reflection = options.reflection ?? 0;

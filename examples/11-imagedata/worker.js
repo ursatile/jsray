@@ -4,7 +4,7 @@ import * as ExampleScenes from './scenes/examples.js';
 function makeCallback(width, rowsPerCallback = 1) {    
     let rgbaData = new Uint8ClampedArray(width * 4 * rowsPerCallback);
     let yOffset = 0;
-    function callback(x, y, color) {
+    return function(x, y, color) {
         let offset = ((y % rowsPerCallback) * width + x) * 4; // each rgba takes four array elements
         rgbaData.set(color.rgba, offset);
         if (offset + 4 == rgbaData.length) {
@@ -13,8 +13,7 @@ function makeCallback(width, rowsPerCallback = 1) {
             self.postMessage(data);
             yOffset += rowsPerCallback;
         }
-    }
-    return callback;
+    }    
 }
 
 

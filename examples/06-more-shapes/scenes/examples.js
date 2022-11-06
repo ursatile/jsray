@@ -12,21 +12,21 @@ export function EmptySky() {
 }
 
 export function ColoredSpheres() {
-    let camera = new Camera(new Vector(0, 1, -3), Vector.O);
-    let background = Color.Black;
-    let shapes = [
-        new Sphere(Vector.O, 1, new Appearance(Color.White)),
-        new Sphere(new Vector(2, 0, 2), 1, new Appearance(Color.Green)),
-        new Sphere(new Vector(4, 0, 4), 1, new Appearance(Color.Blue)),
-        new Sphere(new Vector(-2, 0, 2), 1, new Appearance(Color.Red)),
-        new Sphere(new Vector(-4, 0, 4), 1, new Appearance(Color.Yellow)),
-    ];
-    let lights = [ new Light(new Vector(5, 10, -5), Color.White) ]; 
-    return new Scene(camera, background, shapes, lights);
+  let camera = new Camera(new Vector(0, 1, -3), Vector.O);
+  let background = Color.Black;
+  let shapes = [
+    new Sphere(new Vector(-4, 0, 4), 1, new Appearance(Color.Yellow)),
+    new Sphere(new Vector(-2, 0, 2), 1, new Appearance(Color.Red)),
+    new Sphere(new Vector(+0, 0, 0), 1, new Appearance(Color.White)),
+    new Sphere(new Vector(+2, 0, 2), 1, new Appearance(Color.Green)),
+    new Sphere(new Vector(+4, 0, 4), 1, new Appearance(Color.Blue)),
+  ];
+  let lights = [ new Light(new Vector(5, 10, -5), Color.White) ]; 
+  return new Scene(camera, background, shapes, lights);
 }
 
 export function AssortedShapes() {
-    let camera = new Camera(new Vector(-5, 5, -12), new Vector(0, 3, 0), 3.2, 1.8);
+    let camera = new Camera(new Vector(-10, 10, -20), new Vector(0, 4, 0));
     let background = new Color(0, 0, 0);
     let lights = [new Light(new Vector(-30, 25, -12), Color.White)];
     let shapes = [

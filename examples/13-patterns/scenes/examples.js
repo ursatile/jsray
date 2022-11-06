@@ -153,17 +153,18 @@ export function ShapesOnChessboard() {
         new Patterns.Chessboard(Color.Black, Color.White, 2),
         new Finish({ ambient: 0.2, diffuse: 0.7, reflection: 0.4 })
     );
-    let camera = new Camera(new Vector(-5, 7, -17), new Vector(0, 0, -2), 3.2, 1.8);
+    let camera = new Camera(new Vector(-3, 10, -28), new Vector(4, 1, 4), 16/8, 9/8);
     let background = new Color(0, 0, 0);
     let lights = [new Light(new Vector(-30, 25, -12), Color.White)];
     let reflection = 0.5;
-    let finish = new Finish({reflection: reflection});
+    let finish = new Finish({reflection: reflection, shiny: 0.8});
     let shapes = [
         new Plane(Vector.Y, -0.3, new Appearance(new Color(100,120,150))),
         new Box(new Vector(-8,-0.3,-8), new Vector(8,0,8), chessboard),
         new Box(new Vector(-8.5,-0.3,-8.5), new Vector(8.5,-0.001,8.5), 
             new Appearance(Color.Grey, new Finish({ambient: 0.4, diffuse: 0.7}))
         ),
+        
         new Box(new Vector(-1.8, 0, -4.8), new Vector(1.8, 4, -1.2), new Appearance(Color.Red, finish)),
         new Sphere(new Vector(6, 2, -2), 2, new Appearance(Color.Magenta, finish)),
         new Sphere(new Vector(6, 1, -6), 1, new Appearance(Color.Yellow, finish)),
