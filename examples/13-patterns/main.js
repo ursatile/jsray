@@ -52,10 +52,15 @@ function partition(width, height, rows, columns) {
 
 let runningWorkers = 0;
 function render() {
+    let rows = parseInt(document.getElementById('rows-input').value) || 1;
+    let columns = parseInt(document.getElementById('columns-input').value || 1);
+    let camX = parseInt(document.getElementById('camera-x-input').value);
+    let camY = parseInt(document.getElementById('camera-y-input').value);
+    let camZ = parseInt(document.getElementById('camera-z-input').value);
     console.log("Rendering:");
     window.renderStarted = new Date().valueOf();
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    let blocks = partition(ctx.canvas.width, ctx.canvas.height, 8, 1);
+    let blocks = partition(ctx.canvas.width, ctx.canvas.height, rows, columns);
     ctx.strokeStyle = "#999";
     blocks.forEach(block => {
         ctx.strokeRect(block.x, block.y, block.width, block.height);
@@ -65,7 +70,12 @@ function render() {
             worker.terminate();
             updateStatus(false);
         });
-        worker.postMessage({ command: 'render', width: canvas.width, height: canvas.height, block: block });
+        worker.postMessage({ 
+            command: 'render', 
+            width: canvas.width, 
+            height: canvas.height, 
+            camera: { x: camX, y: camY, z: camZ },
+            block: block });
         runningWorkers++;
     });
     updateStatus(true);

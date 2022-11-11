@@ -32,7 +32,8 @@ self.addEventListener('message', function (message) {
     switch (data.command) {
         case 'render':
             let renderer = new Renderer(data.width, data.height);
-            let scene = ExampleScenes.ShapesOnChessboard(); // ShapesOnTiledFloor();
+            let [x,y,z] = [data.camera.x, data.camera.y, data.camera.z];
+            let scene = ExampleScenes.ShapesOnChessboard(x,y,z); // ShapesOnTiledFloor();
             let callback = makeCallback(data.block, 20);
             renderer.render(scene, callback, data.block);
             self.close();

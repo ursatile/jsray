@@ -12,9 +12,21 @@
 <body>
   <canvas id="my-canvas" width="1280" height="720" style="width: 100%;"></canvas>
   <form>
+    <label for="camera-x-input">Camera X:</label>
+    <input type="number" id="camera-x-input" name="camera-x-input" min="-50" max="50" value="-3" /><br />
+    <label for="camera-y-input">Camera Y:</label>
+    <input type="number" id="camera-y-input" name="camera-y-input" min="-50" max="50" value="10" /><br />
+    <label for="camera-z-input">Camera Z:</label>
+    <input type="number" id="camera-z-input" name="camera-z-input" min="-50" max="50" value="-28" /><br />
+    <label for="rows-input">Rows:</label> 
+    <input type="number" min="1" max="16" id="rows-input" name="rows" value="2" /><br />
+    <label for="columns-input">Columns:</label>
+    <input type="number" min="1" max="16" id="columns-input" name="columns" value="2" /><br />
     <input type="button" id="render-button" name="renderButton" value="Render" />
     <input type="button" id="cancel-button" name="cancelButton" value="Cancel" />
   </form>
+  <hr />
+  <a href="/jsray/">Radiance: A Pure JavaScript Ray-Tracer</a>
   <script type="module" src="./main.js">
   </script>
 </body>

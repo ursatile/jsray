@@ -148,12 +148,12 @@ export function Chessball() {
 }
 
 
-export function ShapesOnChessboard() {
+export function ShapesOnChessboard(cameraX = -3, cameraY = 10, cameraZ = -28) {
     let chessboard = new Appearance(
         new Patterns.Chessboard(Color.Black, Color.White, 2),
         new Finish({ ambient: 0.2, diffuse: 0.7, reflection: 0.4 })
     );
-    let camera = new Camera(new Vector(-3, 10, -28), new Vector(4, 1, 4), 16/8, 9/8);
+    let camera = new Camera(new Vector(cameraX, cameraY, cameraZ), Vector.O, 16/8, 9/8);
     let background = new Color(0, 0, 0);
     let lights = [new Light(new Vector(-30, 25, -12), Color.White)];
     let reflection = 0.5;
