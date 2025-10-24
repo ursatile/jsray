@@ -42,12 +42,12 @@ Now we'll modify our `Scene` class to accept an array of lights when we create a
 {% include_relative examples/05-lights/modules/scene.js %}
 ```
 
-and update `main.js` to include a light when we set up our scene:
+and update the `ColoredSpheres` function in `scenes/examples.js` to include a light when we set up our scene:
 
 ```javascript
-// main.js
+// scenes/examples.js
 
-{% include_relative examples/05-lights/main.js %}
+{% include_relative examples/05-lights/scenes/examples.js %}
 ```
 
 OK, now comes the fun part. We're going to modify `shape.js` to calculate just how bright the surface of a shape is, at any point in the scene, based on what light sources are falling on that shape and what angle they're striking it at.
